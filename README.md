@@ -10,9 +10,9 @@ Maybe one day I'll include a ton of dummy data based on the Cheers/Frasier unive
 
 ## Built With
 
-[underscores](https://underscores.me/) - minimalist starter Wordpress theme
-[React JS](https://reactjs.org/)
-[webpack](https://webpack.js.org/)
+* [underscores](https://underscores.me/) - minimalist starter Wordpress theme
+* [React JS](https://reactjs.org/)
+* [webpack](https://webpack.js.org/)
 
 ## Author
 
