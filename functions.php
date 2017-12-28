@@ -148,7 +148,7 @@ function custom_post_type() {
 		'capability_type'       => 'post',
 		'show_in_rest'          => true,
 	);
-	$dept_labels = array (
+	$dept_labels = array(
 		'name'                  => _x( 'Departments', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'Department', 'Post Type Singular Name', 'text_domain' ),
 		'menu_name'             => __( 'Departments', 'text_domain' ),
@@ -175,12 +175,67 @@ function custom_post_type() {
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 	);
+	$program_labels = array(
+		'name'                  => _x( 'Programs/Units', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Program/Unit', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Programs/Units', 'text_domain' ),
+		'name_admin_bar'        => __( 'Programs/Units', 'text_domain' ),
+	);
+	$args_program = array(
+		'label'                 => __( 'Department', 'text_domain' ),
+		'description'           => __( 'Departments', 'text_domain' ),
+		'labels'                => $program_labels,
+		'supports'              => array( 'title', 'editor' ),
+		'taxonomies'            => array( 'department' ),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-tagcloud',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
+	register_post_type( 'program', $args_program );
 
 }
 
 add_action( 'init', 'custom_post_type', 0 );
+
+add_action('admin_menu', function() {
+   remove_meta_box('pageparentdiv', 'program', 'normal');
+});
+
+add_action('add_meta_boxes', function() {
+   add_meta_box('program-parent', 'Parent Department', 'program_attributes_meta_box', 'program', 'side', 'high');
+});
+
+function program_attributes_meta_box($post) {
+    $post_type_object = get_post_type_object($post->post_type);
+
+   	if ( $post_type_object->hierarchical ) {
+      		$pages = wp_dropdown_pages(array(
+            		'post_type' 		=> 'department',
+            		'selected' 		=> $post->post_parent,
+			'name' 			=> 'parent_id',
+            		'show_option_none' 	=> __('(no parent)'),
+            		'sort_column'		=> 'menu_order, post_title',
+			'echo' 			=> 0
+		));
+
+      		if ( ! empty($pages) ) {
+         		echo $pages;
+      		}
+    	}
+}
 
 /**
  * Register widget area.
