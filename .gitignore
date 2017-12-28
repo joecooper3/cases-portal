@@ -1,0 +1,5 @@
+/node_modules
+/images/staff-photos
+.DS_Store
+style-test.css
+*.log

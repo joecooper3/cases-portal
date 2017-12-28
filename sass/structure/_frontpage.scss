@@ -1,0 +1,177 @@
+#primary {
+  .entry-title {
+    font-size: 35px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .entry-meta {
+    margin-top: 10px;
+    color: $softgrey;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+#news {
+  .old-entries {
+    h3 {
+      font-size: 18px;
+      font-family: gillMed;
+      margin-bottom: 0;
+      color: $color1;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    p {
+      margin-top: 0;
+      font-size: 14px;
+      color: $softgrey;
+    }
+  }
+}
+
+#new-hires {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  h1 {
+    flex: 1 0 100%;
+    margin-bottom: 20px;
+  }
+  .staff-container {
+    margin: 20px 0;
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1 300px;
+    justify-content: center;
+    max-width: 300px;
+    .portrait {
+      background-size: cover;
+      background-position: 50% 80%;
+      border-radius: 100%;
+      height: 200px;
+      width: 200px;
+    }
+    .tgreen {
+      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/tgreen.png');
+    }
+    .jrodriguez {
+        background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/jrodriguez.png');
+    }
+    .dhall {
+      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/dhall.png');
+    }
+    .jholliday {
+      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/jholliday.png');
+    }
+    h2 {
+      margin-bottom: 0;
+    }
+    .meta {
+      font-family: akzLight;
+      margin: 0 0 20px 0;
+      font-size: 15px;
+      text-align: center;
+      width: 100%;
+      color: $softgrey;
+    }
+    .fun-facts {
+      width: 100%;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+#secondary {
+  #mission-statement {
+    background-color: transparent;
+    border: 0;
+    font-family: akzLight;
+    color: $color1;
+    margin: 50px 0;
+    padding: 0 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  #quick-links {
+    ul {
+      max-width: 325px;
+      list-style: none;
+      margin: 30px auto 0;
+      padding: 0;
+
+      li {
+        font-family: akzLight;
+        font-size: 20px;
+        text-align: center;
+        margin: 20px 0;
+
+        a {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          text-decoration: none;
+
+          .fa {
+            display: block;
+            font-size: 40px;
+            flex: 1 1 50px;
+          }
+
+          span {
+            flex: 1 1 250px;
+          }
+        }
+      }
+    }
+  }
+
+  #cases-website-stories {
+    a {
+      font-family: gillSemiBold;
+      text-decoration: none;
+    }
+
+    .date {
+      font-family: akzMed;
+      font-size: 12px;
+      color: $softgrey;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border-top: 0.5px solid $softgrey;
+        padding: 20px 0;
+      }
+
+      .first-bullet {
+        a {
+          font-size: 20px;
+          font-family: gillBold;
+        }
+        p {
+          margin: 15px 0 0 0;
+          font-size: 17px;
+        }
+        border-top: 0;
+        padding: 0 0 20px;
+      }
+    }
+  }
+}

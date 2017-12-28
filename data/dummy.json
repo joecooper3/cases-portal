@@ -1,0 +1,118 @@
+{
+  "info": [
+    {
+      "id": "jcooper",
+      "first": "Joe",
+      "last": "Cooper",
+      "title": "Associate Director, Communications & Design",
+      "department": "Development & Communications",
+      "program": null,
+      "program_location": null,
+      "reports_to": 4444,
+      "office": "151-3",
+      "email": "jcooper@cases.org",
+      "phone": "(212) 553-6670",
+      "mobile": null,
+      "supervises": null
+    },
+    {
+      "id": "lmiles",
+      "first": "Loyal",
+      "last": "Miles",
+      "title": "Chief Executive, Development & Communications",
+      "department": "Development & Communications",
+      "program": null,
+      "program_location": null,
+      "reports_to": 1,
+      "office": "151-3",
+      "email": "lmiles@cases.org",
+      "phone": "(212) 553-6300",
+      "mobile": null,
+      "supervises": [
+        5405,
+        2222
+      ]
+    },
+    {
+      "id": "jcopperman",
+      "first": "Joel",
+      "last": "Copperman",
+      "title": "CEO",
+      "department": "Executive",
+      "program": null,
+      "program_location": null,
+      "reports_to": null,
+      "office": "151-3",
+      "email": "jcopperman@cases.org",
+      "phone": "(212) 553-6301",
+      "mobile": null,
+      "supervises": [
+        1111
+      ]
+    },
+    {
+      "id": "jstirba",
+      "first": "Jessica",
+      "last": "Stirba",
+      "title": "Development Associate",
+      "department": "Development & Communications",
+      "program": null,
+      "program_location": null,
+      "reports_to": 1111,
+      "office": "151-3",
+      "email": "jstirba@cases.org",
+      "phone": "(212) 553-6301",
+      "mobile": null,
+      "supervises": null
+    },
+    {
+      "id": "jklaver",
+      "first": "Jessica",
+      "last": "Klaver",
+      "title": "Senior Director, Behavioral Health Services",
+      "department": "Behavioral Health Services",
+      "program": null,
+      "program_location": null,
+      "reports_to": null,
+      "office": "2090-4",
+      "email": "jstirba@cases.org",
+      "phone": "(212) 553-6301",
+      "mobile": null,
+      "supervises": [
+        3333
+      ]
+    },
+    {
+      "id": "rvogel",
+      "first": "Rachele",
+      "last": "Vogel",
+      "title": "Director, Brooklyn FACT",
+      "department": "Behavioral Health Services",
+      "program": "Brooklyn FACT",
+      "program_location": null,
+      "reports_to": 2222,
+      "office": "2090-4",
+      "email": "jstirba@cases.org",
+      "phone": "(212) 553-6301",
+      "mobile": null,
+      "supervises": [
+        4444
+      ]
+    },
+    {
+      "id": "bbolduc",
+      "first": "Brian",
+      "last": "Bolduc",
+      "title": "Program Assistant",
+      "department": "Behavioral Health Services",
+      "program": "Brooklyn FACT",
+      "program_location": null,
+      "reports_to": 3333,
+      "office": "2090-4",
+      "email": "jstirba@cases.org",
+      "phone": "(212) 553-6301",
+      "mobile": null,
+      "supervises": null
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+#single-contact {
+  display: flex;
+  flex: 1 1 100%;
+  margin: 0 25px 20px;
+  padding: 20px 0;
+
+  .staff-container {
+    display: flex;
+    flex: 1 1 100%;
+    max-width: 700px;
+    justify-content: center;
+
+    .portrait {
+      height: 250px;
+      width: 250px;
+      background-size: cover;
+      background-position: 50% 80%;
+      border-radius: 100%;
+      margin: 25px;
+    }
+
+    .meta {
+      display: flex;
+      font-family: akzLight;
+      flex-flow: column nowrap;
+      margin: 25px;
+
+      .name {
+        text-align: left;
+        font-size: 35px;
+        display: flex;
+        flex-flow: column nowrap;
+        font-family: akzBold;
+        margin: 0;
+        color: $color1;
+      }
+
+      h3 {
+        text-align: left;
+        font-size: 22px;
+        margin: 0 0 25px 0;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+
+      .email {
+        margin: 15px 0 0;
+      }
+
+      .supervisor {
+        margin: 15px 0 0;
+        font-size: 12px;
+
+        a {
+          text-decoration: none;
+          font-family: akzMed;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
