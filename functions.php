@@ -132,7 +132,6 @@ function custom_post_type() {
 		'description'           => __( 'Staff Members', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'thumbnail', 'custom-fields', ),
-		'taxonomies'            => array( 'department' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -158,7 +157,7 @@ function custom_post_type() {
 		'label'                 => __( 'Department', 'text_domain' ),
 		'description'           => __( 'Departments', 'text_domain' ),
 		'labels'                => $dept_labels,
-		'supports'              => array( 'title', 'editor' ),
+		'supports'              => array( 'title'),
 		'taxonomies'            => array( 'department' ),
 		'hierarchical'          => true,
 		'public'                => true,
@@ -174,6 +173,8 @@ function custom_post_type() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
+		'query_var'							=> 'department',
+    'rewrite' 							=> array( 'slug' => 'department'),
 	);
 	$program_labels = array(
 		'name'                  => _x( 'Programs/Units', 'Post Type General Name', 'text_domain' ),
@@ -182,11 +183,11 @@ function custom_post_type() {
 		'name_admin_bar'        => __( 'Programs/Units', 'text_domain' ),
 	);
 	$args_program = array(
-		'label'                 => __( 'Department', 'text_domain' ),
-		'description'           => __( 'Departments', 'text_domain' ),
+		'label'                 => __( 'Program', 'text_domain' ),
+		'description'           => __( 'Programs', 'text_domain' ),
 		'labels'                => $program_labels,
-		'supports'              => array( 'title', 'editor' ),
-		'taxonomies'            => array( 'department' ),
+		'supports'              => array( 'title' ),
+		'taxonomies'            => array( 'program' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -209,33 +210,6 @@ function custom_post_type() {
 }
 
 add_action( 'init', 'custom_post_type', 0 );
-
-add_action('admin_menu', function() {
-   remove_meta_box('pageparentdiv', 'program', 'normal');
-});
-
-add_action('add_meta_boxes', function() {
-   add_meta_box('program-parent', 'Parent Department', 'program_attributes_meta_box', 'program', 'side', 'high');
-});
-
-function program_attributes_meta_box($post) {
-    $post_type_object = get_post_type_object($post->post_type);
-
-   	if ( $post_type_object->hierarchical ) {
-      		$pages = wp_dropdown_pages(array(
-            		'post_type' 		=> 'department',
-            		'selected' 		=> $post->post_parent,
-			'name' 			=> 'parent_id',
-            		'show_option_none' 	=> __('(no parent)'),
-            		'sort_column'		=> 'menu_order, post_title',
-			'echo' 			=> 0
-		));
-
-      		if ( ! empty($pages) ) {
-         		echo $pages;
-      		}
-    	}
-}
 
 /**
  * Register widget area.
