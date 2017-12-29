@@ -12,6 +12,7 @@ var config = {
     'index': SRC_DIR + '/index.jsx',
     'department': SRC_DIR + '/department.jsx',
     'staff': SRC_DIR + '/staff.jsx',
+    'program': SRC_DIR + '/program.jsx',
   },
   output: {
     path: DIST_DIR,

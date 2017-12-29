@@ -1,7 +1,7 @@
 import React from 'react';
 
 const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
-const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?_embed=true';
+const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?_embed=true&per_page=50';
 
 class SupervisorPull extends React.Component {
   constructor() {

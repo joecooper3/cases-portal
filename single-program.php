@@ -16,8 +16,10 @@ get_header(); ?>
 		<div id="app-area">I got to be content with what I got</div>
 	</div>
 	</div><!-- #primary -->
+	<!--
+	We'll add this when we have more program information
 	<div id="secondary">
 <div id="cases-website-stories"></div>
-</div>
+</div> -->
 <?php
 get_footer();
