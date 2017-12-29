@@ -24,14 +24,16 @@
     .staff-container {
       flex: 1 1 100%;
       max-width: 100%;
-      justify-content: space-around;
+      justify-content: center;
 
       .portrait {
         height: 250px;
         width: 250px;
+        margin: 25px;
       }
 
       .meta {
+        margin: 25px;
         .name {
           text-align: left;
           font-size: 35px;
