@@ -57,3 +57,27 @@ header {
     margin: 0 0 20px 0;
   }
 }
+
+.moving-line {
+  position: relative;
+  z-index: 3;
+}
+.moving-line:after {
+  content: '';
+    position: absolute;
+    z-index: 2;
+    width: 0; height: 2px;
+    display: block;
+    margin-top: -5px;
+    right: 0;
+    background: $softgrey;
+    transition: width .3s ease;
+    -webkit-transition: width .3s ease;
+}
+.moving-line:hover:after,
+ {
+  left: 0;
+  right: auto;
+  width: 100%;
+  background: $softgrey;
+}

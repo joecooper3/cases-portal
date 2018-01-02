@@ -17,7 +17,11 @@ get_header(); ?>
 	</div>
 	</div><!-- #primary -->
 	<div id="secondary">
-<div id="cases-website-stories"></div>
+<div id="cases-website-stories">
+<a href="#!" class="moving-line">
+	Big test ppg
+</a>
+</div>
 </div>
 <?php
 get_footer();

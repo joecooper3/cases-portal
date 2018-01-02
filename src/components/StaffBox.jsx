@@ -38,9 +38,10 @@ class StaffBox extends React.Component {
       <PortraitPull first={this.props.first} email={this.props.email}/>
     </a>
       <div className="meta">
-        <a href={this.state.staffUrl}>
-        <h2 className="name">{this.props.first} {this.props.last}</h2>
-      </a>
+        <h2 className="name">
+          <a href={this.state.staffUrl} className="moving-line">
+            {this.props.first} {this.props.last}</a>
+          </h2>
         <h3>{this.props.title}</h3>
         <div className="address">2090 Adam Clayton Powell, Jr. Boulevard<br/>
         New York, NY 10027</div>
