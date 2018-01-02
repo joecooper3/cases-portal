@@ -3,15 +3,44 @@ import {PortraitPull} from './PortraitPull.jsx';
 import {PhonePull} from './PhonePull.jsx';
 import {SupervisorPull} from './SupervisorPull.jsx';
 
-const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
+const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?per_page=50';
 
 class StaffBox extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      staffUrl: '#!'
+    };
+  }
+
+  componentWillMount() {
+      fetch(requestUrl).then((response) => {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status);
+          return;
+        }
+        response.json().then((data) => {
+          data.map((info) => {
+          if (info.acf.email === this.props.email) {
+            this.setState({staffUrl: info.link});
+          }
+        })
+        });
+      }).catch(function(err) {
+        console.log('Fetch Error :-S', err);
+      });
+  }
+
   render() {
     return(
     <div className="staff-container">
+      <a href={this.state.staffUrl}>
       <PortraitPull first={this.props.first} email={this.props.email}/>
+    </a>
       <div className="meta">
+        <a href={this.state.staffUrl}>
         <h2 className="name">{this.props.first} {this.props.last}</h2>
+      </a>
         <h3>{this.props.title}</h3>
         <div className="address">2090 Adam Clayton Powell, Jr. Boulevard<br/>
         New York, NY 10027</div>
