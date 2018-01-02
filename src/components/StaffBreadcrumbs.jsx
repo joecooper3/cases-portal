@@ -32,11 +32,20 @@ class StaffBreadcrumbs extends React.Component {
     });
   }
   render() {
+    if (this.state.parts.program) {
     return (<div>
       <Crumb name={this.state.parts.department} type='dept'/>
       <i className="fa fa-angle-double-right" aria-hidden="true"></i>
       <Crumb name={this.state.parts.program} type='program'/>
     </div>)
+  }
+  else {
+    return (
+      <div>
+    <Crumb name={this.state.parts.department} type='dept'/>
+  </div>
+  )
+  }
   }
 }
 
