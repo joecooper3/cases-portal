@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+#app-area {
+  width: 100%;
+  max-width: 700px;
+}
+
 #staff-breadcrumbs {
   display: flex;
   font-family: akzLight;
@@ -30,24 +35,20 @@
 }
 
 #single-contact {
-  display: flex;
-  flex: 1 1 100%;
-  margin: 0 25px 20px;
-  padding: 20px 0;
-
   .staff-container {
     display: flex;
-    flex: 1 1 100%;
-    max-width: 700px;
+    flex-flow: row wrap;
+    width: 100%;
     justify-content: center;
-
     .portrait {
       height: 250px;
-      width: 250px;
+      width: 100%;
+      max-width: 250px;
       background-size: cover;
       background-position: 50% 80%;
       border-radius: 100%;
       margin: 25px;
+      flex: 1 0 250px;
     }
 
     .meta {
@@ -55,6 +56,8 @@
       font-family: akzLight;
       flex-flow: column nowrap;
       margin: 25px;
+      width: 100%;
+      flex: 1 1 250px;
 
       .name {
         text-align: left;
@@ -80,7 +83,7 @@
       }
 
       .email {
-        margin: 15px 0 5px 0;
+        margin: 20px 0 5px 0;
       }
 
       .email, .phone {
