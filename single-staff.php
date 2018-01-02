@@ -9,11 +9,11 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area" category="staff">
 		<div id="staff-title" class="single-staff-container"
 			data-id="<?php the_title();?>" staff-email="<?php the_field('email'); ?>">
 			<div id="staff-breadcrumbs">
-				
+
 			</div>
 		<div id="app-area"></div>
 	</div>
