@@ -6,7 +6,7 @@ class PortraitPull extends React.Component {
   constructor() {
     super();
     this.state = {
-      backgroundImage: ''
+      backgroundImage: 'url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/silhouette.svg")'
     };
   }
   componentWillMount() {
