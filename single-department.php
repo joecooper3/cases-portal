@@ -18,9 +18,6 @@ get_header(); ?>
 	</div><!-- #primary -->
 	<div id="secondary">
 <div id="cases-website-stories">
-<a href="#!" class="moving-line">
-	Big test ppg
-</a>
 </div>
 </div>
 <?php
