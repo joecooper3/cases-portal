@@ -27,7 +27,17 @@ class ProgramsUnitsList extends React.Component {
             filteredArray.push(info);
           }
         })
-        this.setState({parts: filteredArray});
+        function compare(a,b) {
+          let titleA = a.title.rendered.toUpperCase();
+          let titleB = b.title.rendered.toUpperCase();
+            if (titleA < titleB)
+              return -1;
+            if (titleA > titleB )
+              return 1;
+            return 0;
+          }
+        let sortedArray = filteredArray.sort(compare);
+        this.setState({parts: sortedArray});
       });
     }).catch(function(err) {
       console.log('Fetch Error :-S', err);
