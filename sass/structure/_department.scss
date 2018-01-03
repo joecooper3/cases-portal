@@ -128,3 +128,31 @@
     }
   }
 }
+
+#programs-units {
+  font-family: akzRoman;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  ul > a:first-child {
+    border-top: 0.5px solid #f4f4f4;
+  }
+  a {
+    text-decoration: none;
+    padding: 10px 0 10px 25px;
+    border-bottom: 0.5px solid #f4f4f4;
+    transition: 0.2s;
+    color: #999;
+  }
+  a:hover {
+    background-color: #f4f4f4;
+    color: $color1;
+  }
+  li {
+    text-align: left;
+  }
+}

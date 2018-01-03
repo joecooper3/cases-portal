@@ -17,7 +17,8 @@ get_header(); ?>
 	</div>
 	</div><!-- #primary -->
 	<div id="secondary">
-<div id="cases-website-stories">
+<div id="programs-units">
+	<h2><?php the_title();?><br/> Programs & Units</h2>
 </div>
 </div>
 <?php

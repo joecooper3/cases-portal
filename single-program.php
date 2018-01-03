@@ -13,7 +13,7 @@ get_header(); ?>
 			<div class="dept-container">
 		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>">
 			<?php the_title();?></h1>
-		<div id="app-area">I got to be content with what I got</div>
+		<div id="app-area"></div>
 	</div>
 	</div><!-- #primary -->
 	<!--
