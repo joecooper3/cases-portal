@@ -1,6 +1,6 @@
 import React from 'react';
 
-const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/program';
+const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/program?per_page=50';
 
 class ProgramsUnitsList extends React.Component {
   constructor() {
