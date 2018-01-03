@@ -16,6 +16,7 @@
 
   .top-supervisor {
     display: flex;
+    justify-content: center;
     flex: 1 1 100%;
     margin: 0 25px 20px 25px;
     padding: 20px 0;
@@ -23,7 +24,8 @@
 
     .staff-container {
       flex: 1 1 100%;
-      max-width: 100%;
+      width: 100%;
+      max-width: 700px;
       justify-content: center;
 
       .portrait-container {
@@ -52,11 +54,12 @@
   }
 
   .staff-container {
-    margin: 20px 0;
+    margin: 20px 10px;
     display: flex;
     flex-flow: row wrap;
     flex: 1 1 200px;
     justify-content: center;
+    align-items: flex-start;
     max-width: 250px;
 
     .portrait {
@@ -81,6 +84,7 @@
       margin: 0 0 20px;
       font-size: 15px;
       color: #333;
+      height: 100%;
       .name {
         font-size: 20px;
         margin-bottom: 0;

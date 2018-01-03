@@ -4,11 +4,6 @@
   align-items: center;
 }
 
-#app-area {
-  width: 100%;
-  max-width: 700px;
-}
-
 #staff-breadcrumbs {
   display: flex;
   font-family: akzLight;
@@ -35,9 +30,12 @@
 }
 
 #single-contact {
+  display: flex;
+  justify-content: center;
   .staff-container {
     display: flex;
     flex-flow: row wrap;
+    max-width: 700px;
     width: 100%;
     justify-content: center;
     .portrait {
