@@ -31,7 +31,17 @@ class DeptFetch extends React.Component {
           filteredArray.push(info);
         }
       })
-      this.setState({parts: filteredArray});
+      function compare(a,b) {
+        let nameA = a.last.toUpperCase();
+        let nameB = b.last.toUpperCase();
+          if (nameA < nameB)
+            return -1;
+          if (nameA > nameB )
+            return 1;
+          return 0;
+        }
+      let sortedArray = filteredArray.sort(compare);
+      this.setState({parts: sortedArray});
       this.setState({supervisorParts: supervisorArray});
       });
     }).catch(function(err) {
