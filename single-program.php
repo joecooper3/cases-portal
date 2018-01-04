@@ -11,15 +11,13 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 			<div class="dept-container">
-		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>">
+		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>" page-type="program">
 			<?php the_title();?></h1>
 		<div id="app-area"></div>
 	</div>
 	</div><!-- #primary -->
-	<!--
-	We'll add this when we have more program information
 	<div id="secondary">
-<div id="cases-website-stories"></div>
-</div> -->
+		<span id="sec-holder-one" class="sec-blank-holder"></span>
+</div>
 <?php
 get_footer();
