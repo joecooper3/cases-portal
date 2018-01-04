@@ -27,4 +27,4 @@ class ProgramsUnitsListApp extends React.Component {
 }
 
 render(<DeptFetchApp/>, document.getElementById('app-area'));
-render(<ProgramsUnitsListApp/>, document.getElementById('programs-units'));
+render(<ProgramsUnitsListApp/>, document.getElementById('sec-holder-one'));

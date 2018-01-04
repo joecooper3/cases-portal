@@ -52,7 +52,7 @@ class ProgramsUnitsList extends React.Component {
     }
     else {
     return(
-      <div>
+      <div id="programs-units">
       <h2>{this.state.dept} <br/>Programs & Units</h2>
       <ul>
     {this.state.parts.map((part, i) =>

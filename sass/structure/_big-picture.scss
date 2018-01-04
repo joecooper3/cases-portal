@@ -42,7 +42,7 @@ header {
 
 }
 
-#secondary {
+#secondary, .sec-blank-holder {
   flex: 1 1 225px;
   & > div {
     background-color: $mywhite;
