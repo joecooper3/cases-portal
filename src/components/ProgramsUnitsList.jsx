@@ -44,6 +44,10 @@ class ProgramsUnitsList extends React.Component {
     });
   }
 
+  _removeSemicolon(inp){
+    return inp.replace("&#038;","&");
+  }
+
   render() {
     if (this.state.parts.length < 1) {
       return (
@@ -56,8 +60,9 @@ class ProgramsUnitsList extends React.Component {
       <h2>{this.state.dept} <br/>Programs & Units</h2>
       <ul>
     {this.state.parts.map((part, i) =>
-      <a href={part.link} key={i}><li>{part.title.rendered}</li></a>
+      <a href={part.link} key={i}><li>{this._removeSemicolon(part.title.rendered)}</li></a>
     )}
+    {console.log("forget about life")}
    </ul>
 </div>
   )}
