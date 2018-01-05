@@ -25,8 +25,7 @@ class ProgramsUnitsList extends React.Component {
         if (pageType === 'dept') {
           let dept = titleBlock.getAttribute('data-id');
           this.setState({dept: dept});
-        }
-        else if (pageType === 'program') {
+        } else if (pageType === 'program') {
           let prog = titleBlock.getAttribute('data-id');
           this.setState({prog: prog});
           data.map((info) => {
@@ -59,29 +58,36 @@ class ProgramsUnitsList extends React.Component {
     });
   }
 
+
   _removeSemicolon(inp) {
     return inp.replace("&#038;", "&");
   }
 
   render() {
     if (this.state.parts.length < 1) {
-      return (
-        <span></span>
-      )
+      return (<span></span>)
     } else {
-      return (
-        <div id="programs-units">
-          <h2>{this.state.dept}
-            <br/>Programs & Units</h2>
-          <ul>
-            {this.state.parts.map((part, i) => <a href={part.link} key={i}>
+      return (<div id="programs-units">
+        <h2>{this.state.dept}
+          <br/>Programs & Units</h2>
+        <ul>
+          {this.state.parts.map((part, i) => {if(part.title.rendered === this.state.prog) {
+            return (<a href="#!" key={i} className="active-program">
+              <li>
+              {this._removeSemicolon(part.title.rendered)}</li>
+            </a>)
+          } else {
+            return (<a href={part.link} key={i}>
               <li>{this._removeSemicolon(part.title.rendered)}</li>
-            </a>)}
-          </ul>
-        </div>
-      )
+            </a>)
+          }
+        })}
+        </ul>
+      </div>)
     }
   }
 }
 
-export {ProgramsUnitsList};
+export {
+  ProgramsUnitsList
+};

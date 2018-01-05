@@ -153,4 +153,14 @@
   li {
     text-align: left;
   }
+  .active-program {
+    font-family: akzSemibold;
+    color: #666;
+    cursor: default;
+  }
+  .active-program:hover{
+    color: #666;
+    background-color: $mywhite;
+
+  }
 }
