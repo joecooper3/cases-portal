@@ -1,13 +1,22 @@
 
 header {
   background-color: $mywhite;
-  .site-branding {
-      padding: 20px 0 10px 30px;
-    img {
-      max-width: 300px;
+  .header-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1250px;
+    margin: 0 auto;
+    .site-branding {
+        padding: 20px 0 10px 30px;
+      img {
+        max-width: 225px;
+      }
     }
   }
 }
+
 
 #site-navigation {
   #primary-menu {
