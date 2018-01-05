@@ -112,21 +112,25 @@
       margin: 30px auto 0;
       padding: 0;
 
-      li {
-        font-family: akzLight;
-        font-size: 20px;
-        text-align: center;
-        margin: 20px 0;
-
         a {
-          display: flex;
-          flex-flow: row nowrap;
-          align-items: center;
+          display: block;
           text-decoration: none;
+          border-bottom: 0.5px solid #f4f4f4;
+          transition: 0.2s;
+
+          li {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            font-family: akzLight;
+            font-size: 18px;
+            text-align: left;
+            padding: 10px 0;
 
           .fa {
             display: block;
-            font-size: 40px;
+            margin: 0 10px;
+            font-size: 30px;
             flex: 1 1 50px;
           }
 
@@ -135,6 +139,12 @@
           }
         }
       }
+      a:hover {
+        background-color: #F4F4F4;
+      }
+    }
+    ul > a:first-child {
+      border-top: 0.5px solid #f4f4f4;
     }
   }
 
