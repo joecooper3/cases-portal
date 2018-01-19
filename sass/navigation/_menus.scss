@@ -8,6 +8,7 @@
 
 	a {
 		color: $mywhite;
+		transition: 0.2s;
 	}
 
 	ul {
@@ -15,14 +16,48 @@
 		list-style: none;
 		margin: 0;
 		padding-left: 0;
+		transition: 0.25s;
+
+		.sub-menu:before {
+			content: "";
+			position: absolute;
+			top: -8px;
+			width: 0px;
+			height: 0px;
+			margin: 0 auto;
+			margin-left: 20px;
+			border-left: 15px solid transparent;
+			border-right: 15px solid transparent;
+			border-bottom: 15px solid #fdfdfd; /* <-- change to bottom for up arrow */
+			z-index: 600;
+		}
 
 		ul {
+			background-color: #fdfdfd;
 			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 			float: left;
 			position: absolute;
 			top: 100%;
-			left: -999em;
-			z-index: 99999;
+			left: -9999px;
+			opacity: 0;
+			z-index: 9;
+			padding: 10px 0 0 0;
+			transition: 0.2s;
+
+			a {
+				background-color: #fdfdfd;
+				font-family: akzMed;
+				font-size: 15px;
+				color: $color1;
+				text-transform: none;
+				transition: 0.3s;
+			}
+
+			a:hover {
+				background-color: #eaeaea;
+				color: #00498F;
+			}
+
 
 			ul {
 				left: -999em;
@@ -30,6 +65,7 @@
 			}
 
 			li {
+					transition: 0.25s;
 				&:hover > ul,
 				&.focus > ul {
 					left: 100%;
@@ -52,6 +88,7 @@
 		li:hover > ul,
 		li.focus > ul {
 			left: auto;
+			opacity: 1;
 		}
 	}
 
@@ -61,7 +98,7 @@
 
 		&:hover > a,
 		&.focus > a {
-			background-color: #6688DD;
+			background-color: #00498F;
 		}
 	}
 
