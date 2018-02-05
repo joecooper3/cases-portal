@@ -20,6 +20,8 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-
+<script type="text/javascript">
+  document.querySelector('.searchbox [type="reset"]').addEventListener('click', function() {  this.parentNode.querySelector('input').focus();});
+</script>
 </body>
 </html>
