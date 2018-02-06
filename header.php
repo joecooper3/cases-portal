@@ -45,7 +45,7 @@
   </symbol>
 </svg>
 
-<form novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
+<form id="particular-search" novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
   <div role="search" class="sbx-custom__wrapper">
     <input type="search" name="search" placeholder="Search the CASES directory" autocomplete="off" required="required" class="sbx-custom__input">
     <button type="submit" title="Submit your search query." class="sbx-custom__submit">

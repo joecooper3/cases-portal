@@ -21,13 +21,10 @@ class NewsApp extends React.Component {
 class SearchBoxApp extends React.Component {
   render () {
     return (
-      <div>
-      <h2>Search results</h2>
       <SearchBox />
-    </div>
     );
   }
 }
 
 render(<NewsApp/>, document.getElementById('cases-website-stories'));
-render(<SearchBoxApp/>, document.getElementById('new-hires'));
+render(<SearchBoxApp/>, document.getElementById('particular-search'));

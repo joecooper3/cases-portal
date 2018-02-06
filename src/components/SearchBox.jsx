@@ -12,6 +12,7 @@ class SearchBox extends React.Component {
       contactsVisible: false
     };
     this._filterSearch = this._filterSearch.bind(this);
+    this._hide = this._hide.bind(this);
   }
   componentWillMount() {
     fetch(data).then((response) => {
@@ -31,7 +32,6 @@ class SearchBox extends React.Component {
   _filterSearch(event) {
     this.setState({contactsVisible: true});
     let searchQuery = event.target.value.toLowerCase();
-    // console.log(searchQuery);
     let searchResults = this.state.fullResults.filter(function(el) {
       let searchValue = el.first.toLowerCase();
       return searchValue.indexOf(searchQuery) !== -1;
@@ -40,21 +40,34 @@ class SearchBox extends React.Component {
     if (searchQuery === "") {
       this.setState({contactsVisible: false});
     }
-    console.log(searchQuery);
+  }
+  _hide() {
+    this.setState({contactsVisible: false});
   }
   render() {
     return (
-      <div>
-      <input type="text" onChange={this._filterSearch}/>
-      <ul className="contacts-list">
-          { this.state.contactsVisible ?
-            this.state.searchResults.slice(0,6).map(function(part, i) {
-              return <SearchResult
-                key={i} first={part.first} last={part.last}
-              />;
-            }) : null
-          }
-        </ul>
+      <div role="search" className="sbx-custom__wrapper">
+        <input type="search" name="search" placeholder="Search the CASES directory"
+           autoComplete="off" required="required" className="sbx-custom__input" onChange={this._filterSearch}/>
+           <ul className="contacts-list">
+               { this.state.contactsVisible ?
+                 this.state.searchResults.slice(0,6).map(function(part, i) {
+                   return <SearchResult
+                     key={i} first={part.first} last={part.last}
+                   />;
+                 }) : null
+               }
+             </ul>
+        <button type="submit" title="Submit your search query." className="sbx-custom__submit">
+          <svg role="img" aria-label="Search">
+            <use xlinkHref="#sbx-icon-search-6" />
+          </svg>
+        </button>
+        <button type="reset" title="Clear the search query." className="sbx-custom__reset" onClick={this._hide}>
+          <svg role="img" aria-label="Reset">
+            <use xlinkHref="#sbx-icon-clear-4" />
+          </svg>
+        </button>
       </div>
     )
   }
