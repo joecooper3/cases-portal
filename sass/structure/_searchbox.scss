@@ -134,3 +134,10 @@
     opacity: 1;
   }
 }
+
+.contacts-list {
+  z-index: 3;
+  a {
+    display: block;
+  }
+}

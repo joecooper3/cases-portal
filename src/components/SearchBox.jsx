@@ -53,7 +53,7 @@ class SearchBox extends React.Component {
                { this.state.contactsVisible ?
                  this.state.searchResults.slice(0,6).map(function(part, i) {
                    return <SearchResult
-                     key={i} first={part.first} last={part.last}
+                     key={i} first={part.first} last={part.last} email={part.email}
                    />;
                  }) : null
                }
