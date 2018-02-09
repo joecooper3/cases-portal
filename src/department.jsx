@@ -23,7 +23,7 @@ class DeptFetchApp extends React.Component {
     this.state = {
       parts: [],
       supervisorParts: [],
-      staffAPI: []
+      staffAPI: [],
     };
   }
   componentWillMount() {
@@ -33,6 +33,7 @@ class DeptFetchApp extends React.Component {
     Promise.all([apiRequest1,apiRequest2]).then(values => {
       let filteredArray = [];
       let supervisorArray = [];
+      let jasonData = values[0].info;
       let staffPages = values[1];
       values[0].info.map((info) => {
         if (supervisor.includes(info.email)) {
@@ -42,6 +43,7 @@ class DeptFetchApp extends React.Component {
         filteredArray.push(info);
         }
       })
+
       function compare(a,b) { // function for sorting by array by last name
         let nameA = a.last.toUpperCase();
         let nameB = b.last.toUpperCase();
@@ -51,6 +53,23 @@ class DeptFetchApp extends React.Component {
             return 1;
           return 0;
         }
+      function supervisorUrlPull(soup){
+        let soupEmail = soup + "@cases.org";
+        for (let i = 0; i < staffPages.length; i++) {
+          if (staffPages[i].acf.email == soupEmail) {
+            return staffPages[i].link;
+          }
+        };
+      }
+      function supervisorNamePull(soup){
+        let soupEmail = soup + "@cases.org";
+        for (let i = 0; i < jasonData.length; i++) {
+          if (jasonData[i].email == soupEmail) {
+            return jasonData[i].first + " " + jasonData[i].last;
+          }
+        };
+      }
+
       let sortedArray = filteredArray.sort(compare);
       sortedArray.forEach(function(item) {
         var result = staffPages.filter(function(staffItem) {
@@ -58,6 +77,8 @@ class DeptFetchApp extends React.Component {
         });
       item.url = (result[0] !== undefined) ? result[0].link : null;
       item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
+      item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
       });
       supervisorArray.forEach(function(item) {
         var result = staffPages.filter(function(staffItem) {
@@ -65,6 +86,8 @@ class DeptFetchApp extends React.Component {
         });
       item.url = (result[0] !== undefined) ? result[0].link : null;
       item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
+      item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
       });
       this.setState({parts: sortedArray});
       this.setState({supervisorParts: supervisorArray});
