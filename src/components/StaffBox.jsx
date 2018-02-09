@@ -59,11 +59,11 @@ class StaffBox extends React.Component {
     } else {
       return (<div className="staff-container">
         <a href={this.state.staffUrl}>
-          <PortraitPull first={this.props.first} email={this.props.email}/>
+          <PortraitPull first={this.props.first} email={this.props.email} imageUrl={this.props.imageUrl}/>
         </a>
         <div className="meta">
           <h2 className="name">
-            <a href={this.state.staffUrl} className="moving-line">
+            <a href={this.state.staffUrl}>
               {this.props.first} {this.props.last}</a>
           </h2>
           <h3>{this.props.title}</h3>

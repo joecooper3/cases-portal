@@ -10,35 +10,39 @@ const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/
 const staffUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?_embed=true&per_page=50';
 const requestUrls = [data, staffUrl];
 
+const apiRequest1 = fetch(data).then(function(response) {
+  return response.json()
+});
+const apiRequest2 = fetch(staffUrl).then(function(response) {
+  return response.json()
+});
+
 class DeptFetchApp extends React.Component {
   constructor() {
     super();
     this.state = {
       parts: [],
-      supervisorParts: []
+      supervisorParts: [],
+      staffAPI: []
     };
   }
   componentWillMount() {
     let titleBlock = document.getElementById('dept-title');
     let dept = titleBlock.getAttribute('data-id');
     let supervisor = titleBlock.getAttribute('supervisor-id');
-    fetch(data).then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + response.status);
-        return;
-      }
-      response.json().then((data) => {
-        let filteredArray = [];
-        let supervisorArray = [];
-        data.info.map((info) => {
-          if (supervisor.includes(info.email)) {
-          supervisorArray.push(info);
-          }
-          else if(info.department === dept && info.program == "") {
-          filteredArray.push(info);
+    Promise.all([apiRequest1,apiRequest2]).then(values => {
+      let filteredArray = [];
+      let supervisorArray = [];
+      let staffPages = values[1];
+      values[0].info.map((info) => {
+        if (supervisor.includes(info.email)) {
+        supervisorArray.push(info);
+        }
+        else if(info.department === dept && info.program == "") {
+        filteredArray.push(info);
         }
       })
-      function compare(a,b) {
+      function compare(a,b) { // function for sorting by array by last name
         let nameA = a.last.toUpperCase();
         let nameB = b.last.toUpperCase();
           if (nameA < nameB)
@@ -48,11 +52,16 @@ class DeptFetchApp extends React.Component {
           return 0;
         }
       let sortedArray = filteredArray.sort(compare);
+      sortedArray.forEach(function(item) {
+        var result = staffPages.filter(function(staffItem) {
+            return staffItem.acf.email === item.email;
+        });
+        item.url = (result[0] !== undefined) ? result[0].link : null;
+      item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      });
+      console.log(sortedArray);
       this.setState({parts: sortedArray});
       this.setState({supervisorParts: supervisorArray});
-      });
-    }).catch(function(err) {
-      console.log('Fetch Error :-S', err);
     });
   }
 
