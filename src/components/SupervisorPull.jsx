@@ -3,7 +3,7 @@ import React from 'react';
 class SupervisorPull extends React.Component {
 
   _formatSpan(name,url) {
-    if (url !== '#!') {
+    if (name) {
     return (
       <span>
       Supervisor: <a href={url}>{name}</a>
