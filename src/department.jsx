@@ -56,10 +56,16 @@ class DeptFetchApp extends React.Component {
         var result = staffPages.filter(function(staffItem) {
             return staffItem.acf.email === item.email;
         });
-        item.url = (result[0] !== undefined) ? result[0].link : null;
+      item.url = (result[0] !== undefined) ? result[0].link : null;
       item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
       });
-      console.log(sortedArray);
+      supervisorArray.forEach(function(item) {
+        var result = staffPages.filter(function(staffItem) {
+            return staffItem.acf.email === item.email;
+        });
+      item.url = (result[0] !== undefined) ? result[0].link : null;
+      item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      });
       this.setState({parts: sortedArray});
       this.setState({supervisorParts: supervisorArray});
     });
