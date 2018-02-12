@@ -11,11 +11,31 @@ class SearchResult extends React.Component {
   }
 
   render() {
+    let programCheck = this.props.program;
+    if (programCheck !== "") {
       return (
         <a href={this.props.url}>
+          <div className="search-name">
           {this.props.first} {this.props.last}
+        </div>
+          <div className="search-position">
+            {this.props.program}
+          </div>
         </a>
       );
+    }
+    else {
+      return (
+        <a href={this.props.url}>
+          <div className="search-name">
+          {this.props.first} {this.props.last}
+        </div>
+          <div className="search-position">
+            {this.props.department}
+          </div>
+        </a>
+      );
+    }
   }
 }
 

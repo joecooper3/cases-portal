@@ -41,9 +41,10 @@ class SearchBox extends React.Component {
            autoComplete="off" required="required" className="sbx-custom__input" onChange={this._filterSearch}/>
            <ul className="contacts-list">
                { this.state.contactsVisible ?
-                 this.state.searchResults.slice(0,6).map(function(part, i) {
+                 this.state.searchResults.slice(0,8).map(function(part, i) {
                    return <SearchResult
                      key={i} first={part.first} last={part.last} url={part.url}
+                     department={part.department} program={part.program}
                    />;
                  }) : null
                }

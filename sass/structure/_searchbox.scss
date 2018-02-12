@@ -139,21 +139,38 @@
   z-index: 3;
   position: absolute;
   background-color: $mywhite;
+  right: 0;
   display: flex;
   flex-flow: column nowrap;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 400px;
+  box-shadow: 3px 2px 5px rgba(0,0,0,0.2);
   a {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-family: akzRoman;
-    padding: 10px 25px;
-    transition: 0.25s background-color;
+    font-family: akzLight;
+    padding: 10px 0px;
+    transition: 0.3s background-color, 0.25s color;
     border-bottom: 0.5px solid #eaeaea;
     width: 100%;
   }
   a:hover {
-    background-color: #eaeaea;
+    background-color: #f3f3f3;
+    color: #005DB7;
+  }
+  .search-name {
+    font-family: akzMed;
+    flex: 2 1 200px;
+    padding: 0 13px 0 25px;
+    width: 100%;
+  }
+  .search-position {
+    flex: 1 1 100px;
+    color: $softgrey;
+    font-size: 12px;
+    text-align: right;
+    padding: 0 25px 0 13px;
   }
 }

@@ -55,7 +55,7 @@
 
 			a:hover {
 				background-color: #eaeaea;
-				color: #00498F;
+				color: $color2;
 			}
 
 
@@ -98,7 +98,7 @@
 
 		&:hover > a,
 		&.focus > a {
-			background-color: #00498F;
+			background-color: $color2;
 		}
 	}
 
