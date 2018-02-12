@@ -137,7 +137,23 @@
 
 .contacts-list {
   z-index: 3;
+  position: absolute;
+  background-color: $mywhite;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   a {
     display: block;
+    text-decoration: none;
+    font-family: akzRoman;
+    padding: 10px 25px;
+    transition: 0.25s background-color;
+    border-bottom: 0.5px solid #eaeaea;
+    width: 100%;
+  }
+  a:hover {
+    background-color: #eaeaea;
   }
 }

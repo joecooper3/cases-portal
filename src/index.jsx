@@ -39,7 +39,7 @@ class SearchBoxApp extends React.Component {
       let filteredArray = [];
       let jasonData = values[0].info;
       let staffPages = values[1];
-      function compare(a,b) { // function for sorting by array by first name
+      function compareSearch(a,b) { // function for sorting by array by first name
         let nameA = a.first.toUpperCase();
         let nameB = b.last.toUpperCase();
           if (nameA < nameB)
@@ -48,7 +48,7 @@ class SearchBoxApp extends React.Component {
             return 1;
           return 0;
         }
-      let sortedArray = jasonData.sort(compare);
+      let sortedArray = jasonData.sort(compareSearch);
       sortedArray.forEach(function(item) {
         var result = staffPages.filter(function(staffItem) {
             return staffItem.acf.email === item.email;
