@@ -10,27 +10,9 @@ class SearchResult extends React.Component {
     };
   }
 
-  componentWillMount() {
-    fetch(requestUrl).then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + response.status);
-        return;
-      }
-      response.json().then((data) => {
-        data.map((info) => {
-          if (info.acf.email === this.props.email) {
-            this.setState({staffUrl: info.link});
-          }
-        })
-      });
-    }).catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
-  }
-
   render() {
       return (
-        <a href={this.state.staffUrl}>
+        <a href={this.props.url}>
           {this.props.first} {this.props.last}
         </a>
       );

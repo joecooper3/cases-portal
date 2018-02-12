@@ -6,29 +6,24 @@ const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.dataMan);
     this.state = {
       fullResults: [],
       searchResults: [],
-      contactsVisible: false
+      contactsVisible: false,
+      testState: "hey"
     };
     this._filterSearch = this._filterSearch.bind(this);
     this._hide = this._hide.bind(this);
   }
   componentWillMount() {
-    fetch(data).then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + response.status);
-        return;
-      }
-      response.json().then((data) => {
-        this.setState({ fullResults: data.info});
-        this.setState({ searchResults: data.info});
-        /* console.log(this.state.searchResults); */
-      });
-    }).catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+    console.log("i am the dataman componentWillMount");
+    console.log(this.props.dataMan);
+    console.log(this.state.testState);
+    this.setState({fullResults: this.props.dataMan});
+
   }
+
   _filterSearch(event) {
     this.setState({contactsVisible: true});
     let searchQuery = event.target.value.toLowerCase();
@@ -53,7 +48,7 @@ class SearchBox extends React.Component {
                { this.state.contactsVisible ?
                  this.state.searchResults.slice(0,6).map(function(part, i) {
                    return <SearchResult
-                     key={i} first={part.first} last={part.last} email={part.email}
+                     key={i} first={part.first} last={part.last} url={part.url}
                    />;
                  }) : null
                }
