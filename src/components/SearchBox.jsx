@@ -6,22 +6,17 @@ const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.dataMan);
+    console.log(props.data);
     this.state = {
       fullResults: [],
       searchResults: [],
-      contactsVisible: false,
-      testState: "hey"
+      contactsVisible: false
     };
     this._filterSearch = this._filterSearch.bind(this);
     this._hide = this._hide.bind(this);
   }
   componentWillMount() {
-    console.log("i am the dataman componentWillMount");
-    console.log(this.props.dataMan);
-    console.log(this.state.testState);
-    this.setState({fullResults: this.props.dataMan});
-
+    this.setState({fullResults: this.props.data});
   }
 
   _filterSearch(event) {

@@ -39,8 +39,8 @@ class SearchBoxApp extends React.Component {
       let filteredArray = [];
       let jasonData = values[0].info;
       let staffPages = values[1];
-      function compare(a,b) { // function for sorting by array by last name
-        let nameA = a.last.toUpperCase();
+      function compare(a,b) { // function for sorting by array by first name
+        let nameA = a.first.toUpperCase();
         let nameB = b.last.toUpperCase();
           if (nameA < nameB)
             return -1;
@@ -63,12 +63,12 @@ class SearchBoxApp extends React.Component {
   render () {
     if (this.state.loaded === true) {
     return (
-      <SearchBox dataMan={this.state.searchParts} />
+      <SearchBox data={this.state.searchParts} />
     );
   }
   else {
     return (
-      <div>THIRTY THIRTY</div>
+      <div role="search" className="sbx-custom__wrapper"></div>
     )
   }
   }
