@@ -166,8 +166,12 @@
     color: #005DB7;
   }
   .search-name {
+    color: #333;
     font-family: akzMed;
     padding: 0 5px 0 25px;
+    .highlighted {
+      color: #0381FB;
+    }
   }
   .search-position {
     color: $softgrey;

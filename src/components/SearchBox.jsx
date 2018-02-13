@@ -10,7 +10,8 @@ class SearchBox extends React.Component {
     this.state = {
       fullResults: [],
       searchResults: [],
-      contactsVisible: false
+      contactsVisible: false,
+      query: ''
     };
     this._filterSearch = this._filterSearch.bind(this);
     this._hide = this._hide.bind(this);
@@ -49,6 +50,7 @@ class SearchBox extends React.Component {
       }
     this.setState({contactsVisible: true});
     let searchQuery = event.target.value.toLowerCase();
+    this.setState({query: searchQuery});
     let sortedFullResults = this.state.fullResults.sort(compareSearch);
     let searchResults = sortedFullResults.filter(function(el) {
       let searchValueFirst = el.first.toLowerCase();
@@ -75,9 +77,9 @@ class SearchBox extends React.Component {
                  this.state.searchResults.slice(0,8).map(function(part, i) {
                    return <SearchResult
                      key={i} first={part.first} last={part.last} url={part.url}
-                     department={part.department} program={part.program}
+                     department={part.department} program={part.program} query={this.state.query}
                    />;
-                 }) : null
+                 }, this) : null
                }
              </ul>
         <button type="submit" title="Submit your search query." className="sbx-custom__submit">

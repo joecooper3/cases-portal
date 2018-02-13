@@ -10,14 +10,23 @@ class SearchResult extends React.Component {
     };
   }
 
+  _highlightText (first, last, query) {
+    let fullName = first + " " + last;
+    let fullNameLow = fullName.toLowerCase();
+    let splitIndex = fullNameLow.search(query);
+    let firstHalf = fullName.substring(0, splitIndex);
+    let secondHalf = fullName.substring(splitIndex + query.length, fullName.length);
+    let middle = fullName.substring(splitIndex, splitIndex + query.length);
+    let putItTogether = <div id={this.props.id} className="search-name">{firstHalf}<span className="highlighted">{middle}</span>{secondHalf}</div>;
+    return putItTogether;
+  }
+
   render() {
     let programCheck = this.props.program;
     if (programCheck !== "") {
       return (
         <a href={this.props.url}>
-          <div className="search-name">
-          {this.props.first} {this.props.last}
-        </div>
+          {this._highlightText(this.props.first, this.props.last, this.props.query)}
           <div className="search-position">
             {this.props.program}
           </div>
@@ -27,9 +36,7 @@ class SearchResult extends React.Component {
     else {
       return (
         <a href={this.props.url}>
-          <div className="search-name">
-          {this.props.first} {this.props.last}
-        </div>
+          {this._highlightText(this.props.first, this.props.last, this.props.query)}
           <div className="search-position">
             {this.props.department}
           </div>
