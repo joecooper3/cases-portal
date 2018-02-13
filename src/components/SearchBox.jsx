@@ -20,11 +20,42 @@ class SearchBox extends React.Component {
   }
 
   _filterSearch(event) {
+    function compareSearch(a,b) { // function for sorting by entered characters first, then first name
+      let nameA = a.first.toLowerCase();
+      let nameB = b.first.toLowerCase();
+      let nameALast = a.last.toLowerCase();
+      let nameBLast = b.last.toLowerCase();
+      let queryLength = searchQuery.length;
+      /* These next four lets test to see if the search query matches the first
+      characters in either the first or last names */
+      let firstMatchA = nameA.substr(0,queryLength) === searchQuery;
+      let lastMatchA = nameALast.substr(0,queryLength) === searchQuery;
+      let firstMatchB = nameB.substr(0,queryLength) === searchQuery;
+      let lastMatchB = nameBLast.substr(0,queryLength) === searchQuery;
+        if ((firstMatchA && !firstMatchB && !lastMatchB) || (lastMatchA && !firstMatchB && !lastMatchB)) {
+          return -1;
+        }
+        else if ((firstMatchB && !firstMatchA && !lastMatchA) || (lastMatchB && !firstMatchA && !lastMatchA))
+        {
+          return 1;
+        }
+        else if (nameA < nameB) {
+          return -1;
+        }
+        else if (nameA > nameB ) {
+          return 1;
+        }
+        return 0;
+      }
     this.setState({contactsVisible: true});
     let searchQuery = event.target.value.toLowerCase();
-    let searchResults = this.state.fullResults.filter(function(el) {
-      let searchValue = el.first.toLowerCase();
-      return searchValue.indexOf(searchQuery) !== -1;
+    let sortedFullResults = this.state.fullResults.sort(compareSearch);
+    let searchResults = sortedFullResults.filter(function(el) {
+      let searchValueFirst = el.first.toLowerCase();
+      let searchValueLast = el.last.toLowerCase();
+      let searchValue = searchValueFirst + " " + searchValueLast;
+      let theResults = searchValue.indexOf(searchQuery) !== -1;
+      return theResults;
     });
     this.setState({ searchResults: searchResults});
     if (searchQuery === "") {

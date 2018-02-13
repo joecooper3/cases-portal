@@ -41,7 +41,7 @@ class SearchBoxApp extends React.Component {
       let staffPages = values[1];
       function compareSearch(a,b) { // function for sorting by array by first name
         let nameA = a.first.toUpperCase();
-        let nameB = b.last.toUpperCase();
+        let nameB = b.first.toUpperCase();
           if (nameA < nameB)
             return -1;
           if (nameA > nameB )
