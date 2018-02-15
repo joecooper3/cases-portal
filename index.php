@@ -105,6 +105,12 @@ get_header(); ?>
 		</div>
 		<div id="quick-links">
 			<h2>Quick Links</h2>
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'quick-links',
+					'menu_id'        => 'secondary-menu',
+				) );
+			?>
 			<ul>
 				<a href="#!"><li><i class="fa fa-sitemap" aria-hidden="true"></i>
 					<span>CASES Directory</span></li></a>
