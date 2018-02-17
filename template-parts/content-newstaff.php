@@ -19,51 +19,19 @@ while ($query->have_posts()) :
 ?>
 
 <?php
-if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
-
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-        if (is_singular()) :
-            the_title('<h1 class="entry-title">', '</h1>');
-        else :
-            the_title('<h1 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h1>');
-        endif;
-
-        if ('post' === get_post_type()) : ?>
-		<div class="entry-meta">
-			<?php cases_portal_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-        endif; ?>
-	</header><!-- .entry-header -->
-
-	<div class="entry-content">
-		<?php
-            the_content(sprintf(
-                wp_kses(
-                    /* translators: %s: Name of current post. Only visible to screen readers */
-                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cases_portal'),
-                    array(
-                        'span' => array(
-                            'class' => array(),
-                        ),
-                    )
-                ),
-                get_the_title()
-            )); ?>
-	</div><!-- .entry-content -->
-
+if ( is_front_page()): ?>
+<div class="staff-container">
+<div class="portrait" style="background-image:url('<?php the_post_thumbnail_url(); ?>')"></div>
+<h2 class="name"><?php the_title(); ?></h2>
+<h3 class="meta">Program Assistant, Nathaniel ACT<br/>
+Start Date: <?php the_field("start_date"); ?></h3>
+<div class="fun-facts">
+  <?php the_field("fun_facts"); ?>
+</div>
 	<footer class="entry-footer">
 		<?php cases_portal_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
-
-<?php elseif ('post' == get_post_type()) :?>
-  <aside class="old-entries">
-  <?php the_title('<h3><a href="' . esc_url(get_permalink()) . '" rel="bookmark">','</a></h3>') ?>
-  <p>Posted by <?php the_author();?> &bull; <?php the_date();?></p>
-  </aside>
+</div>
 <?php endif; ?>
 
 <?php endwhile;
