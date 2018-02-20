@@ -26,6 +26,8 @@ class SearchBox extends React.Component {
       let nameB = b.first.toLowerCase();
       let nameALast = a.last.toLowerCase();
       let nameBLast = b.last.toLowerCase();
+      let typeA = a.type;
+      let typeB = b.type;
       let queryLength = searchQuery.length;
       /* These next four lets test to see if the search query matches the first
       characters in either the first or last names */
@@ -33,6 +35,18 @@ class SearchBox extends React.Component {
       let lastMatchA = nameALast.substr(0,queryLength) === searchQuery;
       let firstMatchB = nameB.substr(0,queryLength) === searchQuery;
       let lastMatchB = nameBLast.substr(0,queryLength) === searchQuery;
+      /* The following logic checks to see if the query matches:
+      1. If it's a name (rather than program or department)
+      2. The first few characters of the first name
+      3. The first few characters of the last name
+      4. Matches anywhere
+      */
+        if (typeA && !typeB) {
+          return 1;
+        }
+        if (typeB && !typeA) {
+          return -1;
+        }
         if (firstMatchA && !firstMatchB) {
           return -1;
         }
@@ -65,7 +79,7 @@ class SearchBox extends React.Component {
       let theResults = searchValue.indexOf(searchQuery) !== -1;
       return theResults;
     });
-    this.setState({ searchResults: searchResults});
+    this.setState({searchResults: searchResults});
     if (searchQuery === "") {
       this.setState({contactsVisible: false});
     }
@@ -84,6 +98,7 @@ class SearchBox extends React.Component {
                    return <SearchResult
                      key={i} first={part.first} last={part.last} url={part.url}
                      department={part.department} program={part.program} query={this.state.query}
+                     type={part.type}
                    />;
                  }, this) : null
                }

@@ -8,10 +8,12 @@ class SearchResult extends React.Component {
     this.state = {
       staffUrl: '#!'
     };
+    this._removeSemicolon = this._removeSemicolon.bind(this);
   }
 
   _highlightText (first, last, query) {
-    let fullName = first + " " + last;
+    let newFirst = this._removeSemicolon(first);
+    let fullName = newFirst + " " + last;
     let fullNameLow = fullName.toLowerCase();
     let splitIndex = fullNameLow.search(query);
     let firstHalf = fullName.substring(0, splitIndex);
@@ -21,9 +23,34 @@ class SearchResult extends React.Component {
     return putItTogether;
   }
 
+  _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&");
+  }
+
   render() {
+    let typeCheck = this.props.type;
     let programCheck = this.props.program;
-    if (programCheck !== "") {
+    if (typeCheck === "dept") {
+      return (
+        <a href={this.props.url} className="dept-prog">
+          {this._highlightText(this.props.first, this.props.last, this.props.query)}
+          <div className="search-position">
+            Department Page
+          </div>
+        </a>
+      )
+    }
+    if (typeCheck === "program") {
+      return (
+        <a href={this.props.url} className="dept-prog">
+          {this._highlightText(this.props.first, this.props.last, this.props.query)}
+          <div className="search-position">
+            Program Page
+          </div>
+        </a>
+      )
+    }
+    else if (programCheck !== "") {
       return (
         <a href={this.props.url}>
           {this._highlightText(this.props.first, this.props.last, this.props.query)}

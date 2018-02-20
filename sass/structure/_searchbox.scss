@@ -169,8 +169,15 @@
     color: #333;
     font-family: akzMed;
     padding: 0 5px 0 25px;
+    white-space: normal;
     .highlighted {
       color: #0381FB;
+    }
+  }
+  .dept-prog {
+    background: linear-gradient(to bottom, rgba(255,244,228,1) 0%, rgba(255,244,228,1) 100%);
+    .search-position {
+      color: $color1;
     }
   }
   .search-position {
