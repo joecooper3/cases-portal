@@ -33,11 +33,17 @@ class SearchBox extends React.Component {
       let lastMatchA = nameALast.substr(0,queryLength) === searchQuery;
       let firstMatchB = nameB.substr(0,queryLength) === searchQuery;
       let lastMatchB = nameBLast.substr(0,queryLength) === searchQuery;
-        if ((firstMatchA && !firstMatchB && !lastMatchB) || (lastMatchA && !firstMatchB && !lastMatchB)) {
+        if (firstMatchA && !firstMatchB) {
           return -1;
         }
-        else if ((firstMatchB && !firstMatchA && !lastMatchA) || (lastMatchB && !firstMatchA && !lastMatchA))
+        else if (firstMatchB && !firstMatchA)
         {
+          return 1;
+        }
+        else if (lastMatchA && !lastMatchB) {
+          return -1;
+        }
+        else if (lastMatchB && !lastMatchA) {
           return 1;
         }
         else if (nameA < nameB) {
