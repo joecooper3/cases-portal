@@ -55,7 +55,7 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 			$icon = get_field('icon', $item);
 			// append icon
 			if( $icon ) {
-				$item->title = $icon . $item->title;
+				$item->title = $icon . "<span>" . $item->title . "</span>";
 			}
 		}
 		// return

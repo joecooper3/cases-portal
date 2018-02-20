@@ -54,18 +54,6 @@ get_header(); ?>
 					'menu_id'        => 'secondary-menu',
 				) );
 			?>
-			<ul>
-				<a href="#!"><li><i class="fa fa-sitemap" aria-hidden="true"></i>
-					<span>CASES Directory</span></li></a>
-				<a href="#!"><li><i class="fa fa-book" aria-hidden="true"></i>
-					<span>Communications Materials</span></li></a>
-				<a href="#!"><li><i class="fa fa-users" aria-hidden="true"></i>
-					<span>Human Resources Policies and Forms</span></li></a>
-				<a href="#!"><li><i class="fa fa-question-circle" aria-hidden="true"></i>
-					<span>Report a Salesforce Issue</span></li></a>
-				<a href="#!"><li><i class="fa fa-skype" aria-hidden="true"></i>
-					<span>Video Conference Instructions</span></li></a>
-			</ul>
 		</div>
 		<div id="cases-website-stories">
 			<h2>CASES Website Stories</h2>
