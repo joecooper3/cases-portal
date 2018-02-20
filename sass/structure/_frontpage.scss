@@ -42,6 +42,12 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  a {
+    text-decoration: none;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
   h1 {
     flex: 1 0 100%;
     margin-bottom: 20px;
@@ -59,21 +65,11 @@
       border-radius: 100%;
       height: 200px;
       width: 200px;
-    }
-    .tgreen {
-      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/tgreen.png');
-    }
-    .jrodriguez {
-        background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/jrodriguez.png');
-    }
-    .dhall {
-      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/dhall.png');
-    }
-    .jholliday {
-      background-image: url('http://localhost:8888/cases-portal/wp-content/themes/cases_portal/images/staff-photos/jholliday.png');
+      text-align: center;
     }
     h2 {
       margin-bottom: 0;
+      text-align: center;
     }
     .meta {
       font-family: akzLight;
