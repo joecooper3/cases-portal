@@ -52,10 +52,6 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
                 get_the_title()
             )); ?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php cases_portal_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <?php elseif ('post' == get_post_type()) :?>
