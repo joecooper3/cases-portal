@@ -33,9 +33,10 @@ get_header(); ?>
 		<div id="new-hires">
 			<h1>New Hires</h1>
 			<?php	/* Start the Loop */
-				while ( have_posts() ) : the_post();
+				/* while ( have_posts() ) : the_post();
 					get_template_part( 'template-parts/content-newstaff', get_post_format() );
-				endwhile; ?>
+				endwhile; */ ?>
+				<div id="new-staff-container"></div>
 		</div>
 	</div><!-- #primary -->
 

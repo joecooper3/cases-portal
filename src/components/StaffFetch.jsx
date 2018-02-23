@@ -1,8 +1,6 @@
 import React from 'react';
 import {StaffBox} from './StaffBox.jsx';
 
-const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
-
 class StaffFetch extends React.Component {
   render() {
     return (

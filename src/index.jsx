@@ -3,8 +3,9 @@ require('../sass/style.scss');
 import React from 'react';
 import {render} from 'react-dom';
 
-import {CasesOrgNews} from './components/CasesOrgNews.jsx'
-import {SearchBox} from './components/SearchBox.jsx'
+import {CasesOrgNews} from './components/CasesOrgNews.jsx';
+import {SearchBox} from './components/SearchBox.jsx';
+import {NewStaff} from './components/NewStaff.jsx'
 
 const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
 const staffUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?_embed=true&per_page=50';
@@ -113,5 +114,64 @@ class SearchBoxApp extends React.Component {
   }
 }
 
+class NewStaffApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      parts: []
+    };
+  }
+  componentWillMount() {
+  Promise.all([apiRequest1,apiRequest2,apiRequest3,apiRequest4]).then(values => {
+    let filteredArray = [];
+    let jasonData = values[0].info;
+    let staffPages = values[1];
+    function removeBlanks(arr) {
+      let newArr = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].startDate) {
+          newArr.push(arr[i]);
+        }
+      }
+      return newArr;
+    }
+    function compareSearch(a,b) { // function for sorting by array by first name
+      let dateA = a.startDate;
+      let dateB = b.startDate;
+      let nameA = a.last.toUpperCase();
+      let nameB = b.last.toUpperCase();
+        if (dateA < dateB)
+          return 1;
+        if (dateA > dateB)
+          return -1;
+        if (nameA < nameB)
+          return -1;
+        if (nameA > nameB )
+          return 1;
+        return 0;
+      }
+    jasonData.forEach(function(item) {
+      var result = staffPages.filter(function(staffItem) {
+          return staffItem.acf.email === item.email;
+      });
+    item.url = (result[0] !== undefined) ? result[0].link : null;
+    item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+    item.startDate = (result[0] !== undefined) ? result[0].acf.start_date : null;
+    item.funFacts = (result[0] !== undefined) ? result[0].acf.fun_facts : null;
+    });
+    let jasonDataCulled = removeBlanks(jasonData);
+    let sortedArray = jasonDataCulled.sort(compareSearch);
+    this.setState({parts: sortedArray});
+})
+}
+  render() {
+    return(
+      <NewStaff parts={this.state.parts}/>
+    );
+  }
+}
+
+
 render(<NewsApp/>, document.getElementById('cases-website-stories'));
 render(<SearchBoxApp/>, document.getElementById('particular-search'));
+render(<NewStaffApp/>, document.getElementById('new-staff-container'));
