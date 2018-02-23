@@ -58,6 +58,7 @@
     flex-flow: row wrap;
     flex: 1 1 300px;
     justify-content: center;
+    align-content: flex-start;
     max-width: 300px;
     .portrait {
       background-size: cover;
