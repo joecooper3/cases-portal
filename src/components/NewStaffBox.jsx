@@ -11,6 +11,17 @@ class NewStaffBox extends React.Component {
     };
   }
 
+  _formatDate(inp) {
+    let year = inp.substring(0,4);
+    let month = inp.substring(4,6);
+    let day = inp.substring(6,8);
+    let monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+    ];
+    let monthDisplay = monthNames[Number(month)-1];
+    return monthDisplay + " " + day + ", " + year;
+  }
+
   render() {
     let funFacts = this.props.funFacts;
     let markup = function() {
@@ -25,7 +36,7 @@ class NewStaffBox extends React.Component {
             </h2>
           </a>
             <h3 className="meta-new-hires">{this.props.title}<br/>
-          Start Date: {this.props.startDate}</h3>
+          Start Date: {this._formatDate(this.props.startDate)}</h3>
             <div className="fun-facts" dangerouslySetInnerHTML={markup()}></div>
         </div>
       );
