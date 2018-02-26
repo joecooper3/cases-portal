@@ -285,9 +285,6 @@ elseif (is_front_page()) {
 else {
 	wp_enqueue_script( 'default-js', get_template_directory_uri() . '/dist/search-only.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'cases_portal_scripts' );
 

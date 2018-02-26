@@ -19,7 +19,7 @@ get_header(); ?>
 		?>
 	</div>
 	</div><!-- #primary -->
-	<div id="secondary">
+	<div id="secondary">Single.php
 <div id="cases-website-stories"></div>
 </div>
 <?php
