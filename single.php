@@ -11,16 +11,13 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 			<div>
-		<div id="itititme"><?php
-		while ( have_posts() ) : the_post();
+		<div id="itititme">
+			<?php while ( have_posts() ) : the_post();
 			get_template_part( 'template-parts/content-single', get_post_type() );
 			the_post_navigation();
 		endwhile; // End of the loop.
 		?>
 	</div>
 	</div><!-- #primary -->
-	<div id="secondary">Single.php
-<div id="cases-website-stories"></div>
-</div>
 <?php
 get_footer();
