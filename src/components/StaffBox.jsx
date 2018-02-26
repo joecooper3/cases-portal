@@ -1,6 +1,7 @@
 import React from 'react';
 import {PortraitPull} from './PortraitPull.jsx';
 import {PhonePull} from './PhonePull.jsx';
+import {MobilePull} from './MobilePull.jsx';
 import {SupervisorPull} from './SupervisorPull.jsx';
 
 const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?per_page=50';
@@ -32,6 +33,7 @@ class StaffBox extends React.Component {
               {this.props.email}
             </div>
             <PhonePull phone={this.props.phone}/>
+            <MobilePull phone={this.props.mobile}/>
             <div className="supervisor">
               <SupervisorPull supervisorName={this.props.supervisorName} supervisorUrl={this.props.supervisorUrl}/>
             </div>
@@ -56,6 +58,7 @@ class StaffBox extends React.Component {
             {this.props.email}
           </div>
           <PhonePull phone={this.props.phone}/>
+          <MobilePull phone={this.props.mobile}/>
           <div className="supervisor">
             <SupervisorPull supervisorName={this.props.supervisorName} supervisorUrl={this.props.supervisorUrl}/>
           </div>

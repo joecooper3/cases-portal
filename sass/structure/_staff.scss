@@ -84,8 +84,14 @@
         margin: 20px 0 5px 0;
       }
 
-      .email, .phone {
+      .email, .phone, .mobile {
         font-size: 20px;
+      }
+      .mobile {
+        i {
+          font-size: 28px;
+          margin-right: 22px;
+        }
       }
 
       .supervisor {
