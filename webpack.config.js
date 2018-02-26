@@ -13,6 +13,7 @@ var config = {
     'department': SRC_DIR + '/department.jsx',
     'staff': SRC_DIR + '/staff.jsx',
     'program': SRC_DIR + '/program.jsx',
+    'search-only': SRC_DIR + '/search-only.jsx',
   },
   output: {
     path: DIST_DIR,

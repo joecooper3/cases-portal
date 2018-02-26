@@ -11,8 +11,12 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 			<div>
-		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
-		<div id="itititme">hey</div>
+		<div id="itititme"><?php
+		while ( have_posts() ) : the_post();
+			get_template_part( 'template-parts/content-single', get_post_type() );
+			the_post_navigation();
+		endwhile; // End of the loop.
+		?>
 	</div>
 	</div><!-- #primary -->
 	<div id="secondary">

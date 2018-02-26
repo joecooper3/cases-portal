@@ -18,8 +18,17 @@ class NewStaffBox extends React.Component {
     let monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
+    let removeOh = function(day) {
+      if (day.substring(0,1) === '0') {
+        return day.substring(1,2);
+      }
+      else {
+        return day;
+      }
+    }
     let monthDisplay = monthNames[Number(month)-1];
-    return monthDisplay + " " + day + ", " + year;
+    let dayDisplay = removeOh(day);
+    return monthDisplay + " " + dayDisplay + ", " + year;
   }
 
   render() {
