@@ -91,11 +91,20 @@
   }
   #new-staff-buttons {
     margin: 20px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     div {
       font-family: akzSemibold;
       color: $color1;
       border: 1.0px solid $color1;
       padding: 10px 20px;
+      cursor: pointer;
+      transition: 0.2s color, 0.2s border-color;
+      &:hover {
+        color: $color3;
+        border-color: $color3;
+      }
     }
   }
 }
