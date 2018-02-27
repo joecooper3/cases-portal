@@ -89,6 +89,15 @@
       }
     }
   }
+  #new-staff-buttons {
+    margin: 20px 0;
+    div {
+      font-family: akzSemibold;
+      color: $color1;
+      border: 1.0px solid $color1;
+      padding: 10px 20px;
+    }
+  }
 }
 
 #secondary {
