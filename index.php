@@ -32,11 +32,9 @@ get_header(); ?>
 	</div><!-- #news -->
 		<div id="new-hires">
 			<h1>New Hires</h1>
-			<?php	/* Start the Loop */
-				/* while ( have_posts() ) : the_post();
-					get_template_part( 'template-parts/content-newstaff', get_post_format() );
-				endwhile; */ ?>
-				<div id="new-staff-container"></div>
+				<div id="new-staff-container">
+					<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
+				</div>
 		</div>
 	</div><!-- #primary -->
 
@@ -58,6 +56,7 @@ get_header(); ?>
 		</div>
 		<div id="cases-website-stories">
 			<h2>CASES Website Stories</h2>
+			<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
 		</div>
 	</aside>
 

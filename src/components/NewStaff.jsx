@@ -54,8 +54,10 @@ class NewStaff extends React.Component {
           imageUrl={part.imageUrl} url={part.url} startDate={part.startDate} funFacts={part.funFacts} />
     )}
     <div id="new-staff-buttons">
-      {prevStaffVisible ? ( <div onClick={this._prevStaff}>Previous New Staff</div> ) : ( <br />)}
-      {moreStaffVisible ? ( <div onClick={this._moreStaff}>More New Staff</div> ) : ( <br />)}
+      {prevStaffVisible ? ( <div onClick={this._prevStaff}><i className="fa fa-long-arrow-left" aria-hidden="true"></i> Previous New Staff
+    </div> ) : ( <br />)}
+      {moreStaffVisible ? ( <div onClick={this._moreStaff}>More New Staff <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+    </div> ) : ( <br />)}
     </div>
       </div>
     );
