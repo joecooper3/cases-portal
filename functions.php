@@ -279,6 +279,9 @@ elseif (is_singular('program')) {
 elseif (is_singular('staff')) {
 	wp_enqueue_script( 'staff-js', get_template_directory_uri() . '/dist/staff.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
+elseif (is_page_template('page-directory.php')) {
+	wp_enqueue_script( 'directory-js', get_template_directory_uri() . '/dist/directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+}
 elseif (is_front_page()) {
 	wp_enqueue_script( 'index-js', get_template_directory_uri() . '/dist/index.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }

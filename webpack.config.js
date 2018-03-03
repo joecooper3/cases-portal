@@ -14,6 +14,7 @@ var config = {
     'staff': SRC_DIR + '/staff.jsx',
     'program': SRC_DIR + '/program.jsx',
     'search-only': SRC_DIR + '/search-only.jsx',
+    'directory': SRC_DIR + '/directory.jsx',
   },
   output: {
     path: DIST_DIR,
