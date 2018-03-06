@@ -9,7 +9,7 @@ class PhonePull extends React.Component {
   }
 
   _convert(props) {
-    if (this.props.phone !== '0') {
+    if (this.props.phone !== '0' && this.props.phone !== '') {
       let phoneM = props.phone.replace(/[^0-9]/g, "");
       let phoneArea = phoneM.substr(0,3);
       let phonePre = phoneM.substr(3,3);

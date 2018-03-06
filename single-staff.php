@@ -9,6 +9,10 @@
 
 get_header(); ?>
 
+<?php if ( !is_user_logged_in()) {
+}
+else { ?>
+
 	<div id="primary" class="content-area" category="staff">
 		<div id="staff-title" class="single-staff-container"
 			data-id="<?php the_title();?>" staff-email="<?php the_field('email'); ?>">
@@ -20,4 +24,6 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_footer();
+get_footer(); ?>
+
+<?php } ?>

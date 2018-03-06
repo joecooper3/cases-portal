@@ -9,6 +9,10 @@
 
 get_header(); ?>
 
+<?php if ( !is_user_logged_in()) {
+}
+else { ?>
+
 	<div id="primary" class="content-area">
 			<div class="dept-container">
 		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>" page-type="program">
@@ -20,4 +24,6 @@ get_header(); ?>
 		<span id="sec-holder-one" class="sec-blank-holder"></span>
 </div>
 <?php
-get_footer();
+get_footer(); ?>
+
+<?php } ?>

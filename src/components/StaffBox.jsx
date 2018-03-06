@@ -4,8 +4,6 @@ import {PhonePull} from './PhonePull.jsx';
 import {MobilePull} from './MobilePull.jsx';
 import {SupervisorPull} from './SupervisorPull.jsx';
 
-const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?per_page=50';
-
 class StaffBox extends React.Component {
   constructor() {
     super();

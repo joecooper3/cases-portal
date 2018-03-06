@@ -9,6 +9,10 @@
 
 get_header(); ?>
 
+<?php if ( !is_user_logged_in()) {
+}
+else { ?>
+
 	<div id="primary" class="content-area">
 			<div>
 		<div id="itititme">
@@ -20,4 +24,6 @@ get_header(); ?>
 	</div>
 	</div><!-- #primary -->
 <?php
-get_footer();
+get_footer(); ?>
+
+<?php } ?>

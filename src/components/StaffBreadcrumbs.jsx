@@ -1,7 +1,7 @@
 import React from 'react';
 import Crumb from './Crumb.jsx';
 
-const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
+const data = 'http://portal.cases.org/wp-content/themes/cases_portal/data/casescsv.json';
 
 class StaffBreadcrumbs extends React.Component {
   constructor() {

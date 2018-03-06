@@ -7,7 +7,7 @@ import {DeptFetch} from './components/DeptFetch.jsx';
 import {ProgramsUnitsList} from './components/ProgramsUnitsList.jsx';
 import {SearchBox} from './components/SearchBox.jsx'
 
-const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
+const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/casescsv.json';
 const staffUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?_embed=true&per_page=50';
 const deptUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/department?_embed=true&per_page=50';
 const programUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/program?_embed=true&per_page=50';

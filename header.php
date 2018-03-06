@@ -21,6 +21,11 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<?php if ( !is_user_logged_in()) {
+		echo "Please sign in.";
+		wp_login_form( array('echo' => true));
+	}
+	else { ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'cases_portal' ); ?></a>
 
@@ -77,5 +82,5 @@
 		</nav><!-- #site-navigation -->
 
 	</header><!-- #masthead -->
-
 	<div id="content" class="site-content">
+		<?php } ?>

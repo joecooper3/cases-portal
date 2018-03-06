@@ -1,7 +1,7 @@
 import React from 'react';
 
-const deptRequestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/department?per_page=50'
-const progRequestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/program?per_page=50';
+const deptRequestUrl = 'http://portal.cases.org/wp-json/wp/v2/department?per_page=50'
+const progRequestUrl = 'http://portal.cases.org/wp-json/wp/v2/program?per_page=50';
 
 class Crumb extends React.Component {
 

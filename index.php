@@ -13,6 +13,9 @@
  */
 
 get_header(); ?>
+	<?php if ( !is_user_logged_in()) {
+	}
+	else { ?>
 	<div id="primary" class="content-area">
 		<div id="news" class="site-main">
 
@@ -61,4 +64,6 @@ get_header(); ?>
 	</aside>
 
 <?php
-get_footer();
+get_footer(); ?>
+
+<?php } ?>
