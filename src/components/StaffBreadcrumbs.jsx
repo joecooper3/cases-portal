@@ -1,7 +1,9 @@
 import React from 'react';
 import Crumb from './Crumb.jsx';
 
-const data = 'http://portal.cases.org/wp-content/themes/cases_portal/data/casescsv.json';
+const APIHost = __API__;
+
+const data = __API__ + '/wp-content/themes/cases_portal/data/casescsv.json';
 
 class StaffBreadcrumbs extends React.Component {
   constructor() {

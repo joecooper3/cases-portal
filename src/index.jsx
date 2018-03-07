@@ -7,10 +7,12 @@ import {CasesOrgNews} from './components/CasesOrgNews.jsx';
 import {SearchBox} from './components/SearchBox.jsx';
 import {NewStaff} from './components/NewStaff.jsx'
 
-const data = 'http://portal.cases.org/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = 'http://portal.cases.org/wp-json/wp/v2/staff?_embed=true&per_page=50';
-const deptUrl = 'http://portal.cases.org/wp-json/wp/v2/department?_embed=true&per_page=50';
-const programUrl = 'http://portal.cases.org/wp-json/wp/v2/program?_embed=true&per_page=50';
+const APIHost = __API__;
+
+const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
+const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=50';
+const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=50';
+const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=50';
 
 const apiRequest1 = fetch(data).then(function(response) {
   return response.json()
@@ -94,7 +96,6 @@ class SearchBoxApp extends React.Component {
       }
       }
       let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
-      console.log(sortedArrayWithProgs)
       this.setState({searchParts: sortedArrayWithProgs});
       this.setState({loaded: true});
     });
@@ -155,7 +156,8 @@ class NewStaffApp extends React.Component {
           return staffItem.acf.email === item.email;
       });
     item.url = (result[0] !== undefined) ? result[0].link : null;
-    item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+    console.log(result[0]);
+    item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
     item.startDate = (result[0] !== undefined) ? result[0].acf.start_date : null;
     item.funFacts = (result[0] !== undefined) ? result[0].acf.fun_facts : null;
     });

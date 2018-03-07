@@ -1,8 +1,6 @@
 import React from 'react';
 import {PortraitPull} from './PortraitPull.jsx';
 
-const requestUrl = 'http://localhost:8888/cases-portal/wp-json/wp/v2/staff?per_page=50';
-
 class NewStaffBox extends React.Component {
   constructor() {
     super();

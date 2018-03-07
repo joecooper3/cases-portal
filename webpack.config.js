@@ -20,6 +20,11 @@ var config = {
     path: DIST_DIR,
     filename: '[name].js'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __API__: "'http://portal.cases.org'"
+    })
+  ],
   module: {
     loaders: [
       {

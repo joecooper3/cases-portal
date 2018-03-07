@@ -7,10 +7,12 @@ import {StaffBreadcrumbs} from './components/StaffBreadcrumbs.jsx';
 import {StaffFetch} from './components/StaffFetch.jsx';
 import {SearchBox} from './components/SearchBox.jsx'
 
-const data = 'http://portal.cases.org/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = 'http://portal.cases.org/wp-json/wp/v2/staff?_embed=true&per_page=50';
-const deptUrl = 'http://portal.cases.org/wp-json/wp/v2/department?_embed=true&per_page=50';
-const programUrl = 'http://portal.cases.org/wp-json/wp/v2/program?_embed=true&per_page=50';
+const APIHost = __API__;
+
+const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
+const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=50';
+const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=50';
+const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=50';
 
 const apiRequest1 = fetch(data).then(function(response) {
   return response.json()
@@ -76,7 +78,7 @@ class StaffFetchApp extends React.Component {
           return staffItem.acf.email === item.email;
       });
     item.url = (result[0] !== undefined) ? result[0].link : null;
-    item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+    item.imageUrl = (result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
     item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
     item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
     });
@@ -150,7 +152,6 @@ class SearchBoxApp extends React.Component {
       }
       }
       let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
-      console.log(sortedArrayWithProgs)
       this.setState({searchParts: sortedArrayWithProgs});
       this.setState({loaded: true});
     });

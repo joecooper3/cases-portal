@@ -6,10 +6,12 @@ import {render} from 'react-dom';
 import {SearchBox} from './components/SearchBox.jsx';
 import {DirectorySearchResults} from './components/DirectorySearchResults.jsx';
 
-const data = 'http://portal.cases.org/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = 'http://portal.cases.org/wp-json/wp/v2/staff?_embed=true&per_page=50';
-const deptUrl = 'http://portal.cases.org/wp-json/wp/v2/department?_embed=true&per_page=50';
-const programUrl = 'http://portal.cases.org/wp-json/wp/v2/program?_embed=true&per_page=50';
+const APIHost = __API__;
+
+const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
+const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=50';
+const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=50';
+const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=50';
 
 const apiRequest1 = fetch(data).then(function(response) {
   return response.json()
