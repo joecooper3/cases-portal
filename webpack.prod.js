@@ -1,8 +1,8 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-
 var webpack = require('webpack');
 var path = require('path');
+
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 var DIST_DIR = path.resolve(__dirname, 'dist2');
 var SRC_DIR = path.resolve(__dirname, 'src');
@@ -21,12 +21,6 @@ var config = {
     path: DIST_DIR,
     filename: '[name].js'
   },
-  plugins: [
-    new UglifyJSPlugin(),
-    new webpack.DefinePlugin({
-      __API__: "'http://portal.cases.org'"
-    })
-  ],
   module: {
     loaders: [
       {
@@ -45,7 +39,11 @@ var config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('appz.css')
+    new ExtractTextPlugin('style.css'),
+    new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      __API__: "'http://portal.cases.org'"
+    })
   ]
 };
 
