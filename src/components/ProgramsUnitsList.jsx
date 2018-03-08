@@ -1,7 +1,9 @@
 import React from 'react';
 
-const progRequestUrl = 'http://portal.cases.org/wp-json/wp/v2/program?per_page=50';
-const deptRequestUrl = 'http://portal.cases.org/wp-json/wp/v2/department?per_page=50';
+const APIHost = __API__;
+
+const progRequestUrl = APIHost + '/wp-json/wp/v2/program?per_page=50';
+const deptRequestUrl = APIHost + '/wp-json/wp/v2/department?per_page=50';
 
 class ProgramsUnitsList extends React.Component {
   constructor() {
@@ -60,7 +62,7 @@ class ProgramsUnitsList extends React.Component {
 
 
   _removeSemicolon(inp) {
-    return inp.replace("&#038;", "&");
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
 
   render() {

@@ -24,7 +24,7 @@ class SearchResult extends React.Component {
   }
 
   _removeSemicolon(inp) {
-    return inp.replace("&#038;", "&");
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
 
   render() {
