@@ -22,7 +22,7 @@ var config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __API__: "'http://portal.cases.org'"
+      __API__: "'http://localhost:8888/cases-portal'"
     })
   ],
   module: {

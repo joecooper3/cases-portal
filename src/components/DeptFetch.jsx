@@ -10,14 +10,14 @@ class DeptFetch extends React.Component {
               <StaffBox key={i} first={part.first} last={part.last} title={part.title}
                 email={part.email} phone={part.phone} supervisor={part.supervisor}
               imageUrl={part.imageUrl} url={part.url} supervisorUrl={part.supervisorUrl}
-              supervisorName={part.supervisorName} mobile={part.mobile} />
+              supervisorName={part.supervisorName} mobile={part.mobile} location={part.location} />
           )}
         </div>
       {this.props.parts.map((part, i) =>
         <StaffBox key={i} first={part.first} last={part.last} title={part.title}
           email={part.email} phone={part.phone} supervisor={part.supervisor}
           imageUrl={part.imageUrl} url={part.url} supervisorUrl={part.supervisorUrl}
-          supervisorName={part.supervisorName} mobile={part.mobile} />
+          supervisorName={part.supervisorName} mobile={part.mobile} location={part.location}/>
     )}
       </div>
 
