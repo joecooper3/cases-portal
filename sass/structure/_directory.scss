@@ -96,7 +96,7 @@
 .sbx2-custom__reset {
   display: none;
   position: absolute;
-  top: 12px;
+  top: 15px;
   right: 12px;
   margin: 0;
   border: 0;
@@ -187,6 +187,28 @@
     text-align: right;
     padding: 0 25px 0 5px;
     white-space: pre-line;
+  }
+}
+#directory-search-results {
+  .contact {
+    font-family: akzLight;
+    .email {
+      i {
+        margin-right: 15px;
+      }
+    }
+    .phone {
+      i {
+        margin-left: 2px;
+        margin-right: 10px;
+      }
+    }
+    .mobile {
+      i {
+        margin-left: 5px;
+        margin-right: 18px;
+      }
+    }
   }
 }
 #directory-search-results > a:first-child {

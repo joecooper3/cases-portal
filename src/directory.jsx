@@ -134,7 +134,7 @@ class DirectorySearchResultsApp extends React.Component {
             return staffItem.acf.email === item.email;
         });
       item.url = (result[0] !== undefined) ? result[0].link : null;
-      item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
       });
       let deptProgArray = [];
       for (let i = 0; i < deptPages.length; i++) {
@@ -177,7 +177,7 @@ class DirectorySearchResultsApp extends React.Component {
   }
   else {
     return (
-      <div>Well fine</div>
+      <div></div>
     )
   }
   }
