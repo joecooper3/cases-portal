@@ -1,12 +1,9 @@
 import React from 'react';
 import {SearchResult} from './SearchResult.jsx';
 
-const data = 'http://localhost:8888/cases-portal/wp-content/themes/cases_portal/data/convertcsv.json';
-
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.data);
     this.state = {
       fullResults: [],
       searchResults: [],

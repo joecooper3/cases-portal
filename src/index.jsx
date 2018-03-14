@@ -10,14 +10,18 @@ import {NewStaff} from './components/NewStaff.jsx'
 const APIHost = __API__;
 
 const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=50';
-const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=50';
-const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=50';
+const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100';
+const staffUrl2 = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100&page=2';
+const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
+const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
 
 const apiRequest1 = fetch(data).then(function(response) {
   return response.json()
 });
-const apiRequest2 = fetch(staffUrl).then(function(response) {
+const apiRequest2A = fetch(staffUrl).then(function(response) {
+  return response.json()
+});
+const apiRequest2B = fetch(staffUrl2).then(function(response) {
   return response.json()
 });
 const apiRequest3 = fetch(deptUrl).then(function(response) {
@@ -25,6 +29,13 @@ const apiRequest3 = fetch(deptUrl).then(function(response) {
 });
 const apiRequest4 = fetch(programUrl).then(function(response) {
   return response.json()
+});
+const apiRequest2 = Promise.all([apiRequest2A, apiRequest2B]).then(values => {
+  let staffPagesA = values[0];
+  let staffPagesB = values[1];
+  let staffPagesC = values[2];
+  let staffPages = staffPagesA.concat(staffPagesB);
+  return staffPages;
 });
 
 class NewsApp extends React.Component {
@@ -42,7 +53,8 @@ class SearchBoxApp extends React.Component {
     super();
     this.state = {
       searchParts: [],
-      loaded: false
+      loaded: false,
+      loaded2: false
     };
   }
   componentWillMount() {
@@ -95,9 +107,11 @@ class SearchBoxApp extends React.Component {
         })
       }
       }
+      console.log(sortedArray);
       let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
       this.setState({searchParts: sortedArrayWithProgs});
       this.setState({loaded: true});
+      console.log("finished, jesus");
     });
   }
 
@@ -156,7 +170,6 @@ class NewStaffApp extends React.Component {
           return staffItem.acf.email === item.email;
       });
     item.url = (result[0] !== undefined) ? result[0].link : null;
-    console.log(result[0]);
     item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
     item.startDate = (result[0] !== undefined) ? result[0].acf.start_date : null;
     item.funFacts = (result[0] !== undefined) ? result[0].acf.fun_facts : null;

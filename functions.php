@@ -94,6 +94,9 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+		/**
+		* Removes the per_page limit of 100
+		*/
 	}
 endif;
 add_action( 'after_setup_theme', 'cases_portal_setup' );
@@ -303,6 +306,15 @@ function remove_admin_bar(){
 		show_admin_bar(false);
 	}
 }
+
+// Block Access to /wp-admin for non admins.
+function custom_blockusers_init() {
+  if ( is_user_logged_in() && is_admin() && !current_user_can( 'administrator' ) ) {
+    wp_redirect( home_url() );
+    exit;
+  }
+}
+add_action( 'init', 'custom_blockusers_init' );
 
 /**
  * Implement the Custom Header feature.
