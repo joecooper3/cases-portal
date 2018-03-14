@@ -27,9 +27,5 @@
   	</div>
  	</div>
  	</div><!-- #primary -->
- 	<div id="secondary">
-    [wordpress_file_upload]
- <div id="cases-website-stories"></div>
- </div>
  <?php
  get_footer();
