@@ -60,7 +60,7 @@ class ProgramFetchApp extends React.Component {
         if (supervisor.includes(info.email)) {
         supervisorArray.push(info);
         }
-        else if(info.program === program) {
+        else if(this._removeSemicolon(info.program) === program) {
         filteredArray.push(info);
         }
       })
@@ -97,7 +97,8 @@ class ProgramFetchApp extends React.Component {
             return staffItem.acf.email === item.email;
         });
       item.url = (result[0] !== undefined) ? result[0].link : null;
-      item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+
       item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
       item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
       });
@@ -106,13 +107,17 @@ class ProgramFetchApp extends React.Component {
             return staffItem.acf.email === item.email;
         });
       item.url = (result[0] !== undefined) ? result[0].link : null;
-      item.imageUrl = (result[0] !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : null;
+      item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+
       item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
       item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
       });
       this.setState({parts: sortedArray});
       this.setState({supervisorParts: supervisorArray});
     });
+  }
+  _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
   render () {
     return (

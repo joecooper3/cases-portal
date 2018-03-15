@@ -19,8 +19,9 @@ class Crumb extends React.Component {
           return;
         }
         response.json().then((data) => {
+          console.log(this.props.name);
           data.map((info) => {
-          if (info.title.rendered === this.props.name) {
+          if (this._removeSemicolon(info.title.rendered) === this.props.name) {
             this.setState({crumbUrl: info.link});
           }
         })
@@ -37,7 +38,7 @@ class Crumb extends React.Component {
         }
         response.json().then((data) => {
           data.map((info) => {
-          if (info.title.rendered === this.props.name) {
+          if (this._removeSemicolon(info.title.rendered) === this.props.name) {
             this.setState({crumbUrl: info.link});
           }
         })
@@ -46,6 +47,10 @@ class Crumb extends React.Component {
         console.log('Fetch Error :-S', err);
       });
     }
+  }
+
+  _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
 
   render() {

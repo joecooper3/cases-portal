@@ -73,7 +73,7 @@ class ProgramsUnitsList extends React.Component {
         <h2>{this.state.dept}
           <br/>Programs & Units</h2>
         <ul>
-          {this.state.parts.map((part, i) => {if(part.title.rendered === this.state.prog) {
+          {this.state.parts.map((part, i) => {if(this._removeSemicolon(part.title.rendered) === this.state.prog) {
             return (<a href="#!" key={i} className="active-program">
               <li>
               {this._removeSemicolon(part.title.rendered)}</li>
