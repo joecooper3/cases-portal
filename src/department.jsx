@@ -11,32 +11,36 @@ const APIHost = __API__;
 
 const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
 const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100';
-const staffUrl2 = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100&page=2';
+const staffUrlNoPage = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100&page=';
 const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
 const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
 
-const apiRequest1 = fetch(data).then(function(response) {
+const apiRequestJason = fetch(data).then(function(response) {
   return response.json()
 });
-const apiRequest2A = fetch(staffUrl).then(function(response) {
+
+const totalPagesPromise = fetch(staffUrl).then(function(response){
+  let total = response.headers.get('X-WP-TotalPages');
+  return total;
+});
+
+const apiRequestDept = fetch(deptUrl).then(function(response) {
   return response.json()
 });
-const apiRequest2B = fetch(staffUrl2).then(function(response) {
+
+const apiRequestProgram = fetch(programUrl).then(function(response) {
   return response.json()
 });
-const apiRequest3 = fetch(deptUrl).then(function(response) {
-  return response.json()
-});
-const apiRequest4 = fetch(programUrl).then(function(response) {
-  return response.json()
-});
-const apiRequest2 = Promise.all([apiRequest2A, apiRequest2B]).then(values => {
-  let staffPagesA = values[0];
-  let staffPagesB = values[1];
-  let staffPagesC = values[2];
-  let staffPages = staffPagesA.concat(staffPagesB);
-  return staffPages;
-});
+
+const apiRequestLoop = function(arr, num) {
+    let promiseArray = [num];
+    promiseArray = promiseArray.concat(arr);
+    for (let i = 1; i <= num; i++) {
+      let staffUrlLoop = staffUrlNoPage + i;
+      promiseArray.push(fetch(staffUrlLoop).then(response => response.json()));
+    }
+    return Promise.all(promiseArray);
+}
 
 class DeptFetchApp extends React.Component {
   constructor() {
@@ -51,12 +55,23 @@ class DeptFetchApp extends React.Component {
     let titleBlock = document.getElementById('dept-title');
     let dept = titleBlock.getAttribute('data-id');
     let supervisor = titleBlock.getAttribute('supervisor-id');
-    Promise.all([apiRequest1,apiRequest2]).then(values => {
+    totalPagesPromise.then(num => {
+      return apiRequestLoop([apiRequestJason], num);
+    }).then(values => {
       let filteredArray = [];
       let supervisorArray = [];
-      let jasonData = values[0].info;
-      let staffPages = values[1];
-      values[0].info.map((info) => {
+      let totalPages = values[0];
+      let jasonData = values[1].info;
+      function combineWordpressQueries(arrs, num) {
+        let startingPoint = arrs.length - num;
+        let wpArray = [];
+        for (let i = startingPoint; i < arrs.length; i++) {
+          wpArray = wpArray.concat(arrs[i]);
+        }
+        return wpArray;
+      }
+      let staffPages = combineWordpressQueries(values, totalPages);
+      jasonData.map((info) => {
         if (supervisor.includes(info.email)) {
         supervisorArray.push(info);
         }
@@ -141,16 +156,28 @@ class SearchBoxApp extends React.Component {
     super();
     this.state = {
       searchParts: [],
-      loaded: false
+      loaded: false,
+      loaded2: false
     };
   }
   componentWillMount() {
-    Promise.all([apiRequest1,apiRequest2,apiRequest3,apiRequest4]).then(values => {
+    totalPagesPromise.then(num => {
+      return apiRequestLoop([apiRequestJason,apiRequestDept,apiRequestProgram], num);
+    }).then(values => {
       let filteredArray = [];
-      let jasonData = values[0].info;
-      let staffPages = values[1];
+      let totalPages = values[0];
+      let jasonData = values[1].info;
       let deptPages = values[2];
       let programPages = values[3];
+      function combineWordpressQueries(arrs, num) {
+        let startingPoint = arrs.length - num;
+        let wpArray = [];
+        for (let i = startingPoint; i < arrs.length; i++) {
+          wpArray = wpArray.concat(arrs[i]);
+        }
+        return wpArray;
+      }
+      let staffPages = combineWordpressQueries(values, totalPages);
       function compareSearch(a,b) { // function for sorting by array by first name
         let nameA = a.first.toUpperCase();
         let nameB = b.first.toUpperCase();
@@ -195,7 +222,6 @@ class SearchBoxApp extends React.Component {
       }
       }
       let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
-      console.log(sortedArrayWithProgs)
       this.setState({searchParts: sortedArrayWithProgs});
       this.setState({loaded: true});
     });
