@@ -22,8 +22,12 @@
 
 <body <?php body_class(); ?>>
 	<?php if ( !is_user_logged_in()) {
-		echo "Please sign in.";
+		echo "<div class='login-container'>";
+		echo "<div class='login-head'>";
+		echo "<img src='http://portal.cases.org/wp-content/themes/cases_portal/images/spiral-mid.png' />";
+		echo "</div>";
 		wp_login_form( array('echo' => true));
+		echo "</div>";
 	}
 	else { ?>
 <div id="page" class="site">
