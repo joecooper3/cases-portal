@@ -15,7 +15,7 @@ else { ?>
 
 	<div id="primary" class="content-area">
 			<div>
-		<div id="itititme">
+		<div>
 			<?php while ( have_posts() ) : the_post();
 			get_template_part( 'template-parts/content-single', get_post_type() );
 			the_post_navigation();

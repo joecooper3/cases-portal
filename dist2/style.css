@@ -1551,3 +1551,9 @@ header {
 
 #loginform {
   font-size: 30px; }
+
+.entry-content del {
+  color: #AAA; }
+
+.nav-links {
+  display: flex; }
