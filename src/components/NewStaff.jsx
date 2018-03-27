@@ -1,6 +1,9 @@
 import React from 'react';
 import {NewStaffBox} from './NewStaffBox.jsx';
 
+const STAFF_PER_PAGE = 8;
+const MAX_PAGES = 5;
+
 class NewStaff extends React.Component {
   constructor() {
     super();
@@ -8,7 +11,8 @@ class NewStaff extends React.Component {
       moreStaffVisible: true,
       prevStaffVisible: false,
       sliceOne: 0,
-      sliceTwo: 8
+      sliceTwo: STAFF_PER_PAGE,
+      currentPage: 1
     };
     this._prevStaff = this._prevStaff.bind(this);
     this._moreStaff = this._moreStaff.bind(this);
@@ -16,27 +20,31 @@ class NewStaff extends React.Component {
   }
 
   _moreStaff() {
-    let newSliceOne = this.state.sliceOne + 8;
-    let newSliceTwo = this.state.sliceTwo + 8;
-    this.setState({sliceOne: this.state.sliceOne + 8});
-    this.setState({sliceTwo: this.state.sliceTwo + 8});
-    this._statusCheck(newSliceOne, newSliceTwo);
+    let newSliceOne = this.state.sliceOne + STAFF_PER_PAGE;
+    let newSliceTwo = this.state.sliceTwo + STAFF_PER_PAGE;
+    let newPageNumber = this.state.currentPage + 1;
+    this.setState({sliceOne: this.state.sliceOne + STAFF_PER_PAGE});
+    this.setState({sliceTwo: this.state.sliceTwo + STAFF_PER_PAGE});
+    this.setState({currentPage: newPageNumber});
+    this._statusCheck(newPageNumber);
   }
   _prevStaff() {
-    let newSliceOne = this.state.sliceOne - 8;
-    let newSliceTwo = this.state.sliceTwo - 8;
-    this.setState({sliceOne: this.state.sliceOne - 8});
-    this.setState({sliceTwo: this.state.sliceTwo - 8});
-    this._statusCheck(newSliceOne, newSliceTwo);
+    let newSliceOne = this.state.sliceOne - STAFF_PER_PAGE;
+    let newSliceTwo = this.state.sliceTwo - STAFF_PER_PAGE;
+    let newPageNumber = this.state.currentPage - 1;
+    this.setState({sliceOne: this.state.sliceOne - STAFF_PER_PAGE});
+    this.setState({sliceTwo: this.state.sliceTwo - STAFF_PER_PAGE});
+    this.setState({currentPage: newPageNumber});
+    this._statusCheck(newPageNumber);
   }
-  _statusCheck(sliceOne, sliceTwo) {
-    if (sliceOne < 1 && this.state.prevStaffVisible) {
+  _statusCheck(pageNumber) {
+    if (pageNumber < 2 && this.state.prevStaffVisible) {
       this.setState({prevStaffVisible: false});
     }
     else if (!this.state.prevStaffVisible) {
       this.setState({prevStaffVisible: true});
     }
-    if (sliceTwo > this.props.parts.length && this.state.moreStaffVisible) {
+    if (pageNumber >= MAX_PAGES && this.state.moreStaffVisible) {
       this.setState({moreStaffVisible: false});
     }
     else if (!this.state.moreStaffVisible) {
