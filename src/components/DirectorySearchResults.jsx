@@ -100,7 +100,7 @@ class DirectorySearchResults extends React.Component {
               <use xlinkHref="#sbx2-icon-search-6" />
             </svg>
           </button>
-          <button type="reset" title="Clear the search query." className="sbx2-custom__reset">
+          <button type="reset" title="Clear the search query." className="sbx2-custom__reset" onClick={this._hide}>
             <svg role="img" aria-label="Reset">
               <use xlinkHref="#sbx2-icon-clear-4" />
             </svg>

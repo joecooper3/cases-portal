@@ -1526,28 +1526,73 @@ header {
   #directory-totality .staff-container .contact {
     flex: 1 1 150px; }
 
+#loginform {
+  font-size: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%; }
+
 .login-container {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   width: 450px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 75px;
   background-color: #FDFDFD;
   padding: 50px;
   border-radius: 25px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
   font-family: akzRoman; }
+  .login-container label, .login-container input {
+    transition: all 0.2s;
+    touch-action: manipulation; }
   .login-container .login-head {
-    max-width: 300px;
+    max-width: 260px;
     margin: 0 0 25px 0; }
   .login-container .login-username, .login-container .login-password {
     display: flex;
     flex-flow: column wrap; }
+    .login-container .login-username input, .login-container .login-password input {
+      padding: 10px 20px 8px 20px;
+      font-family: akzSemiBold;
+      letter-spacing: 0.5px;
+      font-size: 20px;
+      border-bottom: 2.0px solid #EFEFEF; }
+  .login-container .login-submit {
+    text-align: center;
+    font-family: akzSemibold; }
+    .login-container .login-submit input {
+      font-size: 25px;
+      font-family: akzMed;
+      background-color: #FDFDFD;
+      border: 2px solid #002b55;
+      border-radius: 0;
+      padding: 20px 50px;
+      margin-top: 20px; }
+    .login-container .login-submit input:hover {
+      border-color: #0381FB;
+      color: #0381FB; }
   .login-container p {
-    text-transform: uppercase;
     margin-bottom: 5px;
     color: #666; }
+  .login-container input {
+    border: 0;
+    background-color: #EFEFEF;
+    border-radius: 0; }
+  .login-container input:focus {
+    border-bottom: 2px solid #002b55;
+    background-color: #FAFAFA;
+    outline: none; }
+  .login-container label {
+    font-family: akzSemibold;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    color: #002b55;
+    font-size: 15px; }
 
-#loginform {
-  font-size: 30px; }
+.entry-content del {
+  color: #AAA; }
+
+.nav-links {
+  display: flex; }

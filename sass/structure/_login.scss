@@ -1,30 +1,77 @@
+#loginform {
+  font-size: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
 .login-container {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   width: 450px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 75px;
   background-color: $mywhite;
   padding: 50px;
   border-radius: 25px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
   font-family: akzRoman;
+  label, input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+  }
   .login-head {
-    max-width: 300px;
+    max-width: 260px;
     margin: 0 0 25px 0;
   }
   .login-username, .login-password {
     display: flex;
     flex-flow: column wrap;
+    input {
+      padding: 10px 20px 8px 20px;
+      font-family: akzSemiBold;
+      letter-spacing: 0.5px;
+      font-size: 20px;
+      border-bottom: 2.0px solid #EFEFEF;
+    }
+  }
+  .login-submit {
+    text-align: center;
+    font-family: akzSemibold;
+    input {
+    font-size: 25px;
+    font-family: akzMed;
+    background-color: #FDFDFD;
+    border: 2.0px solid $color1;
+    border-radius: 0;
+    padding: 20px 50px;
+    margin-top: 20px;
+    }
+    input:hover {
+      border-color: $color3;
+      color: $color3;
+    }
   }
   p {
-    text-transform: uppercase;
     margin-bottom: 5px;
     color: #666;
   }
-}
-
-#loginform {
-  font-size: 30px;
+  input {
+    border: 0;
+    background-color: #EFEFEF;
+    border-radius: 0;
+  }
+  input:focus {
+    border-bottom: 2.0px solid $color1;
+    background-color: #FAFAFA;
+    outline: none;
+  }
+  label {
+    font-family: akzSemibold;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    color: $color1;
+    font-size: 15px;
+  }
 }

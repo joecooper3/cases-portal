@@ -1,0 +1,103 @@
+@font-face {
+    font-family: akzRoman;
+    src: url('http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2') format('woff2'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff') format('woff'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: akzSemiBold;
+    src: url('http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2') format('woff2'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff') format('woff'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: akzMed;
+    src: url('http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2') format('woff2'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff') format('woff'),
+       url('http://portal.cases.org/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf') format('truetype');
+}
+input[type=text], input[type=password] {
+  transition: all 0.2s;
+  touch-action: manipulation;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.login h1 a {
+  background-image: url('http://portal.cases.org/wp-content/themes/cases_portal/images/spiral-mid.png');
+  background-size:contain;
+  width: 100%;
+  height: 104px;
+}
+.login form {
+  box-shadow: none;
+  background: #fdfdfd;
+}
+#login {
+  background-color: #fdfdfd;
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
+  margin: auto;
+  margin-top: 75px;
+  border-radius: 25px;
+  padding: 50px 25px;
+  width: 400px;
+}
+.login {
+  font-family: akzRoman;
+}
+.login form .input {
+  padding: 10px 20px 8px 20px;
+  font-family: akzSemiBold;
+  letter-spacing: 0.5px;
+  font-size: 20px;
+  border-bottom: 2.0px solid #EFEFEF;
+    background-color: #EFEFEF;
+}
+input[type=text]:focus, input[type=password]:focus,textarea:focus {
+    outline: none;
+    border: 0;
+    box-shadow: none;
+    border-bottom: 2.0px solid #002b55;
+    background-color: #FAFAFA;
+}
+.login label {
+  font-family: akzSemibold;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  color: #002b55;
+  font-size: 15px;
+}
+
+#wp-submit {
+  font-size: 25px;
+  font-family: akzMed;
+  background-color: #FDFDFD;
+  border: 2.0px solid #002b55;
+  border-radius: 0;
+  padding: 20px 50px;
+  margin-top: 40px;
+  text-shadow: none;
+  color: #002b55;
+  box-shadow: none;
+  height: auto;
+  transition: all 0.2s;
+    float: none;
+}
+
+#wp-submit:hover {
+  border-color: #0381FB;
+  color: #0381FB;
+}
+
+#login form p.forgetmenot, #login form p.submit {
+  display: block;
+  width: 100%;
+}
+
+.login form .forgetmenot label {
+  font-size: 15px;
+}
+
+#login form p.submit {
+  text-align: center;
+}

@@ -316,6 +316,23 @@ function custom_blockusers_init() {
 }
 add_action( 'init', 'custom_blockusers_init' );
 
+
+//Custom login stuff (thanks WordPress!)
+function my_custom_login() {
+echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/style.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'CASES Portal';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
 /**
  * Implement the Custom Header feature.
  */
