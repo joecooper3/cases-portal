@@ -353,8 +353,8 @@ function big_staff( $data ) {
 				'email' => get_field('email', $post->ID),
 				'start_date' => get_field('start_date', $post->ID),
 				'fun_facts' => get_field('fun_facts', $post->ID),
-				'links' => get_permalink($post->ID),
-				'image' => the_post_thumbnail($post->ID)
+				'url' => get_permalink($post->ID),
+				'image' => get_the_post_thumbnail_url($post->ID)
 			];
 			$data[] = $api_content;
 		}

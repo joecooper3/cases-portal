@@ -10,28 +10,24 @@ import {DepartmentProgramMaster} from './components/DepartmentProgramMaster.jsx'
 const APIHost = __API__;
 
 const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = APIHost + '/wp-json/wp/v2/staff?&per_page=1&page=1';
-const staffUrlNoPage = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100&page=';
+const staffUrl = APIHost + '/wp-json/portal/v2/bigstaff/';
 const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
 const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
 
 const apiRequestJason = fetch(data).then(function(response) {
-  return response.json()
+  return response.json();
 });
 
-const totalPagesPromise = fetch(staffUrl).then(function(response){
-  let total = response.headers.get('X-WP-TotalPages');
-  let total2 = Math.ceil(total/100);
-  console.log(total2);
-  return total2;
+const apiRequestStaff = fetch(staffUrl).then(function(response){
+  return response.json();
 });
 
 const apiRequestDept = fetch(deptUrl).then(function(response) {
-  return response.json()
+  return response.json();
 });
 
 const apiRequestProgram = fetch(programUrl).then(function(response) {
-  return response.json()
+  return response.json();
 });
 
 const apiRequestLoop = function(arr, num) {
@@ -44,23 +40,14 @@ const apiRequestLoop = function(arr, num) {
     return Promise.all(promiseArray);
 }
 
-let masterData = totalPagesPromise.then(num => {
-  return apiRequestLoop([apiRequestJason,apiRequestDept,apiRequestProgram], num);
-}).then(values => {
+const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
+
+const masterData = Promise.all(promiseArray).then(values => {
   let filteredArray = [];
-  let totalPages = values[0];
-  let jasonData = values[1].info;
+  let jasonData = values[0].info;
+  let staffPages = values[1];
   let deptPages = values[2];
   let programPages = values[3];
-  function combineWordpressQueries(arrs, num) {
-    let startingPoint = arrs.length - num;
-    let wpArray = [];
-    for (let i = startingPoint; i < arrs.length; i++) {
-      wpArray = wpArray.concat(arrs[i]);
-    }
-    return wpArray;
-  }
-  let staffPages = combineWordpressQueries(values, totalPages);
   function compareSearch(a,b) { // function for sorting by array by first name
     let nameA = a.first.toUpperCase();
     let nameB = b.first.toUpperCase();
@@ -73,10 +60,10 @@ let masterData = totalPagesPromise.then(num => {
   let sortedArray = jasonData.sort(compareSearch);
   sortedArray.forEach(function(item) {
     var result = staffPages.filter(function(staffItem) {
-        return staffItem.acf.email === item.email;
+        return staffItem.email === item.email;
     });
-  item.url = (result[0] !== undefined) ? result[0].link : null;
-  item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+  item.url = (result[0] !== undefined) ? result[0].url : null;
+  item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
   });
   let deptProgArray = [];
   for (let i = 0; i < deptPages.length; i++) {
@@ -106,6 +93,7 @@ let masterData = totalPagesPromise.then(num => {
   }
   }
   const final = sortedArray.concat(deptProgArray);
+  console.log(final);
   return final;
 });
 
