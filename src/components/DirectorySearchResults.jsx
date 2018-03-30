@@ -1,5 +1,6 @@
 import React from 'react';
 import {DirectoryStaffBox} from './DirectoryStaffBox.jsx';
+import {DepartmentProgramMaster} from './DepartmentProgramMaster.jsx';
 
 class DirectorySearchResults extends React.Component {
   constructor(props) {

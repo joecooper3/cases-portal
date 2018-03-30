@@ -45,7 +45,8 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 		// Menus
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'cases_portal' ),
-			'quick-links' => esc_html__( 'Quick Links', 'cases_portal')
+			'quick-links' => esc_html__( 'Quick Links', 'cases_portal'),
+			'dept-programs' => esc_html__( 'Departments and Programs', 'cases_portal'),
 		) );
 		add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
 		function my_wp_nav_menu_objects( $items, $args ) {
@@ -332,6 +333,74 @@ function my_login_logo_url_title() {
 return 'CASES Portal';
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+//Custom endpoints please kill me
+
+function big_staff( $data ) {
+  $posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'staff',
+		'meta_query'    => array(
+            'relation'  =>  'AND',
+            array(
+                'key'   =>  'email'
+            ),
+            array(
+                'key'   =>  'start_date',
+            )
+        )
+  ) );
+
+	$posts2 = new WP_Query( array (
+		'post_type' => 'staff',
+		'post_per_page' => -1
+	)
+	);
+
+  if ( empty( $posts ) ) {
+    return 'doooh';
+  }
+		$data = [];
+
+		foreach ($posts as $post) {
+			$api_content = [
+				'name' => $post->post_title,
+				'email' => get_field('email', $post->ID),
+				'start_date' => get_field('start_date', $post->ID),
+				'fun_facts' => get_field('fun_facts', $post->ID),
+				'links' => get_permalink($post->ID),
+				'image' => the_post_thumbnail($post->ID)
+			];
+			$data[] = $api_content;
+		}
+		return $data;
+}
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'portal/v2', '/bigstaff/', array(
+    'methods' => 'GET',
+    'callback' => 'big_staff',
+  ) );
+} );
+
+add_action ('rest_api_init', 'register_email_in_endpoint');
+
+function register_email_in_endpoint() {
+	register_rest_field(
+		'staff',
+		'staff_email',
+		array(
+			'get_callback' => 'get_the_damn_email',
+			'update_callback' => null,
+			'schema' => null
+		)
+	);
+}
+
+function get_the_damn_email($object, $field_name, $request) {
+	return $object[acf][email];
+
+}
 
 /**
  * Implement the Custom Header feature.

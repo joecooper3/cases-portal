@@ -5,11 +5,12 @@ import {render} from 'react-dom';
 
 import {SearchBox} from './components/SearchBox.jsx';
 import {DirectorySearchResults} from './components/DirectorySearchResults.jsx';
+import {DepartmentProgramMaster} from './components/DepartmentProgramMaster.jsx';
 
 const APIHost = __API__;
 
 const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100';
+const staffUrl = APIHost + '/wp-json/wp/v2/staff?&per_page=1&page=1';
 const staffUrlNoPage = APIHost + '/wp-json/wp/v2/staff?_embed=true&per_page=100&page=';
 const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
 const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
@@ -20,7 +21,9 @@ const apiRequestJason = fetch(data).then(function(response) {
 
 const totalPagesPromise = fetch(staffUrl).then(function(response){
   let total = response.headers.get('X-WP-TotalPages');
-  return total;
+  let total2 = Math.ceil(total/100);
+  console.log(total2);
+  return total2;
 });
 
 const apiRequestDept = fetch(deptUrl).then(function(response) {
@@ -41,6 +44,72 @@ const apiRequestLoop = function(arr, num) {
     return Promise.all(promiseArray);
 }
 
+let masterData = totalPagesPromise.then(num => {
+  return apiRequestLoop([apiRequestJason,apiRequestDept,apiRequestProgram], num);
+}).then(values => {
+  let filteredArray = [];
+  let totalPages = values[0];
+  let jasonData = values[1].info;
+  let deptPages = values[2];
+  let programPages = values[3];
+  function combineWordpressQueries(arrs, num) {
+    let startingPoint = arrs.length - num;
+    let wpArray = [];
+    for (let i = startingPoint; i < arrs.length; i++) {
+      wpArray = wpArray.concat(arrs[i]);
+    }
+    return wpArray;
+  }
+  let staffPages = combineWordpressQueries(values, totalPages);
+  function compareSearch(a,b) { // function for sorting by array by first name
+    let nameA = a.first.toUpperCase();
+    let nameB = b.first.toUpperCase();
+      if (nameA < nameB)
+        return -1;
+      if (nameA > nameB )
+        return 1;
+      return 0;
+    }
+  let sortedArray = jasonData.sort(compareSearch);
+  sortedArray.forEach(function(item) {
+    var result = staffPages.filter(function(staffItem) {
+        return staffItem.acf.email === item.email;
+    });
+  item.url = (result[0] !== undefined) ? result[0].link : null;
+  item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+  });
+  let deptProgArray = [];
+  for (let i = 0; i < deptPages.length; i++) {
+    deptProgArray.push({
+      first: deptPages[i].title.rendered,
+      last: '',
+      type: 'dept',
+      url: deptPages[i].link
+    })
+  }
+  for (let i = 0; i < programPages.length; i++) {
+    if (programPages[i].acf.acronym) {
+    deptProgArray.push({
+      first: programPages[i].title.rendered,
+      last: "(" + programPages[i].acf.acronym + ")",
+      type: 'program',
+      url: programPages[i].link
+    })
+  }
+  else {
+    deptProgArray.push({
+      first: programPages[i].title.rendered,
+      last: '',
+      type: 'program',
+      url: programPages[i].link
+    })
+  }
+  }
+  const final = sortedArray.concat(deptProgArray);
+  return final;
+});
+
+
 class SearchBoxApp extends React.Component {
   constructor() {
     super();
@@ -51,68 +120,8 @@ class SearchBoxApp extends React.Component {
     };
   }
   componentWillMount() {
-    totalPagesPromise.then(num => {
-      return apiRequestLoop([apiRequestJason,apiRequestDept,apiRequestProgram], num);
-    }).then(values => {
-      let filteredArray = [];
-      let totalPages = values[0];
-      let jasonData = values[1].info;
-      let deptPages = values[2];
-      let programPages = values[3];
-      function combineWordpressQueries(arrs, num) {
-        let startingPoint = arrs.length - num;
-        let wpArray = [];
-        for (let i = startingPoint; i < arrs.length; i++) {
-          wpArray = wpArray.concat(arrs[i]);
-        }
-        return wpArray;
-      }
-      let staffPages = combineWordpressQueries(values, totalPages);
-      function compareSearch(a,b) { // function for sorting by array by first name
-        let nameA = a.first.toUpperCase();
-        let nameB = b.first.toUpperCase();
-          if (nameA < nameB)
-            return -1;
-          if (nameA > nameB )
-            return 1;
-          return 0;
-        }
-      let sortedArray = jasonData.sort(compareSearch);
-      sortedArray.forEach(function(item) {
-        var result = staffPages.filter(function(staffItem) {
-            return staffItem.acf.email === item.email;
-        });
-      item.url = (result[0] !== undefined) ? result[0].link : null;
-      });
-      let deptProgArray = [];
-      for (let i = 0; i < deptPages.length; i++) {
-        deptProgArray.push({
-          first: deptPages[i].title.rendered,
-          last: '',
-          type: 'dept',
-          url: deptPages[i].link
-        })
-      }
-      for (let i = 0; i < programPages.length; i++) {
-        if (programPages[i].acf.acronym) {
-        deptProgArray.push({
-          first: programPages[i].title.rendered,
-          last: "(" + programPages[i].acf.acronym + ")",
-          type: 'program',
-          url: programPages[i].link
-        })
-      }
-      else {
-        deptProgArray.push({
-          first: programPages[i].title.rendered,
-          last: '',
-          type: 'program',
-          url: programPages[i].link
-        })
-      }
-      }
-      let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
-      this.setState({searchParts: sortedArrayWithProgs});
+    masterData.then(yeah => {
+      this.setState({searchParts: yeah});
       this.setState({loaded: true});
     });
   }
@@ -140,69 +149,8 @@ class DirectorySearchResultsApp extends React.Component {
     };
   }
   componentWillMount() {
-    totalPagesPromise.then(num => {
-      return apiRequestLoop([apiRequestJason,apiRequestDept,apiRequestProgram], num);
-    }).then(values => {
-      let filteredArray = [];
-      let totalPages = values[0];
-      let jasonData = values[1].info;
-      let deptPages = values[2];
-      let programPages = values[3];
-      function combineWordpressQueries(arrs, num) {
-        let startingPoint = arrs.length - num;
-        let wpArray = [];
-        for (let i = startingPoint; i < arrs.length; i++) {
-          wpArray = wpArray.concat(arrs[i]);
-        }
-        return wpArray;
-      }
-      let staffPages = combineWordpressQueries(values, totalPages);
-      function compareSearch(a,b) { // function for sorting by array by first name
-        let nameA = a.first.toUpperCase();
-        let nameB = b.first.toUpperCase();
-          if (nameA < nameB)
-            return -1;
-          if (nameA > nameB )
-            return 1;
-          return 0;
-        }
-      let sortedArray = jasonData.sort(compareSearch);
-      sortedArray.forEach(function(item) {
-        var result = staffPages.filter(function(staffItem) {
-            return staffItem.acf.email === item.email;
-        });
-      item.url = (result[0] !== undefined) ? result[0].link : null;
-      item.imageUrl = (result[0] !== undefined && result[0]._embedded !== undefined) ? result[0]._embedded['wp:featuredmedia'][0]['source_url'] : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
-      });
-      let deptProgArray = [];
-      for (let i = 0; i < deptPages.length; i++) {
-        deptProgArray.push({
-          first: deptPages[i].title.rendered,
-          last: '',
-          type: 'dept',
-          url: deptPages[i].link
-        })
-      }
-      for (let i = 0; i < programPages.length; i++) {
-        if (programPages[i].acf.acronym) {
-        deptProgArray.push({
-          first: programPages[i].title.rendered,
-          last: "(" + programPages[i].acf.acronym + ")",
-          type: 'program',
-          url: programPages[i].link
-        })
-      }
-      else {
-        deptProgArray.push({
-          first: programPages[i].title.rendered,
-          last: '',
-          type: 'program',
-          url: programPages[i].link
-        })
-      }
-      }
-      let sortedArrayWithProgs = sortedArray.concat(deptProgArray);
-      this.setState({searchParts: sortedArrayWithProgs});
+    masterData.then(yeah => {
+      this.setState({searchParts: yeah});
       this.setState({loaded: true});
     });
   }
@@ -215,7 +163,33 @@ class DirectorySearchResultsApp extends React.Component {
   }
   else {
     return (
-      <div></div>
+      <div id="primary" className="content-area">
+          <div className="no-bg">
+        <h1 id="dept-title">Staff Directory</h1>
+        <div className="entry-content">
+          <div id="search-box">
+      <form id="inside-search" noValidate="novalidate" className="searchbox sbx2-custom">
+        <div role="search" className="sbx2-custom__wrapper">
+          <input type="search" name="search" placeholder="Loading…" autoComplete="off"
+            required="required" className="sbx2-custom__input" disabled="disabled" />
+          <button type="submit" title="Submit your search query." className="sbx2-custom__submit">
+            <svg role="img" aria-label="Search">
+              <use xlinkHref="#sbx2-icon-search-6" />
+            </svg>
+          </button>
+          <button type="reset" title="Clear the search query." className="sbx2-custom__reset" onClick={this._hide}>
+            <svg role="img" aria-label="Reset">
+              <use xlinkHref="#sbx2-icon-clear-4" />
+            </svg>
+          </button>
+        </div>
+      </form>
+          </div>
+        </div>
+      </div>
+      <div id="directory-search-results-container">
+    </div>
+    </div>
     )
   }
   }

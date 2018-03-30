@@ -215,6 +215,9 @@
   border-top: 0;
 }
 #directory-totality {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   h2 {
     font-size: 32px;
     margin-top: 0;

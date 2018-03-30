@@ -24,8 +24,8 @@
   />
   </symbol>
   </svg>
- 	<div id="primary" class="content-area">
     <span id="directory-totality">
+      <div id="primary" class="content-area">
  			<div class="no-bg">
  		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
     <div class="entry-content">
@@ -51,9 +51,10 @@
       </div>
   	</div>
  	</div>
-  <div id="directory-search-results">Dun dun dun
+  <div id="directory-search-results">
   </div>
+   	</div><!-- #primary -->
 </span>
- 	</div><!-- #primary -->
+
  <?php
  get_footer();
