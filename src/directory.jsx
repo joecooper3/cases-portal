@@ -30,16 +30,6 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
   return response.json();
 });
 
-const apiRequestLoop = function(arr, num) {
-    let promiseArray = [num];
-    promiseArray = promiseArray.concat(arr);
-    for (let i = 1; i <= num; i++) {
-      let staffUrlLoop = staffUrlNoPage + i;
-      promiseArray.push(fetch(staffUrlLoop).then(response => response.json()));
-    }
-    return Promise.all(promiseArray);
-}
-
 const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
 
 const masterData = Promise.all(promiseArray).then(values => {
@@ -93,7 +83,6 @@ const masterData = Promise.all(promiseArray).then(values => {
   }
   }
   const final = sortedArray.concat(deptProgArray);
-  console.log(final);
   return final;
 });
 

@@ -44,43 +44,43 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @font-face {
   font-family: akzLight;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzRoman;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzMed;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzSemiBold;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzBold;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillMed;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBook;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBookIta;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
 
 @font-face {
   font-family: gillSemiBold;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillBold;
-  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
+  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
 
 /*--------------------------------------------------------------
 # Normalize
@@ -1483,48 +1483,49 @@ header {
 #directory-search-results > a:first-child {
   border-top: 0; }
 
-#directory-totality h2 {
-  font-size: 32px;
-  margin-top: 0; }
-
-#directory-totality a {
-  text-decoration: none;
-  border-top: 1.0px solid #EAEAEA;
-  display: block;
-  transition: 0.25s background-color; }
-
-#directory-totality a:hover {
-  background-color: #F8F8F8; }
-
-#directory-totality .staff-container {
+#directory-totality {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  padding: 20px; }
-  #directory-totality .staff-container .portrait {
-    border-radius: 100%;
-    background-size: cover;
-    background-position: 50% 80%;
-    height: 125px;
-    width: 125px;
-    flex: 0 0 125px; }
-  #directory-totality .staff-container .name-pos {
-    flex: 1 1 300px;
-    margin: 0 25px; }
-    #directory-totality .staff-container .name-pos h2 {
-      font-family: akzSemiBold;
-      margin: 0;
-      font-size: 24px; }
-    #directory-totality .staff-container .name-pos h3 {
-      font-family: akzLight;
-      font-weight: normal;
-      margin: 0;
-      color: #9B9B9B; }
-    #directory-totality .staff-container .name-pos .dept-prog {
-      color: #333;
-      font-size: 14px; }
-  #directory-totality .staff-container .contact {
-    flex: 1 1 150px; }
+  width: 100%;
+  justify-content: center; }
+  #directory-totality h2 {
+    font-size: 32px;
+    margin-top: 0; }
+  #directory-totality a {
+    text-decoration: none;
+    border-top: 1.0px solid #EAEAEA;
+    display: block;
+    transition: 0.25s background-color; }
+  #directory-totality a:hover {
+    background-color: #F8F8F8; }
+  #directory-totality .staff-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 20px; }
+    #directory-totality .staff-container .portrait {
+      border-radius: 100%;
+      background-size: cover;
+      background-position: 50% 80%;
+      height: 125px;
+      width: 125px;
+      flex: 0 0 125px; }
+    #directory-totality .staff-container .name-pos {
+      flex: 1 1 300px;
+      margin: 0 25px; }
+      #directory-totality .staff-container .name-pos h2 {
+        font-family: akzSemiBold;
+        margin: 0;
+        font-size: 24px; }
+      #directory-totality .staff-container .name-pos h3 {
+        font-family: akzLight;
+        font-weight: normal;
+        margin: 0;
+        color: #9B9B9B; }
+      #directory-totality .staff-container .name-pos .dept-prog {
+        color: #333;
+        font-size: 14px; }
+    #directory-totality .staff-container .contact {
+      flex: 1 1 150px; }
 
 #loginform {
   font-size: 30px;
