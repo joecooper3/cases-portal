@@ -340,22 +340,7 @@ function big_staff( $data ) {
   $posts = get_posts( array(
 		'numberposts' => -1,
 		'post_type' => 'staff',
-		'meta_query'    => array(
-            'relation'  =>  'AND',
-            array(
-                'key'   =>  'email'
-            ),
-            array(
-                'key'   =>  'start_date',
-            )
-        )
   ) );
-
-	$posts2 = new WP_Query( array (
-		'post_type' => 'staff',
-		'post_per_page' => -1
-	)
-	);
 
   if ( empty( $posts ) ) {
     return 'doooh';
@@ -382,25 +367,6 @@ add_action( 'rest_api_init', function () {
     'callback' => 'big_staff',
   ) );
 } );
-
-add_action ('rest_api_init', 'register_email_in_endpoint');
-
-function register_email_in_endpoint() {
-	register_rest_field(
-		'staff',
-		'staff_email',
-		array(
-			'get_callback' => 'get_the_damn_email',
-			'update_callback' => null,
-			'schema' => null
-		)
-	);
-}
-
-function get_the_damn_email($object, $field_name, $request) {
-	return $object[acf][email];
-
-}
 
 /**
  * Implement the Custom Header feature.
