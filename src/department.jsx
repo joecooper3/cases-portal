@@ -77,30 +77,20 @@ const masterData = Promise.all(promiseArray).then(values => {
         }
       });
   let sortedArray = filteredArray.sort(compareSearch);
-  sortedArray.forEach(function(item) {
-    var result = staffPages.filter(function(staffItem) {
-        return staffItem.email === item.email;
+  function dataMatcher(arr) {
+    arr.forEach(function(item) {
+      var result = staffPages.filter(function(staffItem) {
+          return staffItem.email === item.email;
+      });
+    item.url = (result[0] !== undefined) ? result[0].url : null;
+    item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+    item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
+    item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
     });
-  item.url = (result[0] !== undefined) ? result[0].url : null;
-  item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
-  item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
-  item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
-  });
-  supervisorArray.forEach(function(item) {
-    var result = staffPages.filter(function(staffItem) {
-        return staffItem.email === item.email;
-    });
-  item.url = (result[0] !== undefined) ? result[0].link : null;
-  item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
-  item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
-  item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
-  });
-  sortedArraySearch.forEach(function(item) {
-    var result = staffPages.filter(function(staffItem) {
-        return staffItem.email === item.email;
-    });
-  item.url = (result[0] !== undefined) ? result[0].url : null;
-  });
+  }
+  dataMatcher(sortedArray);
+  dataMatcher(supervisorArray);
+  dataMatcher(sortedArraySearch);
   let deptProgArray = [];
   for (let i = 0; i < deptPages.length; i++) {
     deptProgArray.push({
