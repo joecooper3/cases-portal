@@ -27,6 +27,7 @@ class ProgramsUnitsList extends React.Component {
         this.setState({parts: this.props.data});
         console.log(this.props.data);
         console.log(this.props.name);
+        console.log(this.props.type);
       }
 
 

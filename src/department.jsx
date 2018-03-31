@@ -207,8 +207,7 @@ class SearchBoxApp extends React.Component {
     super();
     this.state = {
       searchParts: [],
-      loaded: false,
-      loaded2: false
+      loaded: false
     };
   }
   componentWillMount() {
