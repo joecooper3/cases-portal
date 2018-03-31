@@ -1,10 +1,5 @@
 import React from 'react';
 
-const APIHost = __API__;
-
-const progRequestUrl = APIHost + '/wp-json/wp/v2/program?per_page=50';
-const deptRequestUrl = APIHost + '/wp-json/wp/v2/department?per_page=50';
-
 class ProgramsUnitsList extends React.Component {
   constructor() {
     super();
@@ -16,49 +11,23 @@ class ProgramsUnitsList extends React.Component {
   }
 
   componentWillMount() {
-    fetch(progRequestUrl).then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + response.status);
-        return;
-      }
-      response.json().then((data) => {
         let titleBlock = document.getElementById('dept-title');
-        let pageType = titleBlock.getAttribute('page-type');
+        let pageType = this.props.type;
         if (pageType === 'dept') {
-          let dept = titleBlock.getAttribute('data-id');
-          this.setState({dept: dept});
+          this.setState({dept: this.props.name});
         } else if (pageType === 'program') {
-          let prog = titleBlock.getAttribute('data-id');
-          this.setState({prog: prog});
-          data.map((info) => {
-            if (prog === this._removeSemicolon(info.title.rendered)) {
+          this.setState({prog: this.props.name});
+          this.props.data.map((info) => {
+            if (this.state.prog === this._removeSemicolon(info.title.rendered)) {
               let dept = info.acf.parent_department[0].post_title;
               this.setState({dept: dept});
             }
           })
         }
-        let filteredArray = [];
-        data.map((info) => {
-          if (this.state.dept === info.acf.parent_department[0].post_title) {
-            filteredArray.push(info);
-          }
-        })
-        function compare(a, b) {
-          let titleA = a.title.rendered.toUpperCase();
-          let titleB = b.title.rendered.toUpperCase();
-          if (titleA < titleB)
-            return -1;
-          if (titleA > titleB)
-            return 1;
-          return 0;
-        }
-        let sortedArray = filteredArray.sort(compare);
-        this.setState({parts: sortedArray});
-      });
-    }).catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
-  }
+        this.setState({parts: this.props.data});
+        console.log(this.props.data);
+        console.log(this.props.name);
+      }
 
 
   _removeSemicolon(inp) {

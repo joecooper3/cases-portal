@@ -32,12 +32,14 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
 
 const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
 
+const titleBlock = document.getElementById('dept-title');
+const dept = titleBlock.getAttribute('data-id');
+
 const masterData = Promise.all(promiseArray).then(values => {
-  let titleBlock = document.getElementById('dept-title');
-  let dept = titleBlock.getAttribute('data-id');
   let supervisor = titleBlock.getAttribute('supervisor-id');
   let filteredArray = [];
   let supervisorArray = [];
+  let progUnitListArray = [];
   let jasonData = values[0].info;
   let staffPages = values[1];
   let deptPages = values[2];
@@ -115,10 +117,16 @@ const masterData = Promise.all(promiseArray).then(values => {
       last: '',
       type: 'program',
       url: programPages[i].link
-    })
+      })
+    }
   }
-  }
-  const final = {searchBox: sortedArraySearch.concat(deptProgArray), supervisor: supervisorArray, main: sortedArray};
+  const final = {
+    searchBox: sortedArraySearch.concat(deptProgArray),
+    supervisor: supervisorArray,
+    main: sortedArray,
+    progUnitList: progUnitListArray,
+    deptName: dept
+  };
   return final;
 });
 
@@ -151,10 +159,46 @@ class DeptFetchApp extends React.Component {
 }
 
 class ProgramsUnitsListApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      progUnitParts: [],
+      deptName: '',
+      loaded: false
+    };
+  }
+  componentWillMount() {
+    apiRequestProgram.then(yeah => {
+      let progUnitListArray = [];
+      yeah.map((info) => {
+        if (dept === info.acf.parent_department[0].post_title) {
+          progUnitListArray.push(info);
+        }
+      });
+      function compareProgs(a, b) {
+        let titleA = a.title.rendered.toUpperCase();
+        let titleB = b.title.rendered.toUpperCase();
+        if (titleA < titleB)
+          return -1;
+        if (titleA > titleB)
+          return 1;
+        return 0;
+      }
+      progUnitListArray = progUnitListArray.sort(compareProgs);
+      this.setState({progUnitParts: progUnitListArray});
+      this.setState({deptName: dept});
+      this.setState({loaded: true});
+    })
+  }
   render () {
+    if (this.state.loaded) {
     return (
-      <ProgramsUnitsList />
+      <ProgramsUnitsList name={this.state.deptName} type="dept" data={this.state.progUnitParts} />
     );
+  }
+  else {
+    return (<br/>)
+  }
   }
 }
 
