@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 
 import {DeptFetch} from './components/DeptFetch.jsx';
 import {ProgramsUnitsList} from './components/ProgramsUnitsList.jsx';
-import {SearchBox} from './components/SearchBox.jsx'
+import {SearchBox} from './components/SearchBox.jsx';
 
 const APIHost = __API__;
 
