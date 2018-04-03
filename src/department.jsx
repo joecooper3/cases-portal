@@ -58,7 +58,7 @@ const masterData = Promise.all(promiseArray).then(values => {
       let soupEmail = soup + "@cases.org";
       for (let i = 0; i < staffPages.length; i++) {
         if (staffPages[i].email == soupEmail) {
-          return staffPages[i].link;
+          return staffPages[i].url;
         }
       };
     }
