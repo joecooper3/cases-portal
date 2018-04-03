@@ -112,19 +112,80 @@ const masterData = Promise.all(promiseArray).then(values => {
       })
     }
   }
+
+  //Get the data for the breadcrumbs
+  let breadcrumbObject = {
+    email: email,
+    dept: sortedArray[0].department,
+    program: sortedArray[0].program
+  }
+
+  function _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
+  }
+
+  function deptUrlPuller(name){
+    let theUrl;
+    deptPages.map((info) => {
+    if (_removeSemicolon(info.title.rendered) === name) {
+      theUrl = info.link;
+    };
+  });
+  return theUrl;
+  };
+  function programUrlPuller(name){
+    let theUrl;
+    programPages.map((info) => {
+    if (_removeSemicolon(info.title.rendered) === name) {
+      theUrl = info.link;
+    };
+  });
+  return theUrl;
+  };
+
+  if (breadcrumbObject.program === '') {
+    breadcrumbObject.type = 'dept';
+    breadcrumbObject.deptUrl = deptUrlPuller(breadcrumbObject.dept);
+  }
+  else {
+    breadcrumbObject.type='program';
+    breadcrumbObject.deptUrl = deptUrlPuller(breadcrumbObject.dept);
+    breadcrumbObject.programUrl = programUrlPuller(breadcrumbObject.program);
+  }
+  //end breadcrumbs data code
+
   const final = {
     searchBox: sortedArraySearch.concat(deptProgArray),
     main: sortedArray,
+    breadcrumb: breadcrumbObject
   };
   return final;
 });
 
 
 class StaffBreadcrumbsApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      parts: {},
+      loaded: false
+    };
+  }
+  componentWillMount() {
+    masterData.then(yeah => {
+      this.setState({parts: yeah.breadcrumb});
+      this.setState({loaded: true});
+    });
+  }
   render () {
-    return (
-      <StaffBreadcrumbs />
-    )
+    if (this.state.loaded) {
+      return (
+        <StaffBreadcrumbs data={this.state.parts} />
+      );
+    }
+    else {
+      return (<span></span>);
+    }
   }
 }
 
