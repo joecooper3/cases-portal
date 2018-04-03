@@ -70,8 +70,10 @@ const masterData = Promise.all(promiseArray).then(values => {
         }
       };
     }
+    let supervisorFormatted = supervisor.replace(/\s/g, '');
+    let supervisorFormattedArray = supervisorFormatted.split(',');
     jasonData.map((info) => {
-        if (supervisor.includes(info.email)) {
+        if (supervisorFormattedArray.includes(info.email)) {
         supervisorArray.push(info);
         }
         else if(info.program === prog) {

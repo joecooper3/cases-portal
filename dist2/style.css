@@ -44,43 +44,43 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @font-face {
   font-family: akzLight;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzRoman;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzMed;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzSemiBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillMed;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBook;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBookIta;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
 
 @font-face {
   font-family: gillSemiBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
 
 /*--------------------------------------------------------------
 # Normalize
