@@ -16,6 +16,7 @@ var config = {
     'program': SRC_DIR + '/program.jsx',
     'search-only': SRC_DIR + '/search-only.jsx',
     'directory': SRC_DIR + '/directory.jsx',
+    'compliance': SRC_DIR + '/compliance.jsx',
   },
   output: {
     path: DIST_DIR,

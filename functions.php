@@ -230,9 +230,41 @@ function custom_post_type() {
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 	);
+	$training_labels = array(
+		'name'                  => _x( 'Trainings', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Training', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Trainings', 'text_domain' ),
+		'name_admin_bar'        => __( 'Training', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Training', 'text_domain' ),
+		'new_item'              => __( 'New Training', 'text_domain' ),
+		'edit_item'             => __( 'Edit Training', 'text_domain' ),
+		'update_item'           => __( 'Update Training', 'text_domain' ),
+	);
+	$args_training = array(
+		'label'                 => __( 'Program', 'text_domain' ),
+		'description'           => __( 'Programs', 'text_domain' ),
+		'labels'                => $training_labels,
+		'supports'              => array( 'title' ),
+		'taxonomies'            => array( 'training' ),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 20,
+		'menu_icon'             => 'dashicons-calendar-alt',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
 	register_post_type( 'program', $args_program );
+	register_post_type( 'training', $args_training );
 
 }
 
@@ -365,6 +397,37 @@ add_action( 'rest_api_init', function () {
   register_rest_route( 'portal/v2', '/bigstaff/', array(
     'methods' => 'GET',
     'callback' => 'big_staff',
+  ) );
+} );
+
+function trainings_pull( $data ) {
+  $posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'training',
+  ) );
+
+  if ( empty( $posts ) ) {
+    return 'doooh';
+  }
+		$data = [];
+
+		foreach ($posts as $post) {
+			$api_content = [
+				'date' => get_field('date', $post->ID),
+				'start_time' => get_field('start_time', $post->ID),
+				'end_time' => get_field('end_time', $post->ID),
+				'location' => get_field('location', $post->ID),
+				'training_type' => get_field('training_type', $post->ID)
+			];
+			$data[] = $api_content;
+		}
+		return $data;
+}
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'portal/v2', '/trainings/', array(
+    'methods' => 'GET',
+    'callback' => 'trainings_pull',
   ) );
 } );
 
