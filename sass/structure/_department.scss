@@ -133,7 +133,7 @@
   }
 }
 
-#programs-units {
+#programs-units, .resources-links {
   font-family: akzRoman;
   ul {
     margin: 0;
@@ -159,14 +159,18 @@
   li {
     text-align: left;
   }
-  .active-program {
-    font-family: akzSemibold;
-    color: #666;
-    cursor: default;
-  }
-  .active-program:hover{
-    color: #666;
-    background-color: $mywhite;
-
-  }
 }
+
+  #programs-units {
+    .active-program {
+      font-family: akzMed;
+      color: $color1;
+      border-left: 5.0px solid $color1;
+      cursor: default;
+    }
+    .active-program:hover{
+      color: #666;
+      background-color: $mywhite;
+
+    }
+  }

@@ -78,6 +78,13 @@ header {
   }
 }
 
+p {
+  strong {
+    font-family: gillSemiBold;
+    font-weight: 400;
+  }
+}
+
 .moving-line {
   position: relative;
   z-index: 3;
