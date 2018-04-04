@@ -318,6 +318,9 @@ elseif (is_singular('staff')) {
 elseif (is_page_template('page-directory.php')) {
 	wp_enqueue_script( 'directory-js', get_template_directory_uri() . '/dist/directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
+elseif (is_page_template('page-compliance.php')) {
+	wp_enqueue_script( 'compliance-js', get_template_directory_uri() . '/dist/compliance.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+}
 elseif (is_front_page()) {
 	wp_enqueue_script( 'index-js', get_template_directory_uri() . '/dist/index.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }

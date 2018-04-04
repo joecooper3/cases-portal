@@ -46,7 +46,7 @@ else { ?>
 	</li>
 </ul>
 </div>
-<div class="resources-links">
+<div id="placeholder-id" class="resources-links">
 	<div class="icon-secondary-container">
 		<i class="fa fa-calendar" aria-hidden="true"></i>
 		<h2>Privacy Training Dates</h2>

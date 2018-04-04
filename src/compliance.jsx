@@ -29,6 +29,10 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
   return response.json();
 });
 
+const apiRequestTrainings = fetch(trainingUrl).then(function(response) {
+  return response.json();
+});
+
 const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
 
 const masterData = Promise.all(promiseArray).then(values => {
@@ -84,6 +88,40 @@ const masterData = Promise.all(promiseArray).then(values => {
   return final;
 });
 
+class TrainingDatesApp extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      complianceParts: [],
+      privacyParts: [],
+      loaded: false
+    };
+  }
+  componentWillMount(){
+    apiRequestTrainings.then(yeah => {
+      console.log(yeah);
+      let complianceArray = [];
+      let privacyArray = [];
+      yeah.map(info => {
+        if (info.training_type === 'Compliance') {
+          complianceArray.push(info);
+        }
+        else if (info.training_type === 'Privacy') {
+          privacyArray.push(info);
+        }
+      });
+      this.setState({complianceParts: complianceArray});
+      this.setState({privacyParts: privacyArray});
+      this.setState({loaded: true});
+    });
+  }
+  render() {
+    return (
+      <div>gimme a placeholder</div>
+    )
+  }
+}
+
 class SearchBoxApp extends React.Component {
   constructor() {
     super();
@@ -112,4 +150,5 @@ class SearchBoxApp extends React.Component {
   }
 }
 
+render(<TrainingDatesApp/>, document.getElementById('placeholder-id'));
 render(<SearchBoxApp/>, document.getElementById('particular-search'));
