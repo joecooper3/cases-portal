@@ -4,6 +4,7 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import {SearchBox} from './components/SearchBox.jsx';
+import {Training} from './components/Training.jsx';
 
 const APIHost = __API__;
 
@@ -88,36 +89,86 @@ const masterData = Promise.all(promiseArray).then(values => {
   return final;
 });
 
-class TrainingDatesApp extends React.Component {
+function dateCompare(a,b) { // function for sorting training dates
+  let dateA = a.date;
+  let dateB = b.date;
+    if (dateA < dateB)
+      return -1;
+    if (dateA > dateB)
+      return 1;
+    return 0;
+  }
+
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth()+1;
+let yyyy = today.getFullYear();
+if(dd<10) {
+    dd = '0'+dd
+  }
+if(mm<10) {
+    mm = '0'+mm
+}
+today = yyyy + mm + dd;
+
+class ComplianceTrainingDatesApp extends React.Component {
   constructor(){
     super();
     this.state = {
-      complianceParts: [],
-      privacyParts: [],
-      loaded: false
+      complianceParts: []
     };
   }
   componentWillMount(){
     apiRequestTrainings.then(yeah => {
       console.log(yeah);
       let complianceArray = [];
-      let privacyArray = [];
       yeah.map(info => {
-        if (info.training_type === 'Compliance') {
+         if (info.training_type === 'Compliance' && info.date >= today) {
           complianceArray.push(info);
         }
-        else if (info.training_type === 'Privacy') {
-          privacyArray.push(info);
-        }
       });
-      this.setState({complianceParts: complianceArray});
-      this.setState({privacyParts: privacyArray});
-      this.setState({loaded: true});
+      this.setState({complianceParts: complianceArray.sort(dateCompare)});
     });
   }
   render() {
     return (
-      <div>gimme a placeholder</div>
+      <ul id="compliance-dates" className="dates-list">
+        {this.state.complianceParts.map((part, i) =>
+          <Training key={i} date={part.date} location={part.location} startTime={part.start_time}
+          endTime={part.end_time}/>
+      )}
+    </ul>
+    )
+  }
+}
+class PrivacyTrainingDatesApp extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      privacyParts: []
+    };
+  }
+  componentWillMount(){
+    apiRequestTrainings.then(yeah => {
+      console.log(yeah);
+      let privacyArray = [];
+      yeah.map(info => {
+         if (info.training_type === 'Privacy' && info.date >= today) {
+          privacyArray.push(info);
+        }
+      });
+      console.log(privacyArray.sort(dateCompare));
+      this.setState({privacyParts: privacyArray.sort(dateCompare)});
+    });
+  }
+  render() {
+    return (
+      <ul id="privacy-dates" className="dates-list">
+        {this.state.privacyParts.map((part, i) =>
+          <Training key={i} date={part.date} location={part.location} startTime={part.start_time}
+          endTime={part.end_time}/>
+      )}
+    </ul>
     )
   }
 }
@@ -150,5 +201,6 @@ class SearchBoxApp extends React.Component {
   }
 }
 
-render(<TrainingDatesApp/>, document.getElementById('placeholder-id'));
+render(<ComplianceTrainingDatesApp/>, document.getElementById('compliance-dates'));
+render(<PrivacyTrainingDatesApp/>, document.getElementById('privacy-dates'));
 render(<SearchBoxApp/>, document.getElementById('particular-search'));

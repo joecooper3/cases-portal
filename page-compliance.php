@@ -31,41 +31,25 @@ else { ?>
 		<i class="fa fa-calendar" aria-hidden="true"></i>
 		<h2>Compliance Training Dates</h2>
 </div>
-<ul class="dates-list">
-	<li><div class="date">May 12, 2018</div>
-		<div class="location">Downtown Brooklyn, 3rd Floor</div>
-		<div class="time">10:00 AM&ndash;11:00 AM</div>
-	</li>
-	<li><div class="date">June 18, 2018</div>
-		<div class="location">Harlem, 8th Floor</div>
-		<div class="time">1:00 PM&ndash;2:00 PM</div>
-	</li>
-<li><div class="date">August 1, 2018</div>
-		<div class="location">Downtown Brooklyn, 3rd Floor</div>
-		<div class="time">11:00 AM&ndash;12:00 PM</div>
-	</li>
+<ul id="compliance-dates" class="dates-list">
+	<div style="text-align:center">
+<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
+</div>
 </ul>
 </div>
-<div id="placeholder-id" class="resources-links">
+
+<div class="resources-links">
 	<div class="icon-secondary-container">
 		<i class="fa fa-calendar" aria-hidden="true"></i>
 		<h2>Privacy Training Dates</h2>
 </div>
-<ul class="dates-list">
-		<li><div class="date">May 12, 2018</div>
-		<div class="location">Downtown Brooklyn, 3rd Floor</div>
-		<div class="time">10:00 AM&ndash;11:00 AM</div>
-	</li>
-	<li><div class="date">June 18, 2018</div>
-		<div class="location">Harlem, 8th Floor</div>
-		<div class="time">1:00 PM&ndash;2:00 PM</div>
-	</li>
-	<li><div class="date">August 1, 2018</div>
-		<div class="location">Downtown Brooklyn, 3rd Floor</div>
-		<div class="time">11:00 AM&ndash;12:00 PM</div>
-	</li>
+<ul id="privacy-dates" class="dates-list">
+	<div style="text-align:center">
+<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
+</div>
 </ul>
 </div>
+
 <div class="resources-links">
 	<div class="icon-secondary-container">
 		<i class="fa fa-file-text" aria-hidden="true"></i>
