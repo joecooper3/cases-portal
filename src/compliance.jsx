@@ -5,6 +5,7 @@ import {render} from 'react-dom';
 
 import {SearchBox} from './components/SearchBox.jsx';
 import {Training} from './components/Training.jsx';
+import {SideNavBox} from './components/SideNavBox.jsx';
 
 const APIHost = __API__;
 
@@ -13,6 +14,7 @@ const staffUrl = APIHost + '/wp-json/portal/v2/bigstaff/';
 const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
 const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
 const trainingUrl = APIHost + '/wp-json/portal/v2/trainings/';
+const sidenavUrl = APIHost + '/wp-json/portal/v2/sidenavs/';
 
 const apiRequestJason = fetch(data).then(function(response) {
   return response.json();
@@ -31,6 +33,10 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
 });
 
 const apiRequestTrainings = fetch(trainingUrl).then(function(response) {
+  return response.json();
+});
+
+const apiRequestSidenav = fetch(sidenavUrl).then(function(response) {
   return response.json();
 });
 
@@ -120,7 +126,6 @@ class ComplianceTrainingDatesApp extends React.Component {
   }
   componentWillMount(){
     apiRequestTrainings.then(yeah => {
-      console.log(yeah);
       let complianceArray = [];
       yeah.map(info => {
          if (info.training_type === 'Compliance' && info.date >= today) {
@@ -150,14 +155,12 @@ class PrivacyTrainingDatesApp extends React.Component {
   }
   componentWillMount(){
     apiRequestTrainings.then(yeah => {
-      console.log(yeah);
       let privacyArray = [];
       yeah.map(info => {
          if (info.training_type === 'Privacy' && info.date >= today) {
           privacyArray.push(info);
         }
       });
-      console.log(privacyArray.sort(dateCompare));
       this.setState({privacyParts: privacyArray.sort(dateCompare)});
     });
   }
@@ -201,6 +204,36 @@ class SearchBoxApp extends React.Component {
   }
 }
 
+class SidenavApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      sidenavParts: []
+    };
+  }
+  componentWillMount() {
+    apiRequestSidenav.then(yeah => {
+      let sidenavArray = [];
+      yeah.map(info => {
+        if (info.category === 'compliance') {
+          sidenavArray.push(info);
+        }
+      });
+      console.log(sidenavArray);
+      this.setState({sidenavParts: sidenavArray});
+    });
+  }
+
+  render () {
+    return(
+      this.state.sidenavParts.map((part, i) =>
+        <SideNavBox key={i} name={part.name} icon={part.icon} content={part.content} />
+      )
+    )
+  }
+}
+
 render(<ComplianceTrainingDatesApp/>, document.getElementById('compliance-dates'));
 render(<PrivacyTrainingDatesApp/>, document.getElementById('privacy-dates'));
+render(<SidenavApp/>, document.getElementById('sidenav-container'));
 render(<SearchBoxApp/>, document.getElementById('particular-search'));

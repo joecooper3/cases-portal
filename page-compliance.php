@@ -50,6 +50,7 @@ else { ?>
 </ul>
 </div>
 
+<span id="sidenav-container">
 <div class="resources-links">
 	<div class="icon-secondary-container">
 		<i class="fa fa-file-text" aria-hidden="true"></i>
@@ -62,6 +63,7 @@ else { ?>
 </ul>
 </div>
 </div>
+</span>
 <?php
 get_footer(); ?>
 <?php } ?>

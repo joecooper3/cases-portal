@@ -261,11 +261,42 @@ function custom_post_type() {
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 	);
+	$sidenav_labels = array(
+		'name'                  => _x( 'Side Navigations', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Side Navigation', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Side Navigations', 'text_domain' ),
+		'name_admin_bar'        => __( 'Side Navigation', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Side Navigation', 'text_domain' ),
+		'new_item'              => __( 'New Side Navigation', 'text_domain' ),
+		'edit_item'             => __( 'Edit Side Navigation', 'text_domain' ),
+		'update_item'           => __( 'Update Side Navigation', 'text_domain' ),
+	);
+	$args_sidenav = array(
+		'label'                 => __( 'Sidenav', 'text_domain' ),
+		'description'           => __( 'Side Navs', 'text_domain' ),
+		'labels'                => $sidenav_labels,
+		'supports'              => array( 'title', 'editor' ),
+		'taxonomies'            => array( 'sidenav' ),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 75,
+		'menu_icon'             => 'dashicons-list-view',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
 	register_post_type( 'program', $args_program );
 	register_post_type( 'training', $args_training );
-
+	register_post_type( 'sidenav', $args_sidenav );
 }
 
 add_action( 'init', 'custom_post_type', 0 );
@@ -433,6 +464,54 @@ add_action( 'rest_api_init', function () {
     'callback' => 'trainings_pull',
   ) );
 } );
+
+function sidenavs_pull( $data ) {
+  $posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'sidenav',
+  ) );
+
+  if ( empty( $posts ) ) {
+    return 'doooh';
+  }
+		$data = [];
+
+		foreach ($posts as $post) {
+			$api_content = [
+				'name' => $post->post_title,
+				'content' => $post->post_content,
+				'icon' => get_field('icon', $post->ID),
+				'category' => get_field('category', $post->ID),
+				'position' => get_field('position', $post->ID)
+			];
+			$data[] = $api_content;
+		}
+		return $data;
+}
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'portal/v2', '/sidenavs/', array(
+    'methods' => 'GET',
+    'callback' => 'sidenavs_pull',
+  ) );
+} );
+
+// END custom endpoints
+
+//Custom user types! It never ends!
+function add_compliance_privacy_role() {
+ add_role('compliance_privacy',
+            'Compliance & Privacy',
+            array(
+                'read' => true,
+                'edit_posts' => false,
+                'delete_posts' => false,
+                'publish_posts' => false,
+                'upload_files' => true,
+            )
+        );
+   }
+add_action(init, 'add_compliance_privacy_role' );
 
 /**
  * Implement the Custom Header feature.
