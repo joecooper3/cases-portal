@@ -50,3 +50,44 @@
     }
   }
 }
+
+.fac-button {
+  font-family: akzSemiBold;
+  text-align: center;
+  font-size: 25px;
+  margin: 40px 0;
+  a {
+    border: 1.0px solid $color1;
+    padding: 20px 75px;
+    text-decoration: none;
+    transition: 0.2s;
+    .fa-long-arrow-right {
+      margin-left: 20px;
+    }
+  }
+  a:hover {
+    color: $color3;
+    border-color: $color3;
+  }
+}
+
+.resc-alert {
+  border: 1.0px solid $color1;
+  border-left: 10px solid $color3;
+  padding: 15px 30px 15px 30px;
+  margin: 40px 0;
+  h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+  }
+  p {
+    margin-bottom: 1em;
+  }
+  .alert {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: akzBold;
+    color: $color3;
+    margin: 0;
+  }
+}

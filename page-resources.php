@@ -17,11 +17,29 @@ else { ?>
 			<div>
 		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
 		<div class="entry-content">
-				<?php
-		      if ( have_posts() ) : while ( have_posts() ) : the_post();
-		  			the_content();
-		        endwhile;        endif;
-		  		?>
+			<?php
+			$catKing = get_the_title();
+			$args2 = array(
+  		'post_type' 	=> 'post' ,
+  		'category_name' => $catKing,
+			);
+			$q = new WP_Query($args2);
+			if ( $q->have_posts() ) {
+			  while ( $q->have_posts() ) {
+			    $q->the_post();
+?>
+		<div class="resc-alert"><h4 class="alert">Alert</h4>
+			<h2><?php the_title(); ?></h2>
+		<p><?php the_content(); ?></p></div>
+		<?php
+					  }
+					}
+					?>
+							<?php
+					      if ( have_posts() ) : while ( have_posts() ) : the_post();
+					  			the_content();
+					        endwhile;        endif;
+					  		?>
 				</div>
 	</div>
 	<?php if( get_field('box_2_title') ): ?>
@@ -40,7 +58,33 @@ else { ?>
 	<div id="secondary">
 		<span id="sidenav-container">
 		</span>
+		<div class="resources-links">
+			<h2>Past <?php the_title(); ?> Updates</h2>
+			<ul>
+	<?php
+		$catKing = get_the_title();
+		$args3 = array(
+		'post_type' 	=> 'post' ,
+		'category_name' => $catKing,
+		'posts_per_page' => 3,
+		'offset' => 1
+		);
+		$q2 = new WP_Query($args3);
+		if ( $q2->have_posts() ) {
+			while ( $q2->have_posts() ) {
+				$q2->the_post(); ?>
+				<a href="<?php the_permalink(); ?>">
+				<li>
+					<?php the_title(); ?>
+				</li>
+			</a>
+
+			<?php			}
+					}
+			?>
+		</ul>
 </div>
+
 <?php
 get_footer(); ?>
 <?php } ?>
