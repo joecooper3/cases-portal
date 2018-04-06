@@ -4,18 +4,25 @@ class SideNavBox extends React.Component {
 
   _pullOutLinks(inp) {
     let numLinks = (inp.match(/a href/g) || []).length;
-    console.log(numLinks);
     let objArray = [];
     let title, url;
+    function targetBlankCheck(inp) {
+      if (inp.includes('target\=\"_blank')) {
+        return '_blank';
+      }
+      else {
+        return '_self';
+      }
+    }
     for (let i = 1; i < numLinks+1; i++) {
+      let newWindow = targetBlankCheck(inp.split('href')[i]);
       title = inp.split('\"\>')[i].split('\<\/a\>')[0];
       url = inp.split('\<a href\=\"')[i].split('\"')[0];
-      objArray.push({title: title, url: url});
+      objArray.push({title: title, url: url, newWindow: newWindow});
     }
-    console.log(objArray);
     return (
       objArray.map((part,i) =>
-        <a key={i} href={part.url} target="_blank">{part.title}</a>
+        <a key={i} href={part.url} target={part.newWindow}>{part.title}</a>
       )
     );
   }

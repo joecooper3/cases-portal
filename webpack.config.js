@@ -16,6 +16,7 @@ var config = {
     'search-only': SRC_DIR + '/search-only.jsx',
     'directory': SRC_DIR + '/directory.jsx',
     'compliance': SRC_DIR + '/compliance.jsx',
+    'resources': SRC_DIR + '/resources.jsx',
   },
   output: {
     path: DIST_DIR,

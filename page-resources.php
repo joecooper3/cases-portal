@@ -24,9 +24,22 @@ else { ?>
 		  		?>
 				</div>
 	</div>
+	<?php if( get_field('box_2_title') ): ?>
+		<div>
+			<h1><?php the_field('box_2_title') ?></h1>
+			<?php the_field('box_2_content') ?>
+		</div>
+		<?php endif; ?>
+	<?php if( get_field('box_3_title') ): ?>
+		<div>
+			<h1><?php the_field('box_3_title') ?></h1>
+			<?php the_field('box_3_content') ?>
+		</div>
+		<?php endif; ?>
 	</div><!-- #primary -->
 	<div id="secondary">
-<div>not as impressive</div>
+		<span id="sidenav-container">
+		</span>
 </div>
 <?php
 get_footer(); ?>

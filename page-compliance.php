@@ -24,6 +24,18 @@ else { ?>
 		  		?>
 				</div>
 	</div>
+	  <?php if( get_field('box_2_title') ): ?>
+			<div>
+				<h1><?php the_field('box_2_title') ?></h1>
+				<?php the_field('box_2_content') ?>
+			</div>
+			<?php endif; ?>
+	  <?php if( get_field('box_3_title') ): ?>
+			<div>
+				<h1><?php the_field('box_3_title') ?></h1>
+				<?php the_field('box_3_content') ?>
+			</div>
+			<?php endif; ?>
 	</div><!-- #primary -->
 	<div id="secondary">
 <div class="resources-links">
@@ -51,18 +63,6 @@ else { ?>
 </div>
 
 <span id="sidenav-container">
-<div class="resources-links">
-	<div class="icon-secondary-container">
-		<i class="fa fa-file-text" aria-hidden="true"></i>
-		<h2>Relevant Documents</h2>
-</div>
-<ul>
-	<a href="#!"><li>False Claims Act</li></a>
-	<a href="#!"><li>Privacy Policy</li></a>
-	<a href="#!"><li>The Stark Law</li></a>
-</ul>
-</div>
-</div>
 </span>
 <?php
 get_footer(); ?>
