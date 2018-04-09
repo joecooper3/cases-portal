@@ -481,11 +481,13 @@ function sidenavs_pull( $data ) {
 
 		foreach ($posts as $post) {
 			$api_content = [
+				'id' => $post->ID,
 				'name' => $post->post_title,
 				'content' => $post->post_content,
 				'icon' => get_field('icon', $post->ID),
 				'category' => get_field('category', $post->ID),
-				'position' => get_field('position', $post->ID)
+				'position' => get_field('position', $post->ID),
+				'edit_link' => get_edit_post_link(180)
 			];
 			$data[] = $api_content;
 		}

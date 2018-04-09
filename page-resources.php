@@ -15,7 +15,9 @@ else { ?>
 
 	<div id="primary" class="content-area">
 			<div>
-		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
+		<h1 id="dept-title" data-id="<?php the_title();?>"
+perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah";} ?>">
+		<?php the_title();?></h1>
 		<div class="entry-content">
 			<?php
 			$catKing = get_the_title();
@@ -30,7 +32,12 @@ else { ?>
 ?>
 		<div class="resc-alert"><h4 class="alert">Alert</h4>
 			<h2><?php the_title(); ?></h2>
-		<p><?php the_content(); ?></p></div>
+			<div class="entry-meta">
+				<?php cases_portal_posted_on(); ?>
+			</div><!-- .entry-meta -->
+		<p><?php the_content(); ?></p>
+		<div><?php edit_post_link('edit the thing'); ?></div>
+	</div>
 		<?php
 					  }
 					}
@@ -76,6 +83,14 @@ else { ?>
 				<a href="<?php the_permalink(); ?>">
 				<li>
 					<?php the_title(); ?>
+					<div class="date">
+					<?php $bah = get_the_date();
+					echo $bah;
+					if(current_user_can('administrator'))
+			 {echo 'admin is logged on';}
+			 else {echo 'not quite';}
+				 ?>
+				</div>
 				</li>
 			</a>
 

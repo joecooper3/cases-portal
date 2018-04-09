@@ -1,5 +1,7 @@
 import React from 'react';
 
+const APIHost = __API__;
+
 class SideNavBox extends React.Component {
 
   _pullOutLinks(inp) {
@@ -27,6 +29,8 @@ class SideNavBox extends React.Component {
     );
   }
   render() {
+    let editUrl = APIHost + '/wp-admin/post.php?post=' + this.props.id + "&action=edit";
+    let permissions = this.props.permissions;
     return (
       <div className="resources-links">
     	<div className="icon-secondary-container">
@@ -36,6 +40,13 @@ class SideNavBox extends React.Component {
     <ul>
       {this._pullOutLinks(this.props.content)}
     </ul>
+    {
+    (this.props.permissions === 'sure')
+    ? <div><a href="http://localhost:8888/cases-portal/wp-admin/post.php?post=175&action=edit">
+      Edit {this.props.name} side navigation
+  </a></div> : <span></span>
+  }
+
     </div>
     )
   }

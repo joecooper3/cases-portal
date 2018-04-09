@@ -122,14 +122,15 @@ class SidenavApp extends React.Component {
   constructor() {
     super();
     this.state = {
-      sidenavParts: []
+      sidenavParts: [],
+      permissions: ''
     };
   }
   componentWillMount() {
     const titleBlock = document.getElementById('dept-title');
     const category = titleBlock.getAttribute('data-id');
+    const permissions = titleBlock.getAttribute('perm');
     apiRequestSidenav.then(yeah => {
-      console.log(category);
       let sidenavArray = [];
       yeah.map(info => {
         if (info.category === category) {
@@ -143,14 +144,17 @@ class SidenavApp extends React.Component {
           return 1;
         return 0;
       }
+      console.log(sidenavArray);
       this.setState({sidenavParts: sidenavArray.sort(compareOrder)});
+      this.setState({permissions: permissions});
     });
   }
 
   render () {
     return(
       this.state.sidenavParts.map((part, i) =>
-        <SideNavBox key={i} name={part.name} icon={part.icon} content={part.content} />
+        <SideNavBox key={i} id={part.id} name={part.name} icon={part.icon}
+          content={part.content} permissions={this.state.permissions}/>
       )
     )
   }
