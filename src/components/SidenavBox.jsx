@@ -32,6 +32,7 @@ class SideNavBox extends React.Component {
     let editUrl = APIHost + '/wp-admin/post.php?post=' + this.props.id + "&action=edit";
     let permissions = this.props.permissions;
     return (
+      <div className="individual-sidenav-container">
       <div className="resources-links">
     	<div className="icon-secondary-container">
     		<i className={this.props.icon + " fa"} aria-hidden="true"></i>
@@ -40,13 +41,13 @@ class SideNavBox extends React.Component {
     <ul>
       {this._pullOutLinks(this.props.content)}
     </ul>
+  </div>
     {
     (this.props.permissions === 'sure')
-    ? <div><a href="http://localhost:8888/cases-portal/wp-admin/post.php?post=175&action=edit">
-      Edit {this.props.name} side navigation
+    ? <div className="edit-sidenav"><a href={editUrl}>
+      Edit <strong>{this.props.name}</strong> <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
   </a></div> : <span></span>
   }
-
     </div>
     )
   }

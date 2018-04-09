@@ -61,9 +61,9 @@ header {
   }
 }
 
-#secondary, .sec-blank-holder, #sidenav-container {
+#secondary, .sec-blank-holder {
   flex: 1 1 225px;
-  & > div {
+  & > div, .resources-links {
     background-color: $mywhite;
     padding: 20px;
     margin: 30px 20px;

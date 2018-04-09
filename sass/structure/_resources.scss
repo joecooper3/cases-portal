@@ -91,3 +91,29 @@
     margin: 0;
   }
 }
+
+.edit-sidenav {
+  margin: -15px 30px 40px 30px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  a {
+    color: $color1;
+    border: 1.0px solid $color1;
+    padding: 10px 18px 8px 18px;
+    text-decoration: none;
+    background-color: $mywhite;
+    transition: 0.2s;
+    strong {
+      font-weight: 400;
+      font-family: akzSemiBold;
+    }
+    i {
+      margin-left: 5px;
+    }
+  }
+  a:hover {
+    color: $color3;
+    border-color: $color3;
+  }
+}
