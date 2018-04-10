@@ -65,7 +65,7 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 	<div id="secondary">
 		<span id="sidenav-container">
 		</span>
-		<div class="resources-links">
+		<div class="past-updates">
 			<h2>Past <?php the_title(); ?> Updates</h2>
 			<ul>
 	<?php
@@ -86,9 +86,6 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 					<div class="date">
 					<?php $bah = get_the_date();
 					echo $bah;
-					if(current_user_can('administrator'))
-			 {echo 'admin is logged on';}
-			 else {echo 'not quite';}
 				 ?>
 				</div>
 				</li>
