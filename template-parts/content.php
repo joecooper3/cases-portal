@@ -10,7 +10,7 @@
 ?>
 
 <?php $args = array(
-    'posts_per_page' => 5
+    'posts_per_page' => 4
 );
 $query = new WP_Query($args);
 while ($query->have_posts()) :
@@ -38,11 +38,13 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
       $catColor = get_field('color', $cat[0]);
       $catUrl = get_field('parent_page', $cat[0]);
       ?>
+      <?php if ($catName !== "Uncategorized") : ?>
       <a href="<?php echo $catName; ?>">
         <span class="category" style="background-color: <?php echo $catColor; ?>">
           <i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i><?php echo $catName; ?>
         </span>
       </a>
+    <?php endif; ?>
 		</div><!-- .entry-meta -->
 		<?php
         endif; ?>
@@ -68,16 +70,21 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
 <?php elseif ('post' == get_post_type()) :?>
   <aside class="old-entries">
   <?php the_title('<h3><a href="' . esc_url(get_permalink()) . '" rel="bookmark">','</a></h3>') ?>
-  <p>Posted by <?php the_author();?> &bull; <?php the_date();?> &bull; 
-    <?php
-          $cat = get_the_category();
-          $catName = $cat[0]->name;
-          $catIcon = get_field('icon', $cat[0]);
-          $catColor = get_field('color', $cat[0]);
-          $catUrl = get_field('parent_page', $cat[0]); ?>
+  <?php
+        $cat = get_the_category();
+        $catName = $cat[0]->name;
+        $catIcon = get_field('icon', $cat[0]);
+        $catColor = get_field('color', $cat[0]);
+        $catUrl = get_field('parent_page', $cat[0]); ?>
+  <p>Posted by <?php the_author();?> &bull; <?php the_date();?>
+    <?php if ($catName !== "Uncategorized") : ?>
+     &bull;
+     <a href="<?php echo $catUrl; ?>">
     <span class="category" style="color: <?php echo $catColor; ?>">
-      <?php echo $catName; ?>
-        </span></p>
+      <?php echo $catName; ?> <i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i>
+        </span>
+      </a>
+      <?php endif; ?></p>
   </aside>
 <?php endif; ?>
 

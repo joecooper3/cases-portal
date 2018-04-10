@@ -40,16 +40,17 @@
       font-family: gillMed;
       margin-bottom: 0;
       color: $color1;
-
       a {
         text-decoration: none;
       }
     }
-
     p {
       margin-top: 0;
       font-size: 14px;
       color: $softgrey;
+      a {
+        text-decoration: none;
+      }
     }
   }
 }
