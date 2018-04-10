@@ -10,9 +10,25 @@
   .entry-meta {
     margin-top: 10px;
     color: $softgrey;
-
     a {
       text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+      text-decoration-color: $mywhite;
+    }
+    .category {
+      background-color: green;
+      color: $mywhite;
+      font-family: akzSemibold;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      font-size: 10px;
+      border-radius: 10px;
+      margin-left: 5px;
+      i {
+        margin-right: 7px;
+      }
     }
   }
 }
