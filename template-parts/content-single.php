@@ -14,7 +14,20 @@
 	<header class="entry-header">
 		<?php the_title('<h1 class="entry-title">', '</h1>'); ?>
 		<div class="entry-meta">
-			<?php cases_portal_posted_on(); ?>
+			<?php cases_portal_posted_on();
+			$cat = get_the_category();
+			$catName = $cat[0]->name;
+			$catIcon = get_field('icon', $cat[0]);
+			$catColor = get_field('color', $cat[0]);
+			$catUrl = get_field('parent_page', $cat[0]);
+			?>
+			<?php if ($catName !== "Uncategorized") : ?>
+			<a href="<?php echo $catName; ?>">
+				<span class="category" style="background-color: <?php echo $catColor; ?>">
+					<i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i><?php echo $catName; ?>
+				</span>
+			</a>
+		<?php endif; ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
