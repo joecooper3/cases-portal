@@ -36,7 +36,12 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 				<?php cases_portal_posted_on(); ?>
 			</div><!-- .entry-meta -->
 		<p><?php the_content(); ?></p>
-		<div><?php edit_post_link('edit the thing'); ?></div>
+		<?php if(current_user_can('administrator')) : ?>
+		<div class="edit-button"><?php
+		$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong>
+			<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+</a></div>
+<?php endif; ?>
 	</div>
 		<?php
 					  }
@@ -45,7 +50,13 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 							<?php
 					      if ( have_posts() ) : while ( have_posts() ) : the_post();
 					  			the_content();
-					        endwhile;        endif;
+									if(current_user_can('administrator')) : ?>
+									<div class="edit-button"><?php
+									$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong> blurbs
+										<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</a></div>
+							<?php endif; ?>
+						<?php endwhile;        endif;
 					  		?>
 				</div>
 	</div>

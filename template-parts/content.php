@@ -64,6 +64,12 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
                 ),
                 get_the_title()
             )); ?>
+            <? if(current_user_can('administrator')) : ?>
+            <div class="edit-button"><?php
+            $editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong>
+              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </a></div>
+        <?php endif; ?>
 	</div><!-- .entry-content -->
 </article><!-- #post-<?php the_ID(); ?> -->
 

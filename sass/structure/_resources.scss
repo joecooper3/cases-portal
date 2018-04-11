@@ -55,7 +55,7 @@
   font-family: akzSemiBold;
   text-align: center;
   font-size: 25px;
-  margin: 40px 0;
+  margin: 40px 0 60px 0;
   a {
     border: 1.0px solid $color1;
     padding: 20px 75px;
@@ -92,11 +92,8 @@
   }
 }
 
-.edit-sidenav {
-  margin: -15px 30px 40px 30px;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 13px;
+.edit-button, .edit-sidenav {
+    font-size: 13px;
   a {
     color: $color1;
     border: 1.0px solid $color1;
@@ -116,6 +113,16 @@
     color: $color3;
     border-color: $color3;
   }
+}
+
+.edit-button {
+  margin: 25px 0 10px 0;
+}
+
+.edit-sidenav {
+  margin: -15px 30px 40px 30px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .past-updates {

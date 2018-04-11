@@ -21,6 +21,12 @@ else { ?>
 				<?php
 		      if ( have_posts() ) : while ( have_posts() ) : the_post();
 		  			the_content();
+						if(current_user_can('administrator')) : ?>
+						<div class="edit-button"><?php
+						$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong> blurbs
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+				</a></div>
+				<?php endif; ?>
 		        endwhile;        endif;
 		  		?>
 				</div>
