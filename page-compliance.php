@@ -15,7 +15,8 @@ else { ?>
 
 	<div id="primary" class="content-area">
 			<div>
-		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
+		<h1 id="dept-title" data-id="<?php the_title();?>"
+			perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah";} ?>"><?php the_title();?></h1>
 		<div class="entry-content">
 				<?php
 		      if ( have_posts() ) : while ( have_posts() ) : the_post();

@@ -144,7 +144,6 @@ class SidenavApp extends React.Component {
           return 1;
         return 0;
       }
-      console.log(sidenavArray);
       this.setState({sidenavParts: sidenavArray.sort(compareOrder)});
       this.setState({permissions: permissions});
     });

@@ -212,21 +212,26 @@ class SidenavApp extends React.Component {
     };
   }
   componentWillMount() {
+    const titleBlock = document.getElementById('dept-title');
+    const category = titleBlock.getAttribute('data-id');
+    const permissions = titleBlock.getAttribute('perm');
     apiRequestSidenav.then(yeah => {
       let sidenavArray = [];
       yeah.map(info => {
-        if (info.category === 'Compliance & Privacy') {
+        if (info.category === category) {
           sidenavArray.push(info);
         }
       });
       this.setState({sidenavParts: sidenavArray});
+      this.setState({permissions: permissions});
     });
   }
 
   render () {
     return(
       this.state.sidenavParts.map((part, i) =>
-        <SideNavBox key={i} name={part.name} icon={part.icon} content={part.content} />
+        <SideNavBox key={i} id={part.id} name={part.name} icon={part.icon}
+          content={part.content} permissions={this.state.permissions} />
       )
     )
   }
