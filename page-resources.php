@@ -49,8 +49,28 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 					?>
 							<?php
 					      if ( have_posts() ) : while ( have_posts() ) : the_post();
-					  			the_content();
-									if(current_user_can('administrator')) : ?>
+					  			the_content(); ?>
+									<?php if ($catKing == 'Information Services') : ?>
+										<div class="task-button-container">
+											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/ishelpdesk_bb" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/laptop.svg">
+												</div>
+												<div class="button-is">
+													Post a ticket for <br/>the IS Helpdesk <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/database.helpdesk.bb" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/database.svg" style="width:125px">
+												</div>
+												<div class="button-is">
+													Post a ticket for Salesforce help <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+										</div>
+									<?php endif; ?>
+									<?php if(current_user_can('administrator')) : ?>
 									<div class="edit-button"><?php
 									$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong> blurbs
 										<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -58,6 +78,7 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 							<?php endif; ?>
 						<?php endwhile;        endif;
 					  		?>
+
 				</div>
 	</div>
 	<?php if( get_field('box_2_title') ): ?>

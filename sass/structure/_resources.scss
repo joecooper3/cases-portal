@@ -51,21 +51,70 @@
   }
 }
 
-.fac-button {
+.task-button-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 50px 0;
+  .task-button {
+    margin: 0 20px 25px 20px;
+  }
+}
+
+.task-button {
+  text-decoration: none;
   font-family: akzSemiBold;
   text-align: center;
   font-size: 25px;
-  margin: 40px 0 60px 0;
-  a {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 275px;
+  align-items: center;
+  .circle-icon {
+    background-color: $color1;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    img {
+      width: 175px;
+    }
+  }
+  .button {
     border: 1.0px solid $color1;
     padding: 20px 75px;
-    text-decoration: none;
-    transition: 0.2s;
+    transition: border-color 0.2s, color 0.2s;
     .fa-long-arrow-right {
       margin-left: 20px;
     }
   }
-  a:hover {
+  .button-is {
+    border: 1.0px solid $color1;
+    padding: 10px 20px;
+    font-size: 20px;
+    width:100%;
+    transition: border-color 0.2s, color 0.2s;
+    .fa-long-arrow-right {
+      margin-left: 20px;
+    }
+  }
+}
+
+.task-button:hover {
+  .circle-icon {
+    background-color: $color2;
+  }
+  .button {
+    color: $color3;
+    border-color: $color3;
+  }
+  .button-is {
     color: $color3;
     border-color: $color3;
   }
