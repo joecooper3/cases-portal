@@ -1685,7 +1685,7 @@ p strong {
   font-family: akzSemiBold;
   text-align: center;
   font-size: 25px;
-  margin: 40px 0; }
+  margin: 40px 0 60px 0; }
   .fac-button a {
     border: 1px solid #002b55;
     padding: 20px 75px;
@@ -1714,26 +1714,31 @@ p strong {
     color: #0381FB;
     margin: 0; }
 
-.edit-sidenav {
-  margin: -15px 30px 40px 30px;
-  display: flex;
-  justify-content: flex-end;
+.edit-button, .edit-sidenav {
   font-size: 13px; }
-  .edit-sidenav a {
+  .edit-button a, .edit-sidenav a {
     color: #002b55;
     border: 1px solid #002b55;
     padding: 10px 18px 8px 18px;
     text-decoration: none;
     background-color: #FDFDFD;
     transition: 0.2s; }
-    .edit-sidenav a strong {
+    .edit-button a strong, .edit-sidenav a strong {
       font-weight: 400;
       font-family: akzSemiBold; }
-    .edit-sidenav a i {
+    .edit-button a i, .edit-sidenav a i {
       margin-left: 5px; }
-  .edit-sidenav a:hover {
+  .edit-button a:hover, .edit-sidenav a:hover {
     color: #0381FB;
     border-color: #0381FB; }
+
+.edit-button {
+  margin: 25px 0 10px 0; }
+
+.edit-sidenav {
+  margin: -15px 30px 40px 30px;
+  display: flex;
+  justify-content: flex-end; }
 
 .past-updates ul {
   list-style: none;

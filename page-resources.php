@@ -76,18 +76,18 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 	<div id="secondary">
 		<span id="sidenav-container">
 		</span>
+		<?php
+			$catKing = get_the_title();
+			$args3 = array(
+			'post_type' 	=> 'post' ,
+			'category_name' => $catKing,
+			'posts_per_page' => 3,
+			'offset' => 1
+		); ?>
 		<div class="past-updates">
-			<h2>Past <?php the_title(); ?> Updates</h2>
+			<h2>Pastff <?php the_title(); ?> Updates</h2>
 			<ul>
-	<?php
-		$catKing = get_the_title();
-		$args3 = array(
-		'post_type' 	=> 'post' ,
-		'category_name' => $catKing,
-		'posts_per_page' => 3,
-		'offset' => 1
-		);
-		$q2 = new WP_Query($args3);
+<?php $q2 = new WP_Query($args3);
 		if ( $q2->have_posts() ) {
 			while ( $q2->have_posts() ) {
 				$q2->the_post(); ?>
