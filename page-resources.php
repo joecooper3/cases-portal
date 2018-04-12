@@ -83,12 +83,14 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 			'category_name' => $catKing,
 			'posts_per_page' => 3,
 			'offset' => 1
-		); ?>
+		);
+			$q2 = new WP_Query($args3);
+			$count = $q2->post_count;
+			if ($count > 0) : ?>
 		<div class="past-updates">
-			<h2>Pastff <?php the_title(); ?> Updates</h2>
+			<h2>Past <?php the_title(); ?> Updates</h2>
 			<ul>
-<?php $q2 = new WP_Query($args3);
-		if ( $q2->have_posts() ) {
+				<?php	if ( $q2->have_posts() ) {
 			while ( $q2->have_posts() ) {
 				$q2->the_post(); ?>
 				<a href="<?php the_permalink(); ?>">
@@ -107,7 +109,7 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 			?>
 		</ul>
 </div>
-
+		<?php endif; ?>
 <?php
 get_footer(); ?>
 <?php } ?>

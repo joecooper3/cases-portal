@@ -27,7 +27,7 @@ else { ?>
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 				</a></div>
 				<?php endif; ?>
-		        endwhile;        endif;
+			<?php endwhile;        endif;
 		  		?>
 				</div>
 	</div>
