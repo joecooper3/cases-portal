@@ -1681,21 +1681,62 @@ p strong {
 #secondary .resources-links .dates-list > li:last-child {
   border-bottom: 0; }
 
-.fac-button {
+.task-button-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 50px 0; }
+  .task-button-container .task-button {
+    margin: 0 20px 25px 20px; }
+
+.task-button {
+  text-decoration: none;
   font-family: akzSemiBold;
   text-align: center;
   font-size: 25px;
-  margin: 40px 0 60px 0; }
-  .fac-button a {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 275px;
+  align-items: center; }
+  .task-button .circle-icon {
+    background-color: #002b55;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s; }
+    .task-button .circle-icon img {
+      width: 175px; }
+  .task-button .button {
     border: 1px solid #002b55;
     padding: 20px 75px;
-    text-decoration: none;
-    transition: 0.2s; }
-    .fac-button a .fa-long-arrow-right {
+    transition: border-color 0.2s, color 0.2s; }
+    .task-button .button .fa-long-arrow-right {
       margin-left: 20px; }
-  .fac-button a:hover {
-    color: #0381FB;
-    border-color: #0381FB; }
+  .task-button .button-is {
+    border: 1px solid #002b55;
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 100%;
+    transition: border-color 0.2s, color 0.2s; }
+    .task-button .button-is .fa-long-arrow-right {
+      margin-left: 20px; }
+
+.task-button:hover .circle-icon {
+  background-color: #00498F; }
+
+.task-button:hover .button {
+  color: #0381FB;
+  border-color: #0381FB; }
+
+.task-button:hover .button-is {
+  color: #0381FB;
+  border-color: #0381FB; }
 
 .resc-alert {
   border: 1px solid #002b55;
