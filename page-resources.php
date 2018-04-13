@@ -11,12 +11,15 @@ get_header(); ?>
 
 <?php if ( !is_user_logged_in()) {
 }
-else { ?>
+else {
+	$perm_slug = get_field('editing_slug');
+	$fullRole = "check_".$perm_slug;
+?>
 
 	<div id="primary" class="content-area">
 			<div>
 		<h1 id="dept-title" data-id="<?php the_title();?>"
-perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah";} ?>">
+perm="<?php if(current_user_can('administrator') || current_user_can($fullRole)){echo "sure";} else {echo "nah";} ?>">
 		<?php the_title();?></h1>
 		<div class="entry-content">
 			<?php
@@ -36,7 +39,7 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 				<?php cases_portal_posted_on(); ?>
 			</div><!-- .entry-meta -->
 		<p><?php the_content(); ?></p>
-		<?php if(current_user_can('administrator')) : ?>
+		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 		<div class="edit-button"><?php
 		$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong>
 			<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -73,23 +76,23 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 										<div class="task-button-container">
 											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/ishelpdesk_bb" target="_blank">
 												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/laptop.svg">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/clock.svg">
 												</div>
 												<div class="button-is">
-													Submit Your Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+													Submit Your <br/>Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 												</div>
 											</a>
 											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/database.helpdesk.bb" target="_blank">
 												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/database.svg" style="width:125px">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/id.svg">
 												</div>
 												<div class="button-is">
-													Update Your Records <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+													Update Your <br/>Records <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 												</div>
 											</a>
 										</div>
 									<?php endif; ?>
-									<?php if(current_user_can('administrator')) : ?>
+									<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 									<div class="edit-button"><?php
 									$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong> blurbs
 										<i class="fa fa-long-arrow-right" aria-hidden="true"></i>

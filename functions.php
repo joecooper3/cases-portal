@@ -377,9 +377,9 @@ function remove_admin_bar(){
 	}
 }
 
-// Block Access to /wp-admin for non admins.
+// Block Access to /wp-admin for most staff.
 function custom_blockusers_init() {
-  if ( is_user_logged_in() && is_admin() && !current_user_can( 'administrator' ) ) {
+  if ( is_user_logged_in() && is_admin() && current_user_can( 'subscriber' ) ) {
     wp_redirect( home_url() );
     exit;
   }
