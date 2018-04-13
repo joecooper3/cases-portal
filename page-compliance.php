@@ -21,7 +21,7 @@ else { ?>
 				<?php
 		      if ( have_posts() ) : while ( have_posts() ) : the_post();
 		  			the_content();
-						if(current_user_can('administrator')) : ?>
+						if(current_user_can('administrator') || current_user_can('edit_trainings')) : ?>
 						<div class="edit-button"><?php
 						$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong> blurbs
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -68,6 +68,13 @@ else { ?>
 </div>
 </ul>
 </div>
+<?php if(current_user_can('administrator') || current_user_can('edit_trainings')) : ?>
+<div class="edit-sidenav lone-edit-button">
+	<a href="http://portal.cases.org/wp-admin/edit.php?post_type=training">
+	Edit <strong>Training Dates</strong> <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+	</a>
+</div>
+<?php endif; ?>
 
 <span id="sidenav-container">
 </span>
