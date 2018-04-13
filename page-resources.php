@@ -69,6 +69,25 @@ perm="<?php if(current_user_can('administrator')){echo "sure";} else {echo "nah"
 												</div>
 											</a>
 										</div>
+									<?php elseif ($catKing == 'Human Resources') : ?>
+										<div class="task-button-container">
+											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/ishelpdesk_bb" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/laptop.svg">
+												</div>
+												<div class="button-is">
+													Submit Your Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/database.helpdesk.bb" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/database.svg" style="width:125px">
+												</div>
+												<div class="button-is">
+													Update Your Records <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+										</div>
 									<?php endif; ?>
 									<?php if(current_user_can('administrator')) : ?>
 									<div class="edit-button"><?php
