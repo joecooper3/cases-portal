@@ -74,7 +74,7 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 										</div>
 									<?php elseif ($catKing == 'Human Resources') : ?>
 										<div class="task-button-container">
-											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/ishelpdesk_bb" target="_blank">
+											<a class="task-button" href="https://secure3.entertimeonline.com/ta/6131594.login" target="_blank">
 												<div class="circle-icon">
 													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/clock.svg">
 												</div>
@@ -82,7 +82,7 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 													Submit Your <br/>Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 												</div>
 											</a>
-											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/database.helpdesk.bb" target="_blank">
+											<a class="task-button" href="https://workforcenow.adp.com/public/index.htm" target="_blank">
 												<div class="circle-icon">
 													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/id.svg">
 												</div>
