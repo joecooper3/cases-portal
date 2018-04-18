@@ -42,7 +42,10 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 		<div class="edit-button"><?php
 		$editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong>
-			<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+			<i class="fa fa-long-arrow-right" aria-hidden="true"></i><br/>
+</a></div>
+		<div class="edit-button"><?php
+		$editLink = get_edit_post_link(); ?><a href="http://portal.cases.org/wp-admin/post-new.php"><strong>+</strong> Write <strong>New Post</strong>
 </a></div>
 <?php endif; ?>
 	</div>
