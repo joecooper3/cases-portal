@@ -132,6 +132,12 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 	</div><!-- #primary -->
 
 	<div id="secondary">
+			<?php if( get_field('staff_directory_page') ): ?>
+		<a class="staff-directory-referral" href="<?php the_field('staff_directory_page') ?>">
+			<i class="fa fa-address-book-o" aria-hidden="true"></i>
+			<p>For staff	and contact information, visit the <strong><?php the_title(); ?> staff
+				directory page</strong>. <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p></a>
+			<?php endif; ?>
 		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 		<div id="admin-area" class="resources-links">
 			<div class="individual-sidenav-container">

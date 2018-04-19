@@ -1659,6 +1659,32 @@ p strong {
   .soft-warning p {
     margin: 20px 0; }
 
+#secondary .staff-directory-referral {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: none;
+  border: 1px solid #002b55;
+  border-radius: 0;
+  text-decoration: none;
+  padding: 20px;
+  margin: 30px 20px;
+  background-color: #FDFDFD;
+  transition: 0.25s color, 0.25s border-color; }
+  #secondary .staff-directory-referral i {
+    font-size: 30px;
+    margin: 0 20px 0 0; }
+  #secondary .staff-directory-referral p {
+    font-size: 13px;
+    margin: 0; }
+    #secondary .staff-directory-referral p i {
+      margin-left: 10px;
+      font-size: 13px; }
+
+#secondary .staff-directory-referral:hover {
+  color: #0381FB;
+  border-color: #0381FB; }
+
 #secondary #admin-area {
   border: 1px solid #002b55;
   border-radius: 0px; }

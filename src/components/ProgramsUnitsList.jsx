@@ -37,7 +37,7 @@ class ProgramsUnitsList extends React.Component {
       return (<span></span>)
     } else {
       return (<div id="programs-units">
-        <h2>{this.state.prog}
+        <h2>{this.state.dept}
           <br/>Programs & Units</h2>
         <ul>
           {this.state.parts.map((part, i) => {if(this._removeSemicolon(part.title.rendered) === this.state.prog) {
