@@ -16,6 +16,18 @@
 }
 
 #secondary {
+  #admin-area {
+    border: 1.0px solid $color1;
+    border-radius: 0px;
+    ul {
+      a {
+        padding-left: 15px;
+      }
+    }
+    i {
+      margin: 0 10px 0 0;
+    }
+  }
   .resources-links {
     .icon-secondary-container {
       display: flex;

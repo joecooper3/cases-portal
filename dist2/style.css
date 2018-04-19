@@ -1659,6 +1659,14 @@ p strong {
   .soft-warning p {
     margin: 20px 0; }
 
+#secondary #admin-area {
+  border: 1px solid #002b55;
+  border-radius: 0px; }
+  #secondary #admin-area ul a {
+    padding-left: 15px; }
+  #secondary #admin-area i {
+    margin: 0 10px 0 0; }
+
 #secondary .resources-links .icon-secondary-container {
   display: flex;
   align-items: center;

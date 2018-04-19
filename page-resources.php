@@ -94,6 +94,17 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 												</div>
 											</a>
 										</div>
+									<?php elseif ($catKing == 'Facilities') : ?>
+										<div class="task-button-container">
+											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?hl=en#!forum/facilities.requests_bb" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/wrench.svg">
+												</div>
+												<div class="button-is">
+													Post a Task<br/> for Facilities <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+										</div>
 									<?php endif; ?>
 									<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 									<div class="edit-button"><?php
@@ -119,7 +130,27 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		</div>
 		<?php endif; ?>
 	</div><!-- #primary -->
+
 	<div id="secondary">
+		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
+		<div id="admin-area" class="resources-links">
+			<div class="individual-sidenav-container">
+				<div class="icon-secondary-container">
+					<i class="fa fa-lock" aria-hidden="true"></i>
+				<h2><?php the_title(); ?> Page Admin</h2>
+			</div>
+			<ul>
+				<a href="<?php the_field('sharepoint') ?>" target="_blank"><li><i class="fa fa-windows" aria-hidden="true"></i>
+					<?php the_title(); ?> Sharepoint</li></a>
+				<a href="http://portal.cases.org/wp-admin/post-new.php"><li><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					Write New Post/Alert</li></a>
+				<a href="http://portal.cases.org/wp-admin/post-new.php?post_type=sidenav"><li><i class="fa fa-bars" aria-hidden="true"></i>
+					Create New Side Navigation</li></a>
+			</ul>
+	</div>
+</div>
+		<?php endif; ?>
+
 		<span id="sidenav-container">
 		</span>
 		<?php

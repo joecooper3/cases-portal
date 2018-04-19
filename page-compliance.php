@@ -45,6 +45,24 @@ else { ?>
 			<?php endif; ?>
 	</div><!-- #primary -->
 	<div id="secondary">
+		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
+		<div id="admin-area" class="resources-links">
+			<div class="individual-sidenav-container">
+				<div class="icon-secondary-container">
+					<i class="fa fa-lock" aria-hidden="true"></i>
+				<h2><?php the_title(); ?> Page Admin</h2>
+			</div>
+			<ul>
+				<a href="http://portal.cases.org/wp-admin/post-new.php?post_type=training"><li>
+					<i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add New Training Date</li></a>
+				<a href="<?php the_field('sharepoint') ?>" target="_blank"><li><i class="fa fa-windows" aria-hidden="true"></i>
+					<?php the_title(); ?> Sharepoint</li></a>
+				<a href="http://portal.cases.org/wp-admin/post-new.php?post_type=sidenav"><li><i class="fa fa-bars" aria-hidden="true"></i>
+					Create New Side Navigation</li></a>
+			</ul>
+	</div>
+</div>
+		<?php endif; ?>
 <div class="resources-links">
 	<div class="icon-secondary-container">
 		<i class="fa fa-calendar" aria-hidden="true"></i>
