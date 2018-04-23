@@ -1,56 +1,69 @@
 #primary {
-  .entry-title {
-    font-size: 35px;
-
-    a {
-      text-decoration: none;
+  .entry-header {
+    margin-bottom: 20px;
+    .entry-title {
+      font-size: 32px;
+      a {
+        text-decoration: none;
+      }
     }
-  }
-
-  .entry-meta {
-    margin-top: 10px;
-    color: $softgrey;
-    a {
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-      text-decoration-color: $mywhite;
-    }
-    .category {
-      background-color: green;
-      color: $mywhite;
-      font-family: akzSemibold;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      font-size: 10px;
-      border-radius: 10px;
-      margin-left: 5px;
-      i {
-        margin-right: 7px;
+    .entry-meta {
+      margin-top: 10px;
+      color: $softgrey;
+      font-size: 15px;
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-decoration-color: $mywhite;
+      }
+      .category {
+        background-color: green;
+        color: $mywhite;
+        font-family: akzSemibold;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        font-size: 10px;
+        border-radius: 10px;
+        margin-left: 5px;
+        i {
+          margin-right: 7px;
+        }
       }
     }
   }
 }
 
 #news {
+  .old-entries-container {
+    width: 100%;
+    max-width: $maxWidthPrimary;
+    margin: 20px 0 10px 0;
+    h2 {
+      border-bottom: 1px solid $color1;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+  }
   .old-entries {
-    h3 {
+    color: $softgrey;
+    font-size: 12px;
+    margin: 8px 25px;
+    a {
+      text-decoration: none;
+    }
+    .headline {
       font-size: 18px;
-      font-family: gillMed;
+      font-family: gillSemibold;
       margin-bottom: 0;
       color: $color1;
-      a {
-        text-decoration: none;
-      }
+      display: inline;
+      margin-right: 10px;
     }
-    p {
-      margin-top: 0;
-      font-size: 14px;
-      color: $softgrey;
-      a {
-        text-decoration: none;
-      }
+    .date {
+      margin-right: 10px;
     }
   }
 }
@@ -114,7 +127,7 @@
     div {
       font-family: akzSemibold;
       color: $color1;
-      border: 1.0px solid $color1;
+      border: 1px solid $color1;
       padding: 10px 20px;
       cursor: pointer;
       transition: 0.2s color, 0.2s border-color;
@@ -152,33 +165,33 @@
       margin: 30px auto 0;
       padding: 0;
 
-        a {
-          text-decoration: none;
-          transition: 0.2s;
-          display: flex;
-          align-items: center;
-          width: 100%;
-          .fa {
-            margin: 0 10px 0 10px;
-            font-size: 30px;
-            flex: 1 1 50px;
-          }
-          span {
-            flex: 1 1 250px;
-          }
+      a {
+        text-decoration: none;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .fa {
+          margin: 0 10px 0 10px;
+          font-size: 30px;
+          flex: 1 1 50px;
         }
-          li {
-            border-bottom: 0.5px solid #f4f4f4;
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            font-family: akzLight;
-            font-size: 18px;
-            text-align: left;
-            padding: 10px 0;
+        span {
+          flex: 1 1 250px;
         }
+      }
+      li {
+        border-bottom: 0.5px solid #f4f4f4;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        font-family: akzLight;
+        font-size: 18px;
+        text-align: left;
+        padding: 10px 0;
+      }
       li:hover {
-        background-color: #F4F4F4;
+        background-color: #f4f4f4;
       }
     }
     ul > li:first-child {

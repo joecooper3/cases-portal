@@ -1,24 +1,24 @@
-require('../sass/style.scss');
+require("../sass/style.scss");
 
-import React from 'react';
-import {render} from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
-import {ProgramFetch} from './components/ProgramFetch.jsx';
-import {ProgramsUnitsList} from './components/ProgramsUnitsList.jsx';
-import {SearchBox} from './components/SearchBox.jsx'
+import { ProgramFetch } from "./components/ProgramFetch.jsx";
+import { ProgramsUnitsList } from "./components/ProgramsUnitsList.jsx";
+import { SearchBox } from "./components/SearchBox.jsx";
 
 const APIHost = __API__;
 
-const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = APIHost + '/wp-json/portal/v2/bigstaff/';
-const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
-const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
+const data = APIHost + "/wp-content/themes/cases_portal/data/casescsv.json";
+const staffUrl = APIHost + "/wp-json/portal/v2/bigstaff/";
+const deptUrl = APIHost + "/wp-json/wp/v2/department?_embed=true&per_page=100";
+const programUrl = APIHost + "/wp-json/wp/v2/program?_embed=true&per_page=100";
 
 const apiRequestJason = fetch(data).then(function(response) {
   return response.json();
 });
 
-const apiRequestStaff = fetch(staffUrl).then(function(response){
+const apiRequestStaff = fetch(staffUrl).then(function(response) {
   return response.json();
 });
 
@@ -30,13 +30,18 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
   return response.json();
 });
 
-const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
+const promiseArray = [
+  apiRequestJason,
+  apiRequestStaff,
+  apiRequestDept,
+  apiRequestProgram
+];
 
-const titleBlock = document.getElementById('dept-title');
-const prog = titleBlock.getAttribute('data-id');
+const titleBlock = document.getElementById("dept-title");
+const prog = titleBlock.getAttribute("data-id");
 
 const masterData = Promise.all(promiseArray).then(values => {
-  let supervisor = titleBlock.getAttribute('supervisor-id');
+  let supervisor = titleBlock.getAttribute("supervisor-id");
   let filteredArray = [];
   let supervisorArray = [];
   let progUnitListArray = [];
@@ -45,51 +50,54 @@ const masterData = Promise.all(promiseArray).then(values => {
   let deptPages = values[2];
   let programPages = values[3];
   let sortedArraySearch = jasonData.sort(compareSearch);
-  function compareSearch(a,b) { // function for sorting by array by first name
+  function compareSearch(a, b) {
+    // function for sorting by array by first name
     let nameA = a.first.toUpperCase();
     let nameB = b.first.toUpperCase();
-      if (nameA < nameB)
-        return -1;
-      if (nameA > nameB )
-        return 1;
-      return 0;
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  }
+  function supervisorUrlPull(soup) {
+    let soupEmail = soup + "@cases.org";
+    for (let i = 0; i < staffPages.length; i++) {
+      if (staffPages[i].email == soupEmail) {
+        return staffPages[i].url;
+      }
     }
-    function supervisorUrlPull(soup){
-      let soupEmail = soup + "@cases.org";
-      for (let i = 0; i < staffPages.length; i++) {
-        if (staffPages[i].email == soupEmail) {
-          return staffPages[i].url;
-        }
-      };
+  }
+  function supervisorNamePull(soup) {
+    let soupEmail = soup + "@cases.org";
+    for (let i = 0; i < jasonData.length; i++) {
+      if (jasonData[i].email == soupEmail) {
+        return jasonData[i].first + " " + jasonData[i].last;
+      }
     }
-    function supervisorNamePull(soup){
-      let soupEmail = soup + "@cases.org";
-      for (let i = 0; i < jasonData.length; i++) {
-        if (jasonData[i].email == soupEmail) {
-          return jasonData[i].first + " " + jasonData[i].last;
-        }
-      };
+  }
+  let supervisorFormatted = supervisor.replace(/\s/g, "");
+  let supervisorFormattedArray = supervisorFormatted.split(",");
+  jasonData.map(info => {
+    if (supervisorFormattedArray.includes(info.email)) {
+      supervisorArray.push(info);
+    } else if (info.program === prog) {
+      filteredArray.push(info);
     }
-    let supervisorFormatted = supervisor.replace(/\s/g, '');
-    let supervisorFormattedArray = supervisorFormatted.split(',');
-    jasonData.map((info) => {
-        if (supervisorFormattedArray.includes(info.email)) {
-        supervisorArray.push(info);
-        }
-        else if(info.program === prog) {
-        filteredArray.push(info);
-        }
-      });
+  });
   let sortedArray = filteredArray.sort(compareSearch);
   function dataMatcher(arr) {
     arr.forEach(function(item) {
       var result = staffPages.filter(function(staffItem) {
-          return staffItem.email === item.email;
+        return staffItem.email === item.email;
       });
-    item.url = (result[0] !== undefined) ? result[0].url : null;
-    item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
-    item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
-    item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
+      item.url = result[0] !== undefined ? result[0].url : null;
+      item.imageUrl =
+        result[0] !== undefined && result[0].image !== undefined
+          ? result[0].image
+          : "http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg";
+      item.supervisorUrl =
+        result[0] !== undefined ? supervisorUrlPull(item.supervisor) : null;
+      item.supervisorName =
+        result[0] !== undefined ? supervisorNamePull(item.supervisor) : null;
     });
   }
   dataMatcher(sortedArray);
@@ -99,33 +107,32 @@ const masterData = Promise.all(promiseArray).then(values => {
   for (let i = 0; i < deptPages.length; i++) {
     deptProgArray.push({
       first: deptPages[i].title.rendered,
-      last: '',
-      type: 'dept',
+      last: "",
+      type: "dept",
       url: deptPages[i].link
-    })
+    });
   }
   for (let i = 0; i < programPages.length; i++) {
     if (programPages[i].acf.acronym) {
-    deptProgArray.push({
-      first: programPages[i].title.rendered,
-      last: "(" + programPages[i].acf.acronym + ")",
-      type: 'program',
-      url: programPages[i].link
-    })
-  }
-  else {
-    deptProgArray.push({
-      first: programPages[i].title.rendered,
-      last: '',
-      type: 'program',
-      url: programPages[i].link
-      })
+      deptProgArray.push({
+        first: programPages[i].title.rendered,
+        last: "(" + programPages[i].acf.acronym + ")",
+        type: "program",
+        url: programPages[i].link
+      });
+    } else {
+      deptProgArray.push({
+        first: programPages[i].title.rendered,
+        last: "",
+        type: "program",
+        url: programPages[i].link
+      });
     }
   }
   const final = {
     searchBox: sortedArraySearch.concat(deptProgArray),
     supervisor: supervisorArray,
-    main: sortedArray,
+    main: sortedArray
   };
   return final;
 });
@@ -136,24 +143,27 @@ class ProgramFetchApp extends React.Component {
     this.state = {
       parts: [],
       supervisorParts: [],
-      staffAPI: [],
+      staffAPI: []
     };
   }
   componentWillMount() {
     masterData.then(yeah => {
-      this.setState({parts: yeah.main});
-      this.setState({supervisorParts: yeah.supervisor});
+      this.setState({ parts: yeah.main });
+      this.setState({ supervisorParts: yeah.supervisor });
     });
   }
   _removeSemicolon(inp) {
     return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
 
-  render () {
+  render() {
     return (
       <div>
-      <ProgramFetch supervisorParts={this.state.supervisorParts} parts={this.state.parts} />
-    </div>
+        <ProgramFetch
+          supervisorParts={this.state.supervisorParts}
+          parts={this.state.parts}
+        />
+      </div>
     );
   }
 }
@@ -163,52 +173,56 @@ class ProgramsUnitsListApp extends React.Component {
     super();
     this.state = {
       progUnitParts: [],
-      dept: '',
-      progName: '',
+      dept: "",
+      progName: "",
       loaded: false
     };
   }
   componentWillMount() {
     apiRequestProgram.then(yeah => {
       let progUnitListArray = [];
-      yeah.map((info) => {
+      yeah.map(info => {
         if (prog === this._removeSemicolon(info.title.rendered)) {
           let dept = info.acf.parent_department[0].post_title;
-          this.setState({dept: dept});
+          this.setState({ dept: dept });
         }
       });
-      yeah.map((info) => {
-        if (this.state.dept === this._removeSemicolon(info.acf.parent_department[0].post_title)) {
+      yeah.map(info => {
+        if (
+          this.state.dept ===
+          this._removeSemicolon(info.acf.parent_department[0].post_title)
+        ) {
           progUnitListArray.push(info);
         }
       });
       function compareProgs(a, b) {
         let titleA = a.title.rendered.toUpperCase();
         let titleB = b.title.rendered.toUpperCase();
-        if (titleA < titleB)
-          return -1;
-        if (titleA > titleB)
-          return 1;
+        if (titleA < titleB) return -1;
+        if (titleA > titleB) return 1;
         return 0;
       }
       progUnitListArray = progUnitListArray.sort(compareProgs);
-      this.setState({progUnitParts: progUnitListArray});
-      this.setState({progName: prog});
-      this.setState({loaded: true});
-    })
+      this.setState({ progUnitParts: progUnitListArray });
+      this.setState({ progName: prog });
+      this.setState({ loaded: true });
+    });
   }
   _removeSemicolon(inp) {
     return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
-  render () {
+  render() {
     if (this.state.loaded) {
-    return (
-      <ProgramsUnitsList name={this.state.progName} type="program" data={this.state.progUnitParts} />
-    );
-  }
-  else {
-    return (<br/>)
-  }
+      return (
+        <ProgramsUnitsList
+          name={this.state.progName}
+          type="program"
+          data={this.state.progUnitParts}
+        />
+      );
+    } else {
+      return <br />;
+    }
   }
 }
 
@@ -222,25 +236,20 @@ class SearchBoxApp extends React.Component {
   }
   componentWillMount() {
     masterData.then(yeah => {
-      this.setState({searchParts: yeah.searchBox});
-      this.setState({loaded: true});
+      this.setState({ searchParts: yeah.searchBox });
+      this.setState({ loaded: true });
     });
   }
 
-  render () {
+  render() {
     if (this.state.loaded === true) {
-    return (
-      <SearchBox data={this.state.searchParts} />
-    );
-  }
-  else {
-    return (
-      <div role="search" className="sbx-custom__wrapper"></div>
-    )
-  }
+      return <SearchBox data={this.state.searchParts} />;
+    } else {
+      return <div role="search" className="sbx-custom__wrapper" />;
+    }
   }
 }
 
-render(<ProgramFetchApp/>, document.getElementById('app-area'));
-render(<ProgramsUnitsListApp/>, document.getElementById('sec-holder-one'));
-render(<SearchBoxApp/>, document.getElementById('particular-search'));
+render(<ProgramFetchApp />, document.getElementById("app-area"));
+render(<ProgramsUnitsListApp />, document.getElementById("sec-holder-one"));
+render(<SearchBoxApp />, document.getElementById("particular-search"));

@@ -1,19 +1,60 @@
+#primary {
+  .entry-content {
+    .resc-alert {
+      border: 1px solid $color1;
+      border-left: 10px solid $color3;
+      padding: 15px 30px 15px 30px;
+      margin: 20px 0;
+      .alert-container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        .alert {
+          text-transform: uppercase;
+          font-size: 15px;
+          font-family: akzBold;
+          color: $color3;
+          margin: 0;
+          display: inline;
+          width: auto;
+        }
+        .entry-meta {
+          display: inline;
+          color: $softgrey;
+          font-size: 14px;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+      h2 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        margin-right: 15px;
+      }
 
-
-.soft-warning {
-  background-color: #F1F9FF;
-  display: flex;
-  padding: 0 20px;
-  justify-content: center;
-  border-radius: 25px;
-  align-items: center;
-  margin-bottom: 35px;
-  i {
-    font-size: 45px;
-    margin: 0 45px;
+      p {
+        font-size: 17px;
+        margin-bottom: 1em;
+      }
+    }
   }
-  p {
-    margin: 20px 0;
+  .soft-warning {
+    background-color: #f1f9ff;
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    border-radius: 25px;
+    align-items: center;
+    margin: 35px 0;
+    i {
+      font-size: 45px;
+      margin: 0 45px;
+    }
+    p {
+      width: auto;
+      margin: 20px 0;
+    }
   }
 }
 
@@ -23,7 +64,7 @@
     justify-content: flex-end;
     align-items: center;
     box-shadow: none;
-    border: 1.0px solid $color1;
+    border: 1px solid $color1;
     border-radius: 0;
     text-decoration: none;
     padding: 20px;
@@ -48,7 +89,7 @@
     border-color: $color3;
   }
   #admin-area {
-    border: 1.0px solid $color1;
+    border: 1px solid $color1;
     border-radius: 0px;
     ul {
       a {
@@ -130,7 +171,7 @@
     }
   }
   .button {
-    border: 1.0px solid $color1;
+    border: 1px solid $color1;
     padding: 20px 35px;
     transition: border-color 0.2s, color 0.2s;
     .fa-long-arrow-right {
@@ -138,10 +179,10 @@
     }
   }
   .button-is {
-    border: 1.0px solid $color1;
+    border: 1px solid $color1;
     padding: 10px 20px;
     font-size: 20px;
-    width:100%;
+    width: 100%;
     transition: border-color 0.2s, color 0.2s;
     .fa-long-arrow-right {
       margin-left: 20px;
@@ -163,32 +204,12 @@
   }
 }
 
-.resc-alert {
-  border: 1.0px solid $color1;
-  border-left: 10px solid $color3;
-  padding: 15px 30px 15px 30px;
-  margin: 40px 0;
-  h2 {
-    margin: 0 0 10px 0;
-    font-size: 20px;
-  }
-  p {
-    margin-bottom: 1em;
-  }
-  .alert {
-    text-transform: uppercase;
-    font-size: 15px;
-    font-family: akzBold;
-    color: $color3;
-    margin: 0;
-  }
-}
-
-.edit-button, .edit-sidenav {
-    font-size: 13px;
+.edit-button,
+.edit-sidenav {
+  font-size: 13px;
   a {
     color: $color1;
-    border: 1.0px solid $color1;
+    border: 1px solid $color1;
     padding: 10px 18px 8px 18px;
     text-decoration: none;
     background-color: $mywhite;
@@ -209,6 +230,7 @@
 
 .edit-button {
   margin: 25px 0 10px 0;
+  width: 100%;
 }
 
 .edit-sidenav {
@@ -228,7 +250,7 @@
     a {
       text-decoration: none;
       padding: 10px 0 10px 25px;
-      border-bottom: 0.5px solid #F4F4F4;
+      border-bottom: 0.5px solid #f4f4f4;
       font-size: 18px;
       background-color: $mywhite;
       transition: 0.2s;
@@ -242,7 +264,7 @@
     }
     a:hover {
       color: $color3;
-      background-color: #F4F4F4;
+      background-color: #f4f4f4;
     }
   }
   ul > a:first-child {

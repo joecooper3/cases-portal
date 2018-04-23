@@ -44,43 +44,43 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @font-face {
   font-family: akzLight;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Light.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzRoman;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzMed;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Medium.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzSemiBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: akzBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/worksans/WorkSans-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillMed;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillMed.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBook;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBook.otf") format("opentype"); }
 
 @font-face {
   font-family: gillBookIta;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillBookIta.otf") format("opentype"); }
 
 @font-face {
   font-family: gillSemiBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: gillBold;
-  src: url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://portal.cases.org/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
+  src: url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff2") format("woff2"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.woff") format("woff"), url("http://localhost:8888/cases-portal/wp-content/themes/cases_portal/fonts/gillsans/GillSans-Bold.ttf") format("truetype"); }
 
 /*--------------------------------------------------------------
 # Normalize
@@ -289,8 +289,8 @@ h1 {
   font-size: 35px; }
 
 p {
-  margin-bottom: 1.5em;
-  font-size: 18px; }
+  font-size: 18px;
+  margin: 12px 0; }
 
 dfn, cite, em, i {
   font-style: italic; }
@@ -532,7 +532,8 @@ a {
         left: -999em;
         top: 0; }
       .main-navigation ul ul li {
-        transition: 0.25s; }
+        transition: 0.25s;
+        width: 100%; }
         .main-navigation ul ul li:hover > ul,
         .main-navigation ul ul li.focus > ul {
           left: 100%; }
@@ -706,7 +707,8 @@ header {
   justify-content: center; }
 
 #site-navigation a {
-  text-decoration: none; }
+  text-decoration: none;
+  width: 100%; }
 
 #content {
   display: flex;
@@ -722,30 +724,61 @@ header {
     padding: 25px 50px;
     margin: 30px 20px;
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
-    border-radius: 10px; }
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center; }
   #primary .no-bg {
     background: none;
     box-shadow: none; }
   #primary h1 {
-    margin: 0;
+    margin: 10px 0;
     display: block;
-    padding: 0 0 10px 0;
-    border-bottom: 4px solid #002b55; }
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #002b55;
+    width: 100%; }
+  #primary p {
+    max-width: 635px;
+    width: 100%; }
+  #primary h2,
+  #primary h3,
+  #primary h4,
+  #primary h5,
+  #primary h6 {
+    max-width: 635px;
+    width: 100%; }
+  #primary .entry-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center; }
+    #primary .entry-content p {
+      font-size: 20px; }
+    #primary .entry-content ul {
+      width: 100%;
+      max-width: 635px;
+      margin: 0;
+      padding: 0 0 0 20px; }
 
-#secondary, .sec-blank-holder {
+#secondary,
+.sec-blank-holder {
   flex: 1 1 225px; }
-  #secondary > div, #secondary .resources-links, .sec-blank-holder > div, .sec-blank-holder .resources-links {
+  #secondary > div,
+  #secondary .resources-links,
+  .sec-blank-holder > div,
+  .sec-blank-holder .resources-links {
     background-color: #FDFDFD;
     padding: 20px;
     margin: 30px 20px;
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
     border-radius: 10px; }
-  #secondary h2, .sec-blank-holder h2 {
+  #secondary h2,
+  .sec-blank-holder h2 {
     text-align: center;
     text-transform: uppercase;
     font-size: 20px;
     margin: 0 0 20px 0; }
-  #secondary .lone-edit-button, .sec-blank-holder .lone-edit-button {
+  #secondary .lone-edit-button,
+  .sec-blank-holder .lone-edit-button {
     background-color: transparent;
     margin: 0 20px 30px 20px;
     box-shadow: none;
@@ -760,7 +793,7 @@ p strong {
   z-index: 3; }
 
 .moving-line:after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 2;
   width: 0;
@@ -769,8 +802,8 @@ p strong {
   margin-top: -5px;
   right: 0;
   background: #9B9B9B;
-  transition: width .3s ease;
-  -webkit-transition: width .3s ease; }
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease; }
 
 .moving-line:hover:after {
   left: 0;
@@ -958,45 +991,58 @@ p strong {
     padding: 0 25px 0 5px;
     white-space: pre-line; }
 
-#primary .entry-title {
-  font-size: 35px; }
-  #primary .entry-title a {
-    text-decoration: none; }
+#primary .entry-header {
+  margin-bottom: 20px; }
+  #primary .entry-header .entry-title {
+    font-size: 32px; }
+    #primary .entry-header .entry-title a {
+      text-decoration: none; }
+  #primary .entry-header .entry-meta {
+    margin-top: 10px;
+    color: #9B9B9B;
+    font-size: 15px; }
+    #primary .entry-header .entry-meta a {
+      text-decoration: none; }
+    #primary .entry-header .entry-meta a:hover {
+      text-decoration: underline;
+      text-decoration-color: #FDFDFD; }
+    #primary .entry-header .entry-meta .category {
+      background-color: green;
+      color: #FDFDFD;
+      font-family: akzSemibold;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      font-size: 10px;
+      border-radius: 10px;
+      margin-left: 5px; }
+      #primary .entry-header .entry-meta .category i {
+        margin-right: 7px; }
 
-#primary .entry-meta {
-  margin-top: 10px;
-  color: #9B9B9B; }
-  #primary .entry-meta a {
-    text-decoration: none; }
-  #primary .entry-meta a:hover {
-    text-decoration: underline;
-    text-decoration-color: #FDFDFD; }
-  #primary .entry-meta .category {
-    background-color: green;
-    color: #FDFDFD;
-    font-family: akzSemibold;
+#news .old-entries-container {
+  width: 100%;
+  max-width: 635px;
+  margin: 20px 0 10px 0; }
+  #news .old-entries-container h2 {
+    border-bottom: 1px solid #002b55;
+    font-size: 14px;
     text-transform: uppercase;
-    padding: 4px 10px;
-    font-size: 10px;
-    border-radius: 10px;
-    margin-left: 5px; }
-    #primary .entry-meta .category i {
-      margin-right: 7px; }
+    margin-bottom: 16px; }
 
-#news .old-entries h3 {
-  font-size: 18px;
-  font-family: gillMed;
-  margin-bottom: 0;
-  color: #002b55; }
-  #news .old-entries h3 a {
+#news .old-entries {
+  color: #9B9B9B;
+  font-size: 12px;
+  margin: 8px 25px; }
+  #news .old-entries a {
     text-decoration: none; }
-
-#news .old-entries p {
-  margin-top: 0;
-  font-size: 14px;
-  color: #9B9B9B; }
-  #news .old-entries p a {
-    text-decoration: none; }
+  #news .old-entries .headline {
+    font-size: 18px;
+    font-family: gillSemibold;
+    margin-bottom: 0;
+    color: #002b55;
+    display: inline;
+    margin-right: 10px; }
+  #news .old-entries .date {
+    margin-right: 10px; }
 
 #new-hires {
   display: flex;
@@ -1099,7 +1145,7 @@ p strong {
     text-align: left;
     padding: 10px 0; }
   #secondary #quick-links ul li:hover {
-    background-color: #F4F4F4; }
+    background-color: #f4f4f4; }
 
 #secondary #quick-links ul > li:first-child {
   border-top: 0.5px solid #f4f4f4; }
@@ -1134,7 +1180,9 @@ p strong {
   padding: 25px; }
   #primary .dept-container h1 {
     flex: 1 0 100%;
-    margin: 0 25px 20px; }
+    margin: 0 25px 20px;
+    max-width: none;
+    padding: 15px 0 15px 35px; }
 
 #dept-contacts {
   display: flex;
@@ -1163,8 +1211,9 @@ p strong {
         margin: 25px; }
         #dept-contacts .top-supervisor .staff-container .meta .name {
           text-align: left;
-          font-size: 35px;
-          margin: 0; }
+          font-size: 30px;
+          margin: 0;
+          line-height: 38px; }
         #dept-contacts .top-supervisor .staff-container .meta h3 {
           text-align: left;
           font-size: 20px; }
@@ -1219,26 +1268,32 @@ p strong {
         #dept-contacts .staff-container .meta .supervisor a:hover {
           text-decoration: underline; }
 
-#programs-units, .resources-links {
+#programs-units,
+.resources-links {
   font-family: akzRoman; }
-  #programs-units ul, .resources-links ul {
+  #programs-units ul,
+  .resources-links ul {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-flow: column nowrap; }
-  #programs-units ul > a:first-child, .resources-links ul > a:first-child {
+  #programs-units ul > a:first-child,
+  .resources-links ul > a:first-child {
     border-top: 0.5px solid #f4f4f4; }
-  #programs-units a, .resources-links a {
+  #programs-units a,
+  .resources-links a {
     text-decoration: none;
     padding: 10px 0 10px 25px;
     border-bottom: 0.5px solid #f4f4f4;
     transition: 0.2s;
     color: #999; }
-  #programs-units a:hover, .resources-links a:hover {
+  #programs-units a:hover,
+  .resources-links a:hover {
     background-color: #f4f4f4;
     color: #0381FB; }
-  #programs-units li, .resources-links li {
+  #programs-units li,
+  .resources-links li {
     text-align: left; }
 
 #programs-units .active-program {
@@ -1621,18 +1676,29 @@ p strong {
     font-size: 15px; }
 
 .entry-content del {
-  color: #AAA; }
+  color: #aaa; }
 
 .most-the-post {
-  border-bottom: 1.0px solid #DDD;
-  margin-bottom: 25px; }
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 25px;
+  width: 100%; }
+  .most-the-post article {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-bottom: 20px; }
+    .most-the-post article header {
+      width: 100%; }
+    .most-the-post article .entry-content {
+      margin: 20px 0; }
 
 .post-navigation {
-  display: flex; }
+  display: flex;
+  width: 100%; }
   .post-navigation .title {
     text-transform: uppercase;
     font-size: 12px;
-    color: #AAA;
+    color: #aaa;
     font-family: akzMed; }
   .post-navigation a {
     text-decoration: none;
@@ -1645,18 +1711,50 @@ p strong {
   .post-navigation .nav-next .title {
     padding-right: 21px; }
 
-.soft-warning {
-  background-color: #F1F9FF;
+#primary .entry-content .resc-alert {
+  border: 1px solid #002b55;
+  border-left: 10px solid #0381FB;
+  padding: 15px 30px 15px 30px;
+  margin: 20px 0; }
+  #primary .entry-content .resc-alert .alert-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between; }
+    #primary .entry-content .resc-alert .alert-container .alert {
+      text-transform: uppercase;
+      font-size: 15px;
+      font-family: akzBold;
+      color: #0381FB;
+      margin: 0;
+      display: inline;
+      width: auto; }
+    #primary .entry-content .resc-alert .alert-container .entry-meta {
+      display: inline;
+      color: #9B9B9B;
+      font-size: 14px; }
+      #primary .entry-content .resc-alert .alert-container .entry-meta a {
+        text-decoration: none; }
+  #primary .entry-content .resc-alert h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    margin-right: 15px; }
+  #primary .entry-content .resc-alert p {
+    font-size: 17px;
+    margin-bottom: 1em; }
+
+#primary .soft-warning {
+  background-color: #f1f9ff;
   display: flex;
   padding: 0 20px;
   justify-content: center;
   border-radius: 25px;
   align-items: center;
-  margin-bottom: 35px; }
-  .soft-warning i {
+  margin: 35px 0; }
+  #primary .soft-warning i {
     font-size: 45px;
     margin: 0 45px; }
-  .soft-warning p {
+  #primary .soft-warning p {
+    width: auto;
     margin: 20px 0; }
 
 #secondary .staff-directory-referral {
@@ -1777,43 +1875,32 @@ p strong {
   color: #0381FB;
   border-color: #0381FB; }
 
-.resc-alert {
-  border: 1px solid #002b55;
-  border-left: 10px solid #0381FB;
-  padding: 15px 30px 15px 30px;
-  margin: 40px 0; }
-  .resc-alert h2 {
-    margin: 0 0 10px 0;
-    font-size: 20px; }
-  .resc-alert p {
-    margin-bottom: 1em; }
-  .resc-alert .alert {
-    text-transform: uppercase;
-    font-size: 15px;
-    font-family: akzBold;
-    color: #0381FB;
-    margin: 0; }
-
-.edit-button, .edit-sidenav {
+.edit-button,
+.edit-sidenav {
   font-size: 13px; }
-  .edit-button a, .edit-sidenav a {
+  .edit-button a,
+  .edit-sidenav a {
     color: #002b55;
     border: 1px solid #002b55;
     padding: 10px 18px 8px 18px;
     text-decoration: none;
     background-color: #FDFDFD;
     transition: 0.2s; }
-    .edit-button a strong, .edit-sidenav a strong {
+    .edit-button a strong,
+    .edit-sidenav a strong {
       font-weight: 400;
       font-family: akzSemiBold; }
-    .edit-button a i, .edit-sidenav a i {
+    .edit-button a i,
+    .edit-sidenav a i {
       margin-left: 5px; }
-  .edit-button a:hover, .edit-sidenav a:hover {
+  .edit-button a:hover,
+  .edit-sidenav a:hover {
     color: #0381FB;
     border-color: #0381FB; }
 
 .edit-button {
-  margin: 25px 0 10px 0; }
+  margin: 25px 0 10px 0;
+  width: 100%; }
 
 .edit-sidenav {
   margin: -15px 30px 40px 30px;
@@ -1830,7 +1917,7 @@ p strong {
   .past-updates ul a {
     text-decoration: none;
     padding: 10px 0 10px 25px;
-    border-bottom: 0.5px solid #F4F4F4;
+    border-bottom: 0.5px solid #f4f4f4;
     font-size: 18px;
     background-color: #FDFDFD;
     transition: 0.2s;
@@ -1842,7 +1929,7 @@ p strong {
       margin-top: 5px; }
   .past-updates ul a:hover {
     color: #0381FB;
-    background-color: #F4F4F4; }
+    background-color: #f4f4f4; }
 
 .past-updates ul > a:first-child {
   border-top: 0.5px solid #f4f4f4; }

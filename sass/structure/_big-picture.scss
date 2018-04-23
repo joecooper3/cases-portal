@@ -1,3 +1,4 @@
+$maxWidthPrimary: 635px;
 
 header {
   background-color: $mywhite;
@@ -9,7 +10,7 @@ header {
     max-width: 1250px;
     margin: 0 auto;
     .site-branding {
-        padding: 20px 0 10px 30px;
+      padding: 20px 0 10px 30px;
       img {
         max-width: 225px;
       }
@@ -19,7 +20,6 @@ header {
     }
   }
 }
-
 
 #site-navigation {
   #primary-menu {
@@ -47,28 +47,60 @@ header {
     background-color: $mywhite;
     padding: 25px 50px;
     margin: 30px 20px;
-    box-shadow: 3px 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
   }
   .no-bg {
-      background: none;
-      box-shadow: none
+    background: none;
+    box-shadow: none;
   }
   h1 {
-    margin: 0;
+    margin: 10px 0;
     display: block;
-    padding: 0 0 10px 0;
-    border-bottom: 4.0px solid $color1;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid $color1;
+    width: 100%;
+  }
+  p {
+    max-width: $maxWidthPrimary;
+    width: 100%;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    max-width: $maxWidthPrimary;
+    width: 100%;
+  }
+  .entry-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    p {
+      font-size: 20px;
+    }
+    ul {
+      width: 100%;
+      max-width: $maxWidthPrimary;
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
   }
 }
 
-#secondary, .sec-blank-holder {
+#secondary,
+.sec-blank-holder {
   flex: 1 1 225px;
-  & > div, .resources-links {
+  & > div,
+  .resources-links {
     background-color: $mywhite;
     padding: 20px;
     margin: 30px 20px;
-    box-shadow: 3px 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
   }
   h2 {
@@ -97,19 +129,19 @@ p {
   z-index: 3;
 }
 .moving-line:after {
-  content: '';
-    position: absolute;
-    z-index: 2;
-    width: 0; height: 2px;
-    display: block;
-    margin-top: -5px;
-    right: 0;
-    background: $softgrey;
-    transition: width .3s ease;
-    -webkit-transition: width .3s ease;
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: -5px;
+  right: 0;
+  background: $softgrey;
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
 }
-.moving-line:hover:after,
- {
+.moving-line:hover:after {
   left: 0;
   right: auto;
   width: 100%;
@@ -130,10 +162,10 @@ p {
 }
 
 @keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

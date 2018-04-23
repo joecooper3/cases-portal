@@ -33,11 +33,15 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 			  while ( $q->have_posts() ) {
 			    $q->the_post();
 ?>
-		<div class="resc-alert"><h4 class="alert">Alert</h4>
-			<h2><?php the_title(); ?></h2>
+		<div class="resc-alert">
+			<div class="alert-container">
+				<h4 class="alert">Alert</h4>
 			<div class="entry-meta">
-				<?php cases_portal_posted_on(); ?>
-			</div><!-- .entry-meta -->
+						<?php the_date() ?> by <?php the_author() ?>
+					</div><!-- .entry-meta -->
+				</div>
+			<h2><?php the_title(); ?></h2>
+
 		<p><?php the_content(); ?></p>
 		<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 		<div class="edit-button"><?php

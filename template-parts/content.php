@@ -28,8 +28,7 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
         else :
             the_title('<h1 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h1>');
         endif;
-
-        if ('post' === get_post_type()) : ?>
+ ?>
 		<div class="entry-meta">
 			<?php cases_portal_posted_on();
       $cat = get_the_category();
@@ -44,7 +43,6 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
           <i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i><?php echo $catName; ?>
         </span>
       </a>
-    <?php endif; ?>
 		</div><!-- .entry-meta -->
 		<?php
         endif; ?>
@@ -72,28 +70,28 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
         <?php endif; ?>
 	</div><!-- .entry-content -->
 </article><!-- #post-<?php the_ID(); ?> -->
-
-<?php elseif ('post' == get_post_type()) :?>
+<div class="old-entries-container">
+  <h2>Past Updates</h2>
+<?php else :?>
   <aside class="old-entries">
-  <?php the_title('<h3><a href="' . esc_url(get_permalink()) . '" rel="bookmark">','</a></h3>') ?>
+  <?php the_title('<span class="headline"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">','</a></span>') ?>
   <?php
         $cat = get_the_category();
         $catName = $cat[0]->name;
         $catIcon = get_field('icon', $cat[0]);
         $catColor = get_field('color', $cat[0]);
         $catUrl = get_field('parent_page', $cat[0]); ?>
-  <p>Posted by <?php the_author();?> &bull; <?php the_date();?>
+        <span class="date"><?php the_date();?></span>
     <?php if ($catName !== "Uncategorized") : ?>
-     &bull;
      <a href="<?php echo $catUrl; ?>">
     <span class="category" style="color: <?php echo $catColor; ?>">
       <?php echo $catName; ?> <i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i>
         </span>
       </a>
-      <?php endif; ?></p>
+      <?php endif; ?>
   </aside>
 <?php endif; ?>
-
 <?php endwhile;
 wp_reset_postdata();
 ?>
+</div>
