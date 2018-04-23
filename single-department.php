@@ -19,6 +19,12 @@ else { ?>
 	</div>
 	</div><!-- #primary -->
 	<div id="secondary">
+		<?php if (get_field(resources_page_url) && get_field(resources_page_text)) : ?>
+			<a class="staff-directory-referral" href="<?php the_field('resources_page_url') ?>">
+				<i class="fa <?php the_field('resources_page_icon') ?>" aria-hidden="true"></i>
+				<p><?php the_field('resources_page_text') ?>
+					 <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p></a>
+		<?php endif; ?>
 		<span id="sec-holder-one" class="sec-blank-holder"></span>
 </div>
 <?php
