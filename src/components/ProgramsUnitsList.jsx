@@ -16,13 +16,12 @@ class ProgramsUnitsList extends React.Component {
         if (pageType === 'dept') {
           this.setState({dept: this.props.name});
         } else if (pageType === 'program') {
-          this.setState({prog: this.props.name});
-          this.props.data.map((info) => {
-            if (this.state.prog === this._removeSemicolon(info.title.rendered)) {
-              let dept = info.acf.parent_department[0].post_title;
-              this.setState({dept: dept});
-            }
-          })
+          let progName = this.props.name;
+          this.setState({prog: progName});
+          let deptName = this.props.data.filter((info) => {
+            return this._removeSemicolon(info.title.rendered) === progName;
+          });
+          this.setState({dept: deptName[0].acf.parent_department[0].post_title});
         }
         this.setState({parts: this.props.data});
       }
