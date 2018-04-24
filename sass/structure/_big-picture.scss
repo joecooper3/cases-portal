@@ -67,6 +67,12 @@ header {
   p {
     max-width: $maxWidthPrimary;
     width: 100%;
+    a {
+      @include custom-underline($color2);
+    }
+    a:hover {
+      border-color: $mywhite;
+    }
   }
   h2,
   h3,
