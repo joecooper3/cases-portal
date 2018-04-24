@@ -11,9 +11,35 @@ class DirectoryStaffBox extends React.Component {
     };
   }
 
+  _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
+  }
+
   render() {
     let program = this.props.program;
-    if (program) {
+    let type = this.props.type;
+    if (type) {
+      return (
+        <a href={this.props.url}>
+          <div className="staff-container">
+            {this.props.type === "dept" ? (
+              <div className="dept-prog-circle dept-prog-circle-dept">
+                Dept.
+              </div>
+            ) : (
+              <div className="dept-prog-circle dept-prog-circle-program">
+                Prog.
+              </div>
+            )}
+            <div className="name-pos">
+              <h2 className="name">
+                {this._removeSemicolon(this.props.first)} {this.props.last}
+              </h2>
+            </div>
+          </div>
+        </a>
+      );
+    } else if (program) {
       return (
         <a href={this.props.url}>
           <div className="staff-container">

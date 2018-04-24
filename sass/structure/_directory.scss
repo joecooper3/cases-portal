@@ -258,6 +258,26 @@
       width: 125px;
       flex: 0 0 125px;
     }
+    .dept-prog-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 75px;
+      height: 75px;
+      text-transform: uppercase;
+      font-family: akzSemiBold;
+      color: $mywhite;
+      border-radius: 100%;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+    }
+    .dept-prog-circle-dept {
+      background-color: #aa6666;
+    }
+    .dept-prog-circle-program {
+      background-color: #66aa66;
+    }
     .name-pos {
       flex: 1 1 300px;
       margin: 0 25px;
