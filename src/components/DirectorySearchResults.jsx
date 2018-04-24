@@ -129,27 +129,36 @@ class DirectorySearchResults extends React.Component {
         <div id="directory-search-results-container">
           <h2>Search Results</h2>
           <div id="directory-search-results">
-            {this.state.contactsVisible
-              ? this.state.searchResults.slice(0, 8).map(function(part, i) {
-                  return (
-                    <DirectoryStaffBox
-                      key={i}
-                      first={part.first}
-                      last={part.last}
-                      url={part.url}
-                      department={part.department}
-                      program={part.program}
-                      query={this.state.query}
-                      type={part.type}
-                      phone={part.phone}
-                      mobile={part.mobile}
-                      email={part.email}
-                      imageUrl={part.imageUrl}
-                      title={part.title}
-                    />
-                  );
-                }, this)
-              : null}
+            {this.state.contactsVisible ? (
+              this.state.searchResults.slice(0, 8).map(function(part, i) {
+                return (
+                  <DirectoryStaffBox
+                    key={i}
+                    first={part.first}
+                    last={part.last}
+                    url={part.url}
+                    department={part.department}
+                    program={part.program}
+                    query={this.state.query}
+                    type={part.type}
+                    phone={part.phone}
+                    mobile={part.mobile}
+                    email={part.email}
+                    imageUrl={part.imageUrl}
+                    title={part.title}
+                  />
+                );
+              }, this)
+            ) : (
+              <p className="directory-blurb">
+                Type the name of a CASES staff member or program in the search
+                box above to find their contact information. To see a complete
+                listing of CASES departments and program/units,{" "}
+                <a href="http://portal.cases.org/staff-directory-by-department/">
+                  visit the Department Directory
+                </a>.
+              </p>
+            )}
           </div>
         </div>
       </div>

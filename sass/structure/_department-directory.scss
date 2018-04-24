@@ -1,0 +1,74 @@
+#primary {
+  #department-directory {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    h1 {
+      flex: 100%;
+      margin-bottom: 30px;
+    }
+    .dept-dir-container {
+      flex: 1 1 300px;
+      max-width: 350px;
+      margin-bottom: 25px;
+      .dept-header {
+        display: flex;
+        flex-flow: row nowrap;
+        border: 1px solid $color1;
+        align-items: center;
+        text-decoration: none;
+        transition: 0.2s border-color;
+        min-height: 105px;
+        .dept-dir-circle {
+          background-color: $color1;
+          height: 50px;
+          min-width: 50px;
+          max-width: 50px;
+          margin: 0 20px;
+          border-radius: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: 0.2s background-color;
+          i {
+            color: $mywhite;
+            font-size: 30px;
+          }
+        }
+        h2 {
+          font-size: 22px;
+          text-align: center;
+          font-family: akzSemiBold;
+          transition: 0.2s color;
+          margin: 0 20px;
+        }
+      }
+      .dept-header:hover {
+        border-color: $color3;
+        .dept-dir-circle {
+          background-color: $color3;
+        }
+        h2 {
+          color: $color3;
+        }
+      }
+      ul {
+        border-left: 1px solid $color1;
+        list-style: none;
+        padding: 20px 0 10px 30px;
+        font-family: akzMed;
+        li {
+          padding: 6px 0;
+          a {
+            transition: 0.25s color;
+          }
+          a:hover {
+            text-decoration: none;
+            color: $color3;
+          }
+        }
+      }
+    }
+  }
+}

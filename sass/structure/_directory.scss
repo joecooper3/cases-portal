@@ -220,6 +220,19 @@
       }
     }
   }
+  .directory-blurb {
+    font-family: akzLight;
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    a {
+      border-top: none;
+    }
+    a:hover {
+      background-color: $mywhite;
+    }
+  }
 }
 .entry-content-directory {
   width: 100%;

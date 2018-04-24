@@ -1,26 +1,27 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var webpack = require('webpack');
-var path = require('path');
+var webpack = require("webpack");
+var path = require("path");
 
-var DIST_DIR = path.resolve(__dirname, 'dist');
-var SRC_DIR = path.resolve(__dirname, 'src');
-var SCSS_DIR = path.resolve(__dirname, 'sass');
+var DIST_DIR = path.resolve(__dirname, "dist");
+var SRC_DIR = path.resolve(__dirname, "src");
+var SCSS_DIR = path.resolve(__dirname, "sass");
 
 var config = {
   entry: {
-    'index': SRC_DIR + '/index.jsx',
-    'department': SRC_DIR + '/department.jsx',
-    'staff': SRC_DIR + '/staff.jsx',
-    'program': SRC_DIR + '/program.jsx',
-    'search-only': SRC_DIR + '/search-only.jsx',
-    'directory': SRC_DIR + '/directory.jsx',
-    'compliance': SRC_DIR + '/compliance.jsx',
-    'resources': SRC_DIR + '/resources.jsx',
+    index: SRC_DIR + "/index.jsx",
+    department: SRC_DIR + "/department.jsx",
+    staff: SRC_DIR + "/staff.jsx",
+    program: SRC_DIR + "/program.jsx",
+    "search-only": SRC_DIR + "/search-only.jsx",
+    directory: SRC_DIR + "/directory.jsx",
+    compliance: SRC_DIR + "/compliance.jsx",
+    resources: SRC_DIR + "/resources.jsx",
+    "department-directory": SRC_DIR + "/department-directory.jsx"
   },
   output: {
     path: DIST_DIR,
-    filename: '[name].js'
+    filename: "[name].js"
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -32,23 +33,25 @@ var config = {
       {
         test: /\.jsx?/,
         include: SRC_DIR,
-        loader: 'babel-loader'
+        loader: "babel-loader"
       },
       {
         test: /\.scss$/,
         include: SCSS_DIR,
-        use: [{
-          loader: "style-loader"
-        },
-        {
-          loader: "css-loader"
-        },
-        {
-          loader: "postcss-loader"
-        },
-        {
-          loader: "sass-loader"
-        }]
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       }
     ]
   }
