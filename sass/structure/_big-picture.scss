@@ -52,6 +52,22 @@ header {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    p {
+      font-size: 20px;
+    }
+    ul {
+      max-width: $maxWidthPrimary;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 18px;
+      li {
+        margin: 2px 0;
+      }
+      strong {
+        font-family: gillSemiBold;
+        font-weight: 400;
+      }
+    }
   }
   .no-bg {
     background: none;
@@ -81,6 +97,7 @@ header {
   h6 {
     max-width: $maxWidthPrimary;
     width: 100%;
+    margin: 25px 0 5px 0;
   }
   .entry-content {
     display: flex;

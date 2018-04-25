@@ -271,3 +271,18 @@
     border-top: 0.5px solid #f4f4f4;
   }
 }
+
+.holiday-table {
+  margin: 26px 0;
+  display: grid;
+  grid-template-columns: 250px 150px 125px;
+  .cell {
+    padding: 10px 0 10px 20px;
+    strong {
+      font-family: gillSemiBold;
+    }
+  }
+  .cell-a {
+    background-color: #f6f6f6;
+  }
+}

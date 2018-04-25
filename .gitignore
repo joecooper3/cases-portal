@@ -1,5 +1,7 @@
 /node_modules
 /images/staff-photos
+/dist
+/dist2
 .DS_Store
 style-test.css
 *.log
