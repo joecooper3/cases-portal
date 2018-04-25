@@ -22,7 +22,7 @@
 			$catUrl = get_field('parent_page', $cat[0]);
 			?>
 			<?php if ($catName !== "Uncategorized") : ?>
-			<a href="<?php echo $catName; ?>">
+			<a href="<?php echo $catUrl; ?>">
 				<span class="category" style="background-color: <?php echo $catColor; ?>">
 					<i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i><?php echo $catName; ?>
 				</span>

@@ -38,7 +38,7 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
       $catUrl = get_field('parent_page', $cat[0]);
       ?>
       <?php if ($catName !== "Uncategorized") : ?>
-      <a href="<?php echo $catName; ?>">
+      <a href="<?php echo $catUrl; ?>">
         <span class="category" style="background-color: <?php echo $catColor; ?>">
           <i class="fa <?php echo $catIcon; ?>" aria-hidden="true"></i><?php echo $catName; ?>
         </span>
