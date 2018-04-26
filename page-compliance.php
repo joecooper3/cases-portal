@@ -96,6 +96,7 @@ else { ?>
 
 <span id="sidenav-container">
 </span>
+</div>
 <?php
 get_footer(); ?>
 <?php } ?>

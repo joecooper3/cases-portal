@@ -129,10 +129,18 @@ const masterData = Promise.all(promiseArray).then(values => {
       });
     }
   }
+  //This portion pulls info for the breadcrumbs up top
+  let currentProgObj = programPages.filter(item => {
+    return prog === item.title.rendered;
+  });
+  let parentDeptObj = deptPages.filter(item => {
+    return item.id === currentProgObj[0].acf.parent_department[0].ID;
+  });
   const final = {
     searchBox: sortedArraySearch.concat(deptProgArray),
     supervisor: supervisorArray,
-    main: sortedArray
+    main: sortedArray,
+    parentDeptObj: parentDeptObj[0]
   };
   return final;
 });
@@ -250,6 +258,41 @@ class SearchBoxApp extends React.Component {
   }
 }
 
+class ProgramBreadcrumbsApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      parentDeptName: "",
+      parentDeptURL: "",
+      loaded: false
+    };
+  }
+  componentWillMount() {
+    masterData.then(yeah => {
+      this.setState({ parentDeptName: yeah.parentDeptObj.title.rendered });
+      this.setState({ parentDeptURL: yeah.parentDeptObj.link });
+      this.setState({ loaded: true });
+    });
+  }
+  render() {
+    if (this.state.loaded) {
+      return (
+        <div>
+          <a href="http://portal.cases.org/staff-directory-by-department/">
+            Staff Directory
+          </a>
+          <i className="fa fa-angle-double-right" aria-hidden="true" />
+          <a href={this.state.parentDeptURL}>{this.state.parentDeptName}</a>
+          <i className="fa fa-angle-double-right" aria-hidden="true" />
+        </div>
+      );
+    } else {
+      return <div />;
+    }
+  }
+}
+
 render(<ProgramFetchApp />, document.getElementById("app-area"));
 render(<ProgramsUnitsListApp />, document.getElementById("sec-holder-one"));
 render(<SearchBoxApp />, document.getElementById("particular-search"));
+render(<ProgramBreadcrumbsApp />, document.getElementById("breadcrumbs"));

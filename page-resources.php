@@ -197,6 +197,7 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		</ul>
 </div>
 		<?php endif; ?>
+	</div>
 <?php
 get_footer(); ?>
 <?php } ?>

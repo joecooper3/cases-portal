@@ -1,6 +1,23 @@
 #primary {
   .dept-container {
     padding: 25px;
+    #breadcrumbs {
+      align-self: flex-start;
+      font-family: akzRoman;
+      margin: 0 0 0 35px;
+      color: $softgrey;
+      a {
+        text-decoration: none;
+        color: $softgrey;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      i {
+        margin: 0 15px;
+        font-size: 10px;
+      }
+    }
     h1 {
       flex: 1 0 100%;
       margin: 0 25px 20px;
