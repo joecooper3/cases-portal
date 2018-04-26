@@ -46,7 +46,7 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'cases_portal' ),
 			'quick-links' => esc_html__( 'Quick Links', 'cases_portal'),
-			'dept-programs' => esc_html__( 'Departments and Programs', 'cases_portal'),
+			'footer_menu' => esc_html__( 'Footer Menu', 'cases_portal'),
 		) );
 		add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
 		function my_wp_nav_menu_objects( $items, $args ) {
