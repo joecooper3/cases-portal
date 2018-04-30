@@ -274,6 +274,9 @@ class ProgramBreadcrumbsApp extends React.Component {
       this.setState({ loaded: true });
     });
   }
+  _removeSemicolon(inp) {
+    return inp.replace("&#038;", "&").replace("&#8217;", "’");
+  }
   render() {
     if (this.state.loaded) {
       return (
@@ -282,7 +285,9 @@ class ProgramBreadcrumbsApp extends React.Component {
             Staff Directory
           </a>
           <i className="fa fa-angle-double-right" aria-hidden="true" />
-          <a href={this.state.parentDeptURL}>{this.state.parentDeptName}</a>
+          <a href={this.state.parentDeptURL}>
+            {this._removeSemicolon(this.state.parentDeptName)}
+          </a>
           <i className="fa fa-angle-double-right" aria-hidden="true" />
         </div>
       );
