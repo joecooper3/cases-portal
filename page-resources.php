@@ -24,6 +24,7 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		<div class="entry-content">
 			<?php
 			$catKing = get_the_title();
+			$currentDate = date('Ymd');
 			$args2 = array(
   		'post_type' 	=> 'post' ,
   		'category_name' => $catKing,
@@ -32,7 +33,12 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 			if ( $q->have_posts() ) {
 			  while ( $q->have_posts() ) {
 			    $q->the_post();
-?>
+					$expDate = get_field('expiration_date');
+					if (!$expDate) {
+						$postDate = get_the_date('Ymd');
+						$expDate = $postDate + 7;
+					}; ?>
+					<?php if ($currentDate < $expDate) : ?>
 		<div class="resc-alert">
 			<div class="alert-container">
 				<h4 class="alert">Alert</h4>
@@ -53,6 +59,7 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 </a></div>
 <?php endif; ?>
 	</div>
+<?php endif; ?>
 		<?php
 					  }
 					}
