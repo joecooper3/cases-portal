@@ -107,6 +107,25 @@ endif; ?>
 												</div>
 											</a>
 										</div>
+									<?php elseif ($catKing == 'Fiscal') : ?>
+										<div class="task-button-container">
+											<a class="task-button" href="https://secure3.entertimeonline.com/ta/6131594.login" target="_blank">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/clock.svg">
+												</div>
+												<div class="button-is">
+													Submit Your <br/>Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+											<a class="task-button" href="http://portal.cases.org/program/fiscal/">
+												<div class="circle-icon">
+													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/person.svg" style="width:125px">
+												</div>
+												<div class="button-is">
+													Meet the <br/>Fiscal Staff <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+												</div>
+											</a>
+										</div>
 									<?php elseif ($catKing == 'Facilities') : ?>
 										<div class="task-button-container">
 											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?hl=en#!forum/facilities.requests_bb" target="_blank">
