@@ -40,6 +40,10 @@ const promiseArray = [
 const titleBlock = document.getElementById("dept-title");
 const prog = titleBlock.getAttribute("data-id");
 
+const __removeSemicolon = function(inp) {
+  return inp.replace("&#038;", "&").replace("&#8217;", "’");
+};
+
 const masterData = Promise.all(promiseArray).then(values => {
   let supervisor = titleBlock.getAttribute("supervisor-id");
   let filteredArray = [];
@@ -49,6 +53,10 @@ const masterData = Promise.all(promiseArray).then(values => {
   let staffPages = values[1];
   let deptPages = values[2];
   let programPages = values[3];
+  programPages.map(item => {
+    item.title.rendered = __removeSemicolon(item.title.rendered);
+    return item;
+  });
   let sortedArraySearch = jasonData.sort(compareSearch);
   function compareSearch(a, b) {
     // function for sorting by array by first name
@@ -133,6 +141,7 @@ const masterData = Promise.all(promiseArray).then(values => {
   let currentProgObj = programPages.filter(item => {
     return prog === item.title.rendered;
   });
+  console.log(programPages);
   let parentDeptObj = deptPages.filter(item => {
     return item.id === currentProgObj[0].acf.parent_department[0].ID;
   });
