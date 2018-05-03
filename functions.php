@@ -521,6 +521,12 @@ function add_compliance_privacy_role() {
    }
 add_action(init, 'add_compliance_privacy_role' );
 
+function modify_read_more_link() {
+    return '<div class="more-link-container"><a class="more-link" href="' . get_permalink() . '">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+</a></div>';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
+
 /**
  * Implement the Custom Header feature.
  */
