@@ -57,7 +57,9 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		<div class="edit-button"><?php
 		$editLink = get_edit_post_link(); ?><a href="http://portal.cases.org/wp-admin/post-new.php"><strong>+</strong> Write <strong>New Post</strong>
 </a></div>
-<?php endif; ?>
+<?php
+$alertPresent = true;
+endif; ?>
 	</div>
 <?php endif; ?>
 		<?php
@@ -172,11 +174,17 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 		</span>
 		<?php
 			$catKing = get_the_title();
+			if($alertPresent) {
+				$offsetNo = 1;
+			}
+			else {
+				$offsetNo = 0;
+			}
 			$args3 = array(
 			'post_type' 	=> 'post' ,
 			'category_name' => $catKing,
 			'posts_per_page' => 3,
-			'offset' => 1
+			'offset' => $offsetNo
 		);
 			$q2 = new WP_Query($args3);
 			$count = $q2->post_count;
