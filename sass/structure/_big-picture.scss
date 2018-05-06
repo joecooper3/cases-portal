@@ -43,7 +43,7 @@ header {
 #primary {
   flex: 1 1 700px;
   max-width: 1000px;
-  & > div {
+  & > div, .temp-span > div {
     background-color: $mywhite;
     padding: 25px 50px;
     margin: 30px 20px;

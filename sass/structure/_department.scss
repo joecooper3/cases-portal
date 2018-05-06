@@ -27,7 +27,8 @@
   }
 }
 
-#dept-contacts {
+#dept-contacts,
+#related-contacts {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;

@@ -38,6 +38,7 @@
     max-width: 700px;
     width: 100%;
     justify-content: center;
+    margin: 10px 0 0 0;
     .portrait {
       height: 250px;
       width: 100%;
@@ -84,7 +85,9 @@
         margin: 20px 0 5px 0;
       }
 
-      .email, .phone, .mobile {
+      .email,
+      .phone,
+      .mobile {
         font-size: 20px;
       }
       .mobile {
@@ -105,6 +108,26 @@
 
         a:hover {
           text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+#primary {
+  .temp-span {
+    #related-contacts {
+      .related-contacts-container {
+        max-width: 700px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+      .rel-staff-h2 {
+        margin-bottom: 20px;
+        flex: 100%;
+        font-family: akzLight;
+        strong {
+          font-family: akzBold;
         }
       }
     }

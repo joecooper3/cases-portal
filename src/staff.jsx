@@ -1,24 +1,25 @@
-require('../sass/style.scss');
+require("../sass/style.scss");
 
-import React from 'react';
-import {render} from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
-import {StaffBreadcrumbs} from './components/StaffBreadcrumbs.jsx';
-import {StaffFetch} from './components/StaffFetch.jsx';
-import {SearchBox} from './components/SearchBox.jsx'
+import { StaffBreadcrumbs } from "./components/StaffBreadcrumbs.jsx";
+import { StaffFetch } from "./components/StaffFetch.jsx";
+import { RelatedStaff } from "./components/RelatedStaff.jsx";
+import { SearchBox } from "./components/SearchBox.jsx";
 
 const APIHost = __API__;
 
-const data = APIHost + '/wp-content/themes/cases_portal/data/casescsv.json';
-const staffUrl = APIHost + '/wp-json/portal/v2/bigstaff/';
-const deptUrl = APIHost + '/wp-json/wp/v2/department?_embed=true&per_page=100';
-const programUrl = APIHost + '/wp-json/wp/v2/program?_embed=true&per_page=100';
+const data = APIHost + "/wp-content/themes/cases_portal/data/casescsv.json";
+const staffUrl = APIHost + "/wp-json/portal/v2/bigstaff/";
+const deptUrl = APIHost + "/wp-json/wp/v2/department?_embed=true&per_page=100";
+const programUrl = APIHost + "/wp-json/wp/v2/program?_embed=true&per_page=100";
 
 const apiRequestJason = fetch(data).then(function(response) {
   return response.json();
 });
 
-const apiRequestStaff = fetch(staffUrl).then(function(response){
+const apiRequestStaff = fetch(staffUrl).then(function(response) {
   return response.json();
 });
 
@@ -30,57 +31,67 @@ const apiRequestProgram = fetch(programUrl).then(function(response) {
   return response.json();
 });
 
-const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
+const promiseArray = [
+  apiRequestJason,
+  apiRequestStaff,
+  apiRequestDept,
+  apiRequestProgram
+];
 
 const masterData = Promise.all(promiseArray).then(values => {
-  const titleBlock = document.getElementById('staff-title');
-  const email = titleBlock.getAttribute('staff-email');
+  const titleBlock = document.getElementById("staff-title");
+  const email = titleBlock.getAttribute("staff-email");
+  const id = email.split("@")[0];
   let filteredArray = [];
   let jasonData = values[0].info;
   let staffPages = values[1];
   let deptPages = values[2];
   let programPages = values[3];
-  jasonData.map((info) => {
-    if(info.email === email) {
+  jasonData.map(info => {
+    if (info.email === email) {
       filteredArray.push(info);
     }
   });
-  function compareSearch(a,b) { // function for sorting by array by first name
+  function compareSearch(a, b) {
+    // function for sorting by array by first name
     let nameA = a.first.toUpperCase();
     let nameB = b.first.toUpperCase();
-      if (nameA < nameB)
-        return -1;
-      if (nameA > nameB )
-        return 1;
-      return 0;
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  }
+  function supervisorUrlPull(soup) {
+    let soupEmail = soup + "@cases.org";
+    for (let i = 0; i < staffPages.length; i++) {
+      if (staffPages[i].email == soupEmail) {
+        return staffPages[i].url;
+      }
     }
-    function supervisorUrlPull(soup){
-      let soupEmail = soup + "@cases.org";
-      for (let i = 0; i < staffPages.length; i++) {
-        if (staffPages[i].email == soupEmail) {
-          return staffPages[i].url;
-        }
-      };
+  }
+  function supervisorNamePull(soup) {
+    let soupEmail = soup + "@cases.org";
+    for (let i = 0; i < jasonData.length; i++) {
+      if (jasonData[i].email == soupEmail) {
+        return jasonData[i].first + " " + jasonData[i].last;
+      }
     }
-    function supervisorNamePull(soup){
-      let soupEmail = soup + "@cases.org";
-      for (let i = 0; i < jasonData.length; i++) {
-        if (jasonData[i].email == soupEmail) {
-          return jasonData[i].first + " " + jasonData[i].last;
-        }
-      };
-    }
+  }
   let sortedArray = filteredArray.sort(compareSearch);
   let sortedArraySearch = jasonData.sort(compareSearch);
   function dataMatcher(arr) {
     arr.forEach(function(item) {
       var result = staffPages.filter(function(staffItem) {
-          return staffItem.email === item.email;
+        return staffItem.email === item.email;
       });
-    item.url = (result[0] !== undefined) ? result[0].url : null;
-    item.imageUrl = (result[0] !== undefined && result[0].image !== undefined) ? result[0].image : 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
-    item.supervisorUrl = (result[0] !== undefined) ? supervisorUrlPull(item.supervisor) : null;
-    item.supervisorName = (result[0] !== undefined) ? supervisorNamePull(item.supervisor) : null;
+      item.url = result[0] !== undefined ? result[0].url : null;
+      item.imageUrl =
+        result[0] !== undefined && result[0].image !== undefined
+          ? result[0].image
+          : "http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg";
+      item.supervisorUrl =
+        result[0] !== undefined ? supervisorUrlPull(item.supervisor) : null;
+      item.supervisorName =
+        result[0] !== undefined ? supervisorNamePull(item.supervisor) : null;
     });
   }
   dataMatcher(sortedArray);
@@ -89,27 +100,26 @@ const masterData = Promise.all(promiseArray).then(values => {
   for (let i = 0; i < deptPages.length; i++) {
     deptProgArray.push({
       first: deptPages[i].title.rendered,
-      last: '',
-      type: 'dept',
+      last: "",
+      type: "dept",
       url: deptPages[i].link
-    })
+    });
   }
   for (let i = 0; i < programPages.length; i++) {
     if (programPages[i].acf.acronym) {
-    deptProgArray.push({
-      first: programPages[i].title.rendered,
-      last: "(" + programPages[i].acf.acronym + ")",
-      type: 'program',
-      url: programPages[i].link
-    })
-  }
-  else {
-    deptProgArray.push({
-      first: programPages[i].title.rendered,
-      last: '',
-      type: 'program',
-      url: programPages[i].link
-      })
+      deptProgArray.push({
+        first: programPages[i].title.rendered,
+        last: "(" + programPages[i].acf.acronym + ")",
+        type: "program",
+        url: programPages[i].link
+      });
+    } else {
+      deptProgArray.push({
+        first: programPages[i].title.rendered,
+        last: "",
+        type: "program",
+        url: programPages[i].link
+      });
     }
   }
 
@@ -118,50 +128,80 @@ const masterData = Promise.all(promiseArray).then(values => {
     email: email,
     dept: sortedArray[0].department,
     program: sortedArray[0].program
-  }
+  };
 
   function _removeSemicolon(inp) {
     return inp.replace("&#038;", "&").replace("&#8217;", "’");
   }
 
-  function deptUrlPuller(name){
+  function deptUrlPuller(name) {
     let theUrl;
-    deptPages.map((info) => {
-    if (_removeSemicolon(info.title.rendered) === name) {
-      theUrl = info.link;
-    };
-  });
-  return theUrl;
-  };
-  function programUrlPuller(name){
-    let theUrl;
-    programPages.map((info) => {
-    if (_removeSemicolon(info.title.rendered) === name) {
-      theUrl = info.link;
-    };
-  });
-  return theUrl;
-  };
-
-  if (breadcrumbObject.program === '') {
-    breadcrumbObject.type = 'dept';
-    breadcrumbObject.deptUrl = deptUrlPuller(breadcrumbObject.dept);
+    deptPages.map(info => {
+      if (_removeSemicolon(info.title.rendered) === name) {
+        theUrl = info.link;
+      }
+    });
+    return theUrl;
   }
-  else {
-    breadcrumbObject.type='program';
+  function programUrlPuller(name) {
+    let theUrl;
+    programPages.map(info => {
+      if (_removeSemicolon(info.title.rendered) === name) {
+        theUrl = info.link;
+      }
+    });
+    return theUrl;
+  }
+  let topLevelDeptOrProg = "";
+  if (breadcrumbObject.program === "") {
+    breadcrumbObject.type = "dept";
+    breadcrumbObject.deptUrl = deptUrlPuller(breadcrumbObject.dept);
+    topLevelDeptOrProg = breadcrumbObject.dept;
+  } else {
+    breadcrumbObject.type = "program";
     breadcrumbObject.deptUrl = deptUrlPuller(breadcrumbObject.dept);
     breadcrumbObject.programUrl = programUrlPuller(breadcrumbObject.program);
+    topLevelDeptOrProg = breadcrumbObject.program;
   }
   //end breadcrumbs data code
+
+  //code for RelatedStaff
+  let currentStaffObj = sortedArraySearch.filter(item => {
+    return item.id === id;
+  })[0];
+  let relatedStaffObj = {
+    first: currentStaffObj.first,
+    last: currentStaffObj.last,
+    deptProg: topLevelDeptOrProg
+  };
+  let supervisingArray = sortedArraySearch.filter(item => {
+    return item.supervisor === id;
+  });
+  if (supervisingArray.length > 0) {
+    relatedStaffObj.type = "supervisor";
+    relatedStaffObj.dataArray = supervisingArray;
+  } else if (breadcrumbObject.program) {
+    relatedStaffObj.type = "program";
+    relatedStaffObj.dataArray = sortedArraySearch.filter(item => {
+      return item.program === breadcrumbObject.program && item.id != id;
+    });
+  } else {
+    relatedStaffObj.type = "department";
+    relatedStaffObj.dataArray = sortedArraySearch.filter(item => {
+      return item.department === breadcrumbObject.dept && item.id != id;
+    });
+  }
+  //end code for RelatedStaff
 
   const final = {
     searchBox: sortedArraySearch.concat(deptProgArray),
     main: sortedArray,
+    relatedStaff: relatedStaffObj,
     breadcrumb: breadcrumbObject
   };
+  console.log(final.relatedStaff);
   return final;
 });
-
 
 class StaffBreadcrumbsApp extends React.Component {
   constructor() {
@@ -173,18 +213,15 @@ class StaffBreadcrumbsApp extends React.Component {
   }
   componentWillMount() {
     masterData.then(yeah => {
-      this.setState({parts: yeah.breadcrumb});
-      this.setState({loaded: true});
+      this.setState({ parts: yeah.breadcrumb });
+      this.setState({ loaded: true });
     });
   }
-  render () {
+  render() {
     if (this.state.loaded) {
-      return (
-        <StaffBreadcrumbs data={this.state.parts} />
-      );
-    }
-    else {
-      return (<span></span>);
+      return <StaffBreadcrumbs data={this.state.parts} />;
+    } else {
+      return <span />;
     }
   }
 }
@@ -198,17 +235,49 @@ class StaffFetchApp extends React.Component {
   }
   componentWillMount() {
     masterData.then(yeah => {
-      this.setState({parts: yeah.main});
+      this.setState({ parts: yeah.main });
     });
   }
-  render () {
+  render() {
     return (
       <div>
-      <StaffFetch parts={this.state.parts}/>
-    </div>
+        <StaffFetch parts={this.state.parts} />
+      </div>
     );
   }
 }
+
+class RelatedStaffApp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      relatedStaffParts: {},
+      loaded: false
+    };
+  }
+  componentWillMount() {
+    masterData.then(yeah => {
+      this.setState({ relatedStaffParts: yeah.relatedStaff });
+      this.setState({ loaded: true });
+    });
+  }
+  render() {
+    if (this.state.loaded) {
+      return (
+        <RelatedStaff
+          type={this.state.relatedStaffParts.type}
+          data={this.state.relatedStaffParts.dataArray}
+          first={this.state.relatedStaffParts.first}
+          last={this.state.relatedStaffParts.last}
+          deptProg={this.state.relatedStaffParts.deptProg}
+        />
+      );
+    } else {
+      return <span />;
+    }
+  }
+}
+
 class SearchBoxApp extends React.Component {
   constructor() {
     super();
@@ -219,25 +288,21 @@ class SearchBoxApp extends React.Component {
   }
   componentWillMount() {
     masterData.then(yeah => {
-      this.setState({searchParts: yeah.searchBox});
-      this.setState({loaded: true});
+      this.setState({ searchParts: yeah.searchBox });
+      this.setState({ loaded: true });
     });
   }
 
-  render () {
+  render() {
     if (this.state.loaded === true) {
-    return (
-      <SearchBox data={this.state.searchParts} />
-    );
-  }
-  else {
-    return (
-      <div role="search" className="sbx-custom__wrapper"></div>
-    )
-  }
+      return <SearchBox data={this.state.searchParts} />;
+    } else {
+      return <div role="search" className="sbx-custom__wrapper" />;
+    }
   }
 }
 
-render(<StaffBreadcrumbsApp/>, document.getElementById('staff-breadcrumbs'));
-render(<StaffFetchApp/>, document.getElementById('app-area'));
-render(<SearchBoxApp/>, document.getElementById('particular-search'));
+render(<StaffBreadcrumbsApp />, document.getElementById("staff-breadcrumbs"));
+render(<StaffFetchApp />, document.getElementById("app-area"));
+render(<RelatedStaffApp />, document.getElementById("related-staff"));
+render(<SearchBoxApp />, document.getElementById("particular-search"));

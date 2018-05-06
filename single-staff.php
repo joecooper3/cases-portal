@@ -21,6 +21,7 @@ else { ?>
 			</div>
 		<div id="app-area"></div>
 	</div>
+	<span id="related-staff" class="temp-span"></span>
 	</div><!-- #primary -->
 
 <?php

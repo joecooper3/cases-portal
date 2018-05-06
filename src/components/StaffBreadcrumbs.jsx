@@ -7,7 +7,6 @@ class StaffBreadcrumbs extends React.Component {
 
   render() {
     if (this.props.data.type === "program") {
-      console.log("never");
       return (
         <div>
           <a href="http://portal.cases.org/staff-directory-by-department/">
@@ -35,9 +34,6 @@ class StaffBreadcrumbs extends React.Component {
             {this._removeSemicolon(this.props.data.dept)}
           </a>
           <i className="fa fa-angle-double-right" aria-hidden="true" />
-          <a href={this.props.data.deptUrl}>
-            {this._removeSemicolon(this.props.data.dept)}
-          </a>
         </div>
       );
     }
