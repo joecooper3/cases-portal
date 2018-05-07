@@ -188,7 +188,11 @@ const masterData = Promise.all(promiseArray).then(values => {
   } else {
     relatedStaffObj.type = "department";
     relatedStaffObj.dataArray = sortedArraySearch.filter(item => {
-      return item.department === breadcrumbObject.dept && item.id != id;
+      return (
+        item.department === breadcrumbObject.dept &&
+        item.id != id &&
+        !item.program
+      );
     });
   }
   //end code for RelatedStaff
