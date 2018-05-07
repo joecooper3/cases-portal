@@ -62,7 +62,7 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
                 ),
                 get_the_title()
             )); ?>
-            <? if(current_user_can('administrator')) : ?>
+            <?php if(current_user_can('administrator')) : ?>
             <div class="edit-button"><?php
             $editLink = get_edit_post_link(); ?><a href="<?php echo $editLink; ?>">Edit <strong><?php the_title(); ?></strong>
               <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -72,7 +72,7 @@ if ($query->current_post === 0 && !is_paged() & is_front_page()): ?>
 </article><!-- #post-<?php the_ID(); ?> -->
 <div class="old-entries-container">
   <h2>Past Updates</h2>
-<?php else :?>
+<?php else: ?>
   <aside class="old-entries">
   <?php the_title('<span class="headline"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">','</a></span>') ?>
   <?php

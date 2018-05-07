@@ -292,11 +292,43 @@ function custom_post_type() {
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 	);
+	$comms_labels = array(
+		'name'                  => _x( 'Communications Materials', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Communications Material', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Communications Materials', 'text_domain' ),
+		'name_admin_bar'        => __( 'Comms Materials', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Communications Material', 'text_domain' ),
+		'new_item'              => __( 'New Communications Material', 'text_domain' ),
+		'edit_item'             => __( 'Edit Communications Material', 'text_domain' ),
+		'update_item'           => __( 'Update Communication Material', 'text_domain' ),
+	);
+	$comms_sidenav = array(
+		'label'                 => __( 'Communications Materials', 'text_domain' ),
+		'description'           => __( 'Communications materials', 'text_domain' ),
+		'labels'                => $comms_labels,
+		'supports'              => array( 'title', 'thumbnail' ),
+		'taxonomies'            => array( 'comms' ),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-images-alt2',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'post',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
 	register_post_type( 'program', $args_program );
 	register_post_type( 'training', $args_training );
 	register_post_type( 'sidenav', $args_sidenav );
+	register_post_type( 'comms', $comms_sidenav );
 }
 
 add_action( 'init', 'custom_post_type', 0 );
@@ -501,6 +533,38 @@ add_action( 'rest_api_init', function () {
   register_rest_route( 'portal/v2', '/sidenavs/', array(
     'methods' => 'GET',
     'callback' => 'sidenavs_pull',
+  ) );
+} );
+
+function comms_pull( $data ) {
+  $posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => ['comms'],
+  ) );
+
+  if ( empty( $posts ) ) {
+    return 'doooh';
+  }
+		$data = [];
+
+		foreach ($posts as $post) {
+			$api_content = [
+				'id' => $post->ID,
+				'name' => $post->post_title,
+				'type' => get_field('type_of_comms', $post->ID),
+				'image' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium'),
+				'tinyImage' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID )),
+				'related' => get_field('related_programs', $post->ID)
+			];
+			$data[] = $api_content;
+		}
+		return $data;
+}
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'portal/v2', '/comms/', array(
+    'methods' => 'GET',
+    'callback' => 'comms_pull',
   ) );
 } );
 
