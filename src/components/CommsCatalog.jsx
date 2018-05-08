@@ -1,5 +1,7 @@
 import React from "react";
 
+import { CatalogItem } from "./CatalogItem.jsx";
+
 class CommsCatalog extends React.Component {
   render() {
     let moddedArray = this.props.data.map(doc => {
@@ -19,19 +21,25 @@ class CommsCatalog extends React.Component {
         <h2>One-Pagers</h2>
         {onePagerArray.map((doc, i) => {
           return (
-            <h3 key={i}>
-              {doc.name}
-              <img src={doc.image[0]} />
-            </h3>
+            <CatalogItem
+              key={i}
+              title={doc.name}
+              url={doc.url}
+              pdfUrl={doc.pdfUrl}
+              imageUrl={doc.image[0]}
+            />
           );
         })}
         <h2>Brochures</h2>
         {brochureArray.map((doc, i) => {
           return (
-            <h3 key={i}>
-              {doc.name}
-              <img src={doc.image[0]} />
-            </h3>
+            <CatalogItem
+              key={i}
+              title={doc.name}
+              url={doc.url}
+              pdfUrl={doc.pdfUrl}
+              imageUrl={doc.image[0]}
+            />
           );
         })}
       </div>

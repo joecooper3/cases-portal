@@ -8,15 +8,106 @@
         border: 1px solid #f2f2f2;
       }
     }
+    .meta-details {
+      font-size: 17px;
+      max-width: 600px;
+      font-family: akzLight;
+      margin-bottom: 40px;
+      strong {
+        font-family: akzMed;
+      }
+      ul {
+        display: inline;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+          display: inline;
+          margin-right: 5px;
+        }
+        li::after {
+          content: ",";
+        }
+        li:last-child:after {
+          content: "";
+        }
+      }
+    }
   }
   .download {
     text-decoration: none;
     font-family: akzSemiBold;
     border: 1px solid $color1;
     padding: 10px 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    i {
+      margin-left: 8px;
+    }
   }
   .download:hover {
     color: $color3;
     border-color: $color3;
+  }
+  .catalog-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 20px 0;
+    h2 {
+      margin: 0 auto;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $color1;
+    }
+    .catalog-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: row wrap;
+      flex: 1 1 240px;
+      max-width: 220px;
+      text-align: center;
+      margin: 15px 0;
+      a {
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover {
+        color: $color3;
+      }
+      img {
+        max-width: 200px;
+        box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.07);
+        border: 1px solid #f2f2f2;
+      }
+      h3 {
+        margin: 0 0 10px 0;
+        font-family: akzSemiBold;
+        font-size: 15px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .details {
+        margin: 15px 0 0 0;
+        flex: 100%;
+        a {
+          border: 1px solid $color1;
+          font-family: akzMed;
+          font-size: 14px;
+          padding: 5px 12px;
+          transition: border-color 0.2s, color 0.2s;
+          i {
+            margin-left: 5px;
+          }
+        }
+        a:hover {
+          border-color: $color3;
+        }
+      }
+    }
   }
 }

@@ -551,6 +551,7 @@ function comms_pull( $data ) {
 			$api_content = [
 				'id' => $post->ID,
 				'name' => $post->post_title,
+				'url' => get_permalink($post->ID),
 				'type' => get_field('type_of_comms', $post->ID),
 				'image' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium'),
 				'tinyImage' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID )),
