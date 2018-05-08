@@ -16,10 +16,16 @@ class CommsCatalog extends React.Component {
     let brochureArray = moddedArray.filter(doc => {
       return doc.type === "brochure";
     });
+    let flyerArray = moddedArray.filter(doc => {
+      return doc.type === "flyer";
+    });
+    let miscArray = moddedArray.filter(doc => {
+      return doc.type === "flowchart" || doc.type == "misc";
+    });
     return (
       <div className="catalog-container">
         <h2>One-Pagers</h2>
-        {onePagerArray.map((doc, i) => {
+        {onePagerArray.slice(0, 6).map((doc, i) => {
           return (
             <CatalogItem
               key={i}
@@ -32,6 +38,30 @@ class CommsCatalog extends React.Component {
         })}
         <h2>Brochures</h2>
         {brochureArray.map((doc, i) => {
+          return (
+            <CatalogItem
+              key={i}
+              title={doc.name}
+              url={doc.url}
+              pdfUrl={doc.pdfUrl}
+              imageUrl={doc.image[0]}
+            />
+          );
+        })}
+        <h2>Flyers</h2>
+        {flyerArray.map((doc, i) => {
+          return (
+            <CatalogItem
+              key={i}
+              title={doc.name}
+              url={doc.url}
+              pdfUrl={doc.pdfUrl}
+              imageUrl={doc.image[0]}
+            />
+          );
+        })}
+        <h2>Miscellaneous</h2>
+        {miscArray.map((doc, i) => {
           return (
             <CatalogItem
               key={i}
