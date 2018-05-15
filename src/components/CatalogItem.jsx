@@ -1,21 +1,27 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class CatalogItem extends React.Component {
-  render() {
-    return (
-      <div className="catalog-item">
-        <a href={this.props.url}>
-          <h3>{this.props.title}</h3>
-          <img src={this.props.imageUrl} />
+function CatalogItem(props) {
+  return (
+    <div className="catalog-item">
+      <a href={props.url}>
+        <h3>{props.title}</h3>
+        <img src={props.imageUrl} alt={props.title} />
+      </a>
+      <div className="details">
+        <a href={props.pdfUrl} target="_blank">
+          Download PDF <i className="fa fa-file-pdf-o" aria-hidden="true" />
         </a>
-        <div className="details">
-          <a href={this.props.pdfUrl} target="_blank">
-            Download PDF <i className="fa fa-file-pdf-o" aria-hidden="true" />
-          </a>
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+CatalogItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  pdfUrl: PropTypes.string.isRequired
+};
 
 export { CatalogItem };

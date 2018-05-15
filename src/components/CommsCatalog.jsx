@@ -1,80 +1,37 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { CatalogItem } from "./CatalogItem.jsx";
+import { CommsCatalogSection } from './CommsCatalogSection.jsx';
 
 class CommsCatalog extends React.Component {
   render() {
-    let moddedArray = this.props.data.map(doc => {
-      let newValue = doc;
-      doc.pdfUrl = doc.tinyImage[0].replace("-pdf-150x150.jpg", ".pdf");
+    const moddedArray = this.props.data.map(doc => {
+      const newValue = doc;
+      if (doc.tinyImage[0]) {
+        doc.pdfUrl = doc.tinyImage[0].replace('-pdf-150x150.jpg', '.pdf');
+      }
       return newValue;
     });
-    console.log(moddedArray);
-    let onePagerArray = moddedArray.filter(doc => {
-      return doc.type === "onepager";
-    });
-    let brochureArray = moddedArray.filter(doc => {
-      return doc.type === "brochure";
-    });
-    let flyerArray = moddedArray.filter(doc => {
-      return doc.type === "flyer";
-    });
-    let miscArray = moddedArray.filter(doc => {
-      return doc.type === "flowchart" || doc.type == "misc";
-    });
+    const onePagerArray = moddedArray.filter(doc => doc.type === 'onepager');
+    const brochureArray = moddedArray.filter(doc => doc.type === 'brochure');
+    const flyerArray = moddedArray.filter(doc => doc.type === 'flyer');
+    const miscArray = moddedArray.filter(doc => doc.type === 'flowchart' || doc.type === 'misc');
     return (
       <div className="catalog-container">
-        <h2>One-Pagers</h2>
-        {onePagerArray.slice(0, 6).map((doc, i) => {
-          return (
-            <CatalogItem
-              key={i}
-              title={doc.name}
-              url={doc.url}
-              pdfUrl={doc.pdfUrl}
-              imageUrl={doc.image[0]}
-            />
-          );
-        })}
-        <h2>Brochures</h2>
-        {brochureArray.map((doc, i) => {
-          return (
-            <CatalogItem
-              key={i}
-              title={doc.name}
-              url={doc.url}
-              pdfUrl={doc.pdfUrl}
-              imageUrl={doc.image[0]}
-            />
-          );
-        })}
-        <h2>Flyers</h2>
-        {flyerArray.map((doc, i) => {
-          return (
-            <CatalogItem
-              key={i}
-              title={doc.name}
-              url={doc.url}
-              pdfUrl={doc.pdfUrl}
-              imageUrl={doc.image[0]}
-            />
-          );
-        })}
-        <h2>Miscellaneous</h2>
-        {miscArray.map((doc, i) => {
-          return (
-            <CatalogItem
-              key={i}
-              title={doc.name}
-              url={doc.url}
-              pdfUrl={doc.pdfUrl}
-              imageUrl={doc.image[0]}
-            />
-          );
-        })}
+        <h2>One-Pagers {onePagerArray.length}</h2>
+        <CommsCatalogSection data={onePagerArray} />
+        <h2>Brochures {brochureArray.length}</h2>
+        <CommsCatalogSection data={brochureArray} />
+        <h2>Flyers {flyerArray.length}</h2>
+        <CommsCatalogSection data={flyerArray} />
+        <h2>Miscellaneous {miscArray.length}</h2>
+        <CommsCatalogSection data={miscArray} />
       </div>
     );
   }
 }
+CommsCatalog.propTypes = {
+  data: PropTypes.array.isRequired
+};
 
 export { CommsCatalog };

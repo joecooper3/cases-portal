@@ -110,5 +110,22 @@
         }
       }
     }
+    .button-container {
+      flex: 100%;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        border-radius: 0;
+        border: 1px solid $color1;
+        background-color: #fdfdfd;
+        font-family: akzMed;
+        font-size: 15px;
+        transition: border-color 0.2s, color 0.2s;
+      }
+      button:hover {
+        border-color: $color3;
+        color: $color3;
+      }
+    }
   }
 }
