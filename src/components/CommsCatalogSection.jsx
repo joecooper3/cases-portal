@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import { CatalogItem } from './CatalogItem.jsx';
 
@@ -34,19 +35,27 @@ class CommsCatalogSection extends Component {
               imageUrl={doc.image[0]}
             />
           ))}
-        {this.state.readMore
-          ? this.props.data
-              .slice(6, 20)
-              .map((doc, i) => (
-                <CatalogItem
-                  key={i}
-                  title={doc.name}
-                  url={doc.url}
-                  pdfUrl={doc.pdfUrl}
-                  imageUrl={doc.image[0]}
-                />
-              ))
-          : null}
+        <CSSTransitionGroup
+          transitionName="slide"
+          transitionAppear={false}
+          transitionAppearTimeout={500}
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
+        >
+          {this.state.readMore
+            ? this.props.data
+                .slice(6, 20)
+                .map((doc, i) => (
+                  <CatalogItem
+                    key={i}
+                    title={doc.name}
+                    url={doc.url}
+                    pdfUrl={doc.pdfUrl}
+                    imageUrl={doc.image[0]}
+                  />
+                ))
+            : null}
+        </CSSTransitionGroup>
         {this.props.data.length > 6 ? (
           <div className="button-container">
             <button onClick={this._moreToggle}>
