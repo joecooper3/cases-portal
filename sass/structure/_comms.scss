@@ -121,6 +121,13 @@
         font-family: akzMed;
         font-size: 15px;
         transition: border-color 0.2s, color 0.2s;
+        i { 
+          margin-left: 8px;
+          transition: transform 0.3s;
+        }
+        i.expanded {
+          transform: rotate(-180deg);
+        }
       }
       button:hover {
         border-color: $color3;

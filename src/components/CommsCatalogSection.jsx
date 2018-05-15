@@ -9,7 +9,11 @@ class CommsCatalogSection extends Component {
     this.state = {
       readMore: false
     };
+    this._isExpanded = this._isExpanded.bind(this);
     this._moreToggle = this._moreToggle.bind(this);
+  }
+  _isExpanded() {
+    return `fa fa-caret-down${this.state.readMore ? ' expanded' : ''}`;
   }
   _moreToggle() {
     this.setState(prevState => ({
@@ -45,7 +49,9 @@ class CommsCatalogSection extends Component {
           : null}
         {this.props.data.length > 6 ? (
           <div className="button-container">
-            <button onClick={this._moreToggle}>See more</button>
+            <button onClick={this._moreToggle}>
+              See more <i className={this._isExpanded()} aria-hidden="true" />
+            </button>
           </div>
         ) : null}
       </React.Fragment>
