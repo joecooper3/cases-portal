@@ -4,11 +4,15 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 import { CatalogItem } from './CatalogItem.jsx';
 
+const COLLAPSED_ITEM_NUM = 3;
+const EXPANDED_ITEM_NUM = 9;
+
 class CommsCatalogSection extends Component {
   constructor() {
     super();
     this.state = {
-      readMore: false
+      readMore: false,
+      readMoreText: 'See more'
     };
     this._isExpanded = this._isExpanded.bind(this);
     this._moreToggle = this._moreToggle.bind(this);
@@ -17,6 +21,11 @@ class CommsCatalogSection extends Component {
     return `fa fa-caret-down${this.state.readMore ? ' expanded' : ''}`;
   }
   _moreToggle() {
+    if (this.state.readMore) {
+      this.setState({ readMoreText: 'See more' });
+    } else {
+      this.setState({ readMoreText: 'See less' });
+    }
     this.setState(prevState => ({
       readMore: !prevState.readMore
     }));
@@ -25,7 +34,7 @@ class CommsCatalogSection extends Component {
     return (
       <React.Fragment>
         {this.props.data
-          .slice(0, 6)
+          .slice(0, COLLAPSED_ITEM_NUM)
           .map((doc, i) => (
             <CatalogItem
               key={i}
@@ -44,7 +53,7 @@ class CommsCatalogSection extends Component {
         >
           {this.state.readMore
             ? this.props.data
-                .slice(6, 20)
+                .slice(COLLAPSED_ITEM_NUM, EXPANDED_ITEM_NUM)
                 .map((doc, i) => (
                   <CatalogItem
                     key={i}
@@ -56,10 +65,10 @@ class CommsCatalogSection extends Component {
                 ))
             : null}
         </CSSTransitionGroup>
-        {this.props.data.length > 6 ? (
+        {this.props.data.length > COLLAPSED_ITEM_NUM ? (
           <div className="button-container">
             <button onClick={this._moreToggle}>
-              See more <i className={this._isExpanded()} aria-hidden="true" />
+              {this.state.readMoreText} <i className={this._isExpanded()} aria-hidden="true" />
             </button>
           </div>
         ) : null}

@@ -119,7 +119,8 @@
         border: 1px solid $color1;
         background-color: #fdfdfd;
         font-family: akzMed;
-        font-size: 15px;
+        font-size: 18px;
+        padding: 12px 20px 14px 20px;
         transition: border-color 0.2s, color 0.2s;
         i { 
           margin-left: 8px;
@@ -132,6 +133,9 @@
       button:hover {
         border-color: $color3;
         color: $color3;
+      }
+      button:focus {
+        outline-style: none;
       }
     }
   }
