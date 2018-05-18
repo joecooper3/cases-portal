@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
+import { CommsHidden } from './CommsHidden.jsx';
 import { CatalogItem } from './CatalogItem.jsx';
 
 const COLLAPSED_ITEM_NUM = 3;
@@ -51,19 +52,12 @@ class CommsCatalogSection extends Component {
           transitionEnterTimeout={300}
           transitionLeaveTimeout={300}
         >
-          {this.state.readMore
-            ? this.props.data
-                .slice(COLLAPSED_ITEM_NUM, EXPANDED_ITEM_NUM)
-                .map((doc, i) => (
-                  <CatalogItem
-                    key={i}
-                    title={doc.name}
-                    url={doc.url}
-                    pdfUrl={doc.pdfUrl}
-                    imageUrl={doc.image[0]}
-                  />
-                ))
-            : null}
+          {this.state.readMore && (
+            <CommsHidden
+              data={this.props.data.slice(COLLAPSED_ITEM_NUM, EXPANDED_ITEM_NUM)}
+              url="http://www.joecooper.nyc"
+            />
+          )}
         </CSSTransitionGroup>
         {this.props.data.length > COLLAPSED_ITEM_NUM ? (
           <div className="button-container">
