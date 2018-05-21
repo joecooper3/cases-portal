@@ -168,4 +168,17 @@
     max-height : 0;
     opacity: 0;
   }
+  .see-all-button {
+    display: flex;
+    justify-content: center;
+    a {
+      border-bottom: solid 3.0px $color3;
+      padding: 10px 20px;
+      font-family: akzMed;
+    }
+    a:hover {
+      color: $color3;
+      border-color: $color3;
+    }
+  }
 }

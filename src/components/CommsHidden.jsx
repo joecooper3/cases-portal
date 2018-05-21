@@ -16,8 +16,8 @@ class CommsHidden extends Component {
             imageUrl={doc.image[0]}
           />
         ))}
-        <p>
-          <a href={this.props.url}>See all</a>
+        <p className="see-all-button">
+          <a href={this.props.url}>See all {this.props.title}</a>
         </p>
       </span>
     );
@@ -26,7 +26,8 @@ class CommsHidden extends Component {
 
 CommsHidden.propTypes = {
   data: PropTypes.array.isRequired,
-  url: PropTypes.string
+  url: PropTypes.string,
+  title: PropTypes.string.isRequired
 };
 
 CommsHidden.defaultProps = {

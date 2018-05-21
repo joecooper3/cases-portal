@@ -34,6 +34,7 @@ class CommsCatalogSection extends Component {
   render() {
     return (
       <React.Fragment>
+        <h2>{this.props.title}</h2>
         {this.props.data
           .slice(0, COLLAPSED_ITEM_NUM)
           .map((doc, i) => (
@@ -56,6 +57,7 @@ class CommsCatalogSection extends Component {
             <CommsHidden
               data={this.props.data.slice(COLLAPSED_ITEM_NUM, EXPANDED_ITEM_NUM)}
               url="http://www.joecooper.nyc"
+              title={this.props.title}
             />
           )}
         </CSSTransitionGroup>
@@ -72,7 +74,8 @@ class CommsCatalogSection extends Component {
 }
 
 CommsCatalogSection.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export { CommsCatalogSection };
