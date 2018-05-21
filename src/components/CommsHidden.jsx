@@ -17,7 +17,10 @@ class CommsHidden extends Component {
           />
         ))}
         <p className="see-all-button">
-          <a href={this.props.url}>See all {this.props.title}</a>
+          <a href={this.props.url}>
+            See all {this.props.title.toLowerCase()}
+            <i className="fa fa-long-arrow-right" aria-hidden="true" />
+          </a>
         </p>
       </span>
     );

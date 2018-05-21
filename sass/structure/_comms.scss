@@ -171,13 +171,18 @@
   .see-all-button {
     display: flex;
     justify-content: center;
+    max-width: none;
     a {
-      border-bottom: solid 3.0px $color3;
-      padding: 10px 20px;
+      border-bottom: solid 3.0px #ccccef;
+      margin: 20px 20px 10px 20px;
       font-family: akzMed;
+      transition: color 0.25s, border-color 0.3s ease-in;
+      i {
+        margin-left: 10px;
+      }
     }
     a:hover {
-      color: $color3;
+      color: $color2;
       border-color: $color3;
     }
   }
