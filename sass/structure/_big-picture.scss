@@ -113,6 +113,23 @@ header {
       padding: 0 0 0 20px;
     }
   }
+  #breadcrumbs {
+    align-self: flex-start;
+    font-family: akzRoman;
+    margin: 0 0 0 35px;
+    color: $softgrey;
+    a {
+      text-decoration: none;
+      color: $softgrey;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    i {
+      margin: 0 15px;
+      font-size: 10px;
+    }
+  }
 }
 
 #secondary,

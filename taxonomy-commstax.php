@@ -4,14 +4,26 @@ get_header(); ?>
  }
  else { ?>
 
+<?php $post = get_post();
+    $archiveType = wp_get_post_terms($post->ID, 'commstax')[0]->slug;
+    $archiveName = wp_get_post_terms($post->ID, 'commstax')[0]->name;
+    if (substr($archiveName, -1) == 's') {
+        $finalArchiveName = $archiveName;
+    }
+    else {
+        $finalArchiveName = $archiveName.'s';
+    }
+     ?>
+
 	<div id="primary" class="content-area">
-		<div>
-			<header class="page-header">
+        <div id="comms-archive" data-id="<?php echo $archiveType; ?>">
+        <div id="breadcrumbs">
+            <a href="http://portal.cases.org/communications/">Communications</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </div>
 				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="archive-description">', '</div>' );
+                    echo '<h1>'.$finalArchiveName.'</h1>';
 				?>
-			</header><!-- .page-header -->
         <div id="comms-archive-container">
             <i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
         </div>
@@ -20,4 +32,4 @@ get_header(); ?>
 
 <?php
 get_footer(); ?>
-<?php } ?> // eslint-disable-line
+<?php } ?>

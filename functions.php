@@ -412,6 +412,9 @@ elseif (is_page_template('page-resources.php')) {
 elseif (is_page_template('page-department-directory.php')) {
 	wp_enqueue_script( 'department-directory-js', get_template_directory_uri() . '/dist/department-directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
+elseif (is_tax('commstax')) {
+	wp_enqueue_script( 'comms-archive-js', get_template_directory_uri() . '/dist/comms-archive.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+}
 elseif (is_front_page()) {
 	wp_enqueue_script( 'index-js', get_template_directory_uri() . '/dist/index.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
