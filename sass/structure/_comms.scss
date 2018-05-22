@@ -186,4 +186,11 @@
       border-color: $color3;
     }
   }
+  #comms-archive-container {
+    min-height: 100px;
+    .spinning {
+      margin-top: 25px;
+      font-size: 30px;
+    }
+  }
 }

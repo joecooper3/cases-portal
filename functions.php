@@ -331,7 +331,29 @@ function custom_post_type() {
 	register_post_type( 'comms', $comms_sidenav );
 }
 
+// Register Custom Taxonomies
+function custom_taxonomies() {
+	$comms_tax_args = array(
+		'labels' => array(
+			'name' => 'Comms Categories',
+			'singular_name' => 'Comms Category'
+		),
+		'show_in_rest' => true,
+		'hierarchical' => true,
+		'capabilities' => array(
+			'manage_terms' => 'manage_categories',
+			'edit_terms' => 'manage_categories',
+			'delete_terms' => 'manage_categories',
+			'assign_terms' => 'edit_posts'
+		)
+		);
+
+	register_taxonomy( 'commstax', 'comms', $comms_tax_args );
+}
 add_action( 'init', 'custom_post_type', 0 );
+add_action( 'init', 'custom_taxonomies', 0 );
+register_taxonomy_for_object_type( 'comms_taxonomy', 'comms' );
+
 
 /**
  * Register widget area.
