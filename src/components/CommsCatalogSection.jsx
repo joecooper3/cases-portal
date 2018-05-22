@@ -34,7 +34,9 @@ class CommsCatalogSection extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2>{this.props.title}</h2>
+        <a href={this.props.seeAllUrl} className="catalog-header">
+          <h2>{this.props.title}</h2>
+        </a>
         {this.props.data
           .slice(0, COLLAPSED_ITEM_NUM)
           .map((doc, i) => (
@@ -56,7 +58,7 @@ class CommsCatalogSection extends Component {
           {this.state.readMore && (
             <CommsHidden
               data={this.props.data.slice(COLLAPSED_ITEM_NUM, EXPANDED_ITEM_NUM)}
-              url="http://www.joecooper.nyc"
+              url={this.props.seeAllUrl}
               title={this.props.title}
             />
           )}
@@ -75,7 +77,8 @@ class CommsCatalogSection extends Component {
 
 CommsCatalogSection.propTypes = {
   data: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  seeAllUrl: PropTypes.string.isRequired
 };
 
 export { CommsCatalogSection };

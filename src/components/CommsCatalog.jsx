@@ -18,10 +18,26 @@ class CommsCatalog extends React.Component {
     const miscArray = moddedArray.filter(doc => doc.type === 'flowchart' || doc.type === 'misc');
     return (
       <div className="catalog-container">
-        <CommsCatalogSection data={onePagerArray} title="One-Pagers" />
-        <CommsCatalogSection data={brochureArray} title="Brochures" />
-        <CommsCatalogSection data={flyerArray} title="Flyers" />
-        <CommsCatalogSection data={miscArray} title="Miscellaneous" />
+        <CommsCatalogSection
+          data={onePagerArray}
+          title="One-Pagers"
+          seeAllUrl="http://portal.cases.org/commstax/onepager/"
+        />
+        <CommsCatalogSection
+          data={brochureArray}
+          title="Brochures"
+          seeAllUrl="http://portal.cases.org/commstax/brochure/"
+        />
+        <CommsCatalogSection
+          data={flyerArray}
+          title="Flyers"
+          seeAllUrl="http://portal.cases.org/commstax/flyer/"
+        />
+        <CommsCatalogSection
+          data={miscArray}
+          title="Miscellaneous"
+          seeAllUrl="http://portal.cases.org/commstax/misc/"
+        />
       </div>
     );
   }
