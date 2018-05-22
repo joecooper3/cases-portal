@@ -574,7 +574,7 @@ function comms_pull( $data ) {
 				'id' => $post->ID,
 				'name' => $post->post_title,
 				'url' => get_permalink($post->ID),
-				'type' => get_field('type_of_comms', $post->ID),
+				'type' => get_the_terms($post->ID, 'commstax')[0]->slug,
 				'image' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium'),
 				'tinyImage' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID )),
 				'related' => get_field('related_programs', $post->ID)
