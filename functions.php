@@ -307,7 +307,6 @@ function custom_post_type() {
 		'description'           => __( 'Communications materials', 'text_domain' ),
 		'labels'                => $comms_labels,
 		'supports'              => array( 'title', 'thumbnail' ),
-		'taxonomies'            => array( 'comms' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -323,12 +322,43 @@ function custom_post_type() {
 		'capability_type'       => 'post',
 		'show_in_rest'          => true,
 	);
+	$docs_labels = array(
+		'name'                  => _x( 'Portal Documentation', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Portal Document', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Portal Documentation', 'text_domain' ),
+		'name_admin_bar'        => __( 'Portal Docs', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Portal Doc', 'text_domain' ),
+		'new_item'              => __( 'New Portal Doc', 'text_domain' ),
+		'edit_item'             => __( 'Edit Portal Doc', 'text_domain' ),
+		'update_item'           => __( 'Update Portal Doc', 'text_domain' ),
+	);
+	$args_docs = array(
+		'label'                 => __( 'Portal Documentation', 'text_domain' ),
+		'description'           => __( 'Resources for editing and updating the portal', 'text_domain' ),
+		'labels'                => $docs_labels,
+		'supports'              => array( 'title', 'editor', 'revisions'),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-book-alt',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'post',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
 	register_post_type( 'program', $args_program );
 	register_post_type( 'training', $args_training );
 	register_post_type( 'sidenav', $args_sidenav );
 	register_post_type( 'comms', $comms_sidenav );
+	register_post_type( 'documents', $args_docs );
 }
 
 // Register Custom Taxonomies
@@ -347,12 +377,28 @@ function custom_taxonomies() {
 			'assign_terms' => 'edit_posts'
 		)
 		);
+	$docs_tax_args = array(
+		'labels' => array(
+			'name' => 'Portal Docs Categories',
+			'singular_name' => 'Portal Doc Category'
+		),
+		'show_in_rest' => true,
+		'hierarchical' => true,
+		'capabilities' => array(
+			'manage_terms' => 'manage_categories',
+			'edit_terms' => 'manage_categories',
+			'delete_terms' => 'manage_categories',
+			'assign_terms' => 'edit_posts'
+		)
+		);
 
 	register_taxonomy( 'commstax', 'comms', $comms_tax_args );
+	register_taxonomy( 'docs', 'documents', $docs_tax_args );
 }
 add_action( 'init', 'custom_post_type', 0 );
 add_action( 'init', 'custom_taxonomies', 0 );
 register_taxonomy_for_object_type( 'comms_taxonomy', 'comms' );
+register_taxonomy_for_object_type( 'docs', 'documents' );
 
 
 /**
