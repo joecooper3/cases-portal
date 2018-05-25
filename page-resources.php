@@ -55,7 +55,9 @@ perm="<?php if(current_user_can('administrator') || current_user_can($fullRole))
 			<i class="fa fa-long-arrow-right" aria-hidden="true"></i><br/>
 </a></div>
 		<div class="edit-button"><?php
-		$editLink = get_edit_post_link(); ?><a href="http://portal.cases.org/wp-admin/post-new.php"><strong>+</strong> Write <strong>New Post</strong>
+		$editLink = get_edit_post_link(); ?>
+		<a href="http://portal.cases.org/wp-admin/post-new.php">
+		<strong>+</strong> Write <strong>New Post</strong>
 </a></div>
 <?php
 $alertPresent = true;
@@ -178,12 +180,15 @@ endif; ?>
 				<h2><?php the_title(); ?> Page Admin</h2>
 			</div>
 			<ul>
-				<a href="<?php the_field('sharepoint') ?>" target="_blank"><li><i class="fa fa-windows" aria-hidden="true"></i>
-					<?php the_title(); ?> Sharepoint</li></a>
+				<a href="<?php echo $editLink; ?>"><li><i class="fa fa-pencil-square" aria-hidden="true"></i>
+					Edit <?php the_title(); ?> Page</li></a>
+				</li>
 				<a href="http://portal.cases.org/wp-admin/post-new.php"><li><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 					Write New Post/Alert</li></a>
 				<a href="http://portal.cases.org/wp-admin/post-new.php?post_type=sidenav"><li><i class="fa fa-bars" aria-hidden="true"></i>
 					Create New Side Navigation</li></a>
+				<a href="<?php the_field('sharepoint') ?>" target="_blank"><li><i class="fa fa-windows" aria-hidden="true"></i>
+					<?php the_title(); ?> Sharepoint</li></a>
 			</ul>
 	</div>
 </div>
