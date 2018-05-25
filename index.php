@@ -16,7 +16,8 @@ get_header(); ?>
 	<?php if ( !is_user_logged_in()) {
 	}
 	else { ?>
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area" 
+	perm="<?php if(current_user_can('edit_posts')){echo "sure";} else {echo "nah";} ?>">
 		<div id="news" class="site-main">
 
 
