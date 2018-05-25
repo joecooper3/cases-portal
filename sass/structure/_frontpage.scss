@@ -150,6 +150,22 @@
       margin-left: 5px;
     }
   }
+  .add-new-staff-member {
+    padding: 10px 20px;
+    border: 1.0px solid $color1;
+    font-family: akzMed;
+    margin-top: 20px;
+    transition: color 0.25s, border-color 0.25s;
+    display: flex;
+    flex-flow: row;
+    i {
+      margin-right: 12px;
+    }
+  }
+  .add-new-staff-member:hover {
+    border-color: $color3;
+    color: $color3;
+  }
 }
 
 #secondary {

@@ -83,6 +83,15 @@ class NewStaff extends React.Component {
             <br />
           )}
         </div>
+        {this.props.perm && (
+          <a
+            href="http://portal.cases.org/wp-admin/post-new.php?post_type=staff"
+            className="add-new-staff-member"
+          >
+            <i className="fa fa-user" aria-hidden="true" />
+            Add New Staff Member
+          </a>
+        )}
       </div>
     );
   }
@@ -91,5 +100,6 @@ class NewStaff extends React.Component {
 export { NewStaff };
 
 NewStaff.propTypes = {
-  parts: PropTypes.array.isRequired
+  parts: PropTypes.array.isRequired,
+  perm: PropTypes.bool.isRequired
 };

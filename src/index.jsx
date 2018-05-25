@@ -25,6 +25,8 @@ const apiRequestProgram = fetch(programUrl).then(response => response.json());
 
 const promiseArray = [apiRequestJason, apiRequestStaff, apiRequestDept, apiRequestProgram];
 
+const newStaffPermissions = document.getElementById('primary').getAttribute('newstaff') === 'sure';
+
 Promise.all(promiseArray)
   .then(values => {
     const jasonData = values[0].info;
@@ -105,7 +107,10 @@ Promise.all(promiseArray)
     return final;
   })
   .then(yeah => {
-    render(<NewStaff parts={yeah.newStaff} />, document.getElementById('new-staff-container'));
+    render(
+      <NewStaff parts={yeah.newStaff} perm={newStaffPermissions} />,
+      document.getElementById('new-staff-container')
+    );
     render(<SearchBox data={yeah.searchBox} />, document.getElementById('particular-search'));
   });
 render(<CasesOrgNews />, document.getElementById('cases-website-stories'));
