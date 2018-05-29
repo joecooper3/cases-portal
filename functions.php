@@ -398,7 +398,7 @@ function custom_taxonomies() {
 add_action( 'init', 'custom_post_type', 0 );
 add_action( 'init', 'custom_taxonomies', 0 );
 register_taxonomy_for_object_type( 'comms_taxonomy', 'comms' );
-register_taxonomy_for_object_type( 'docs', 'documents' );
+register_taxonomy_for_object_type( 'docs_taxonomy', 'documents' );
 
 
 /**
