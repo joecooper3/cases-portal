@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NewStaffBox } from './NewStaffBox.jsx';
+import { NewStaffPermissions } from './NewStaffPermissions.jsx';
 
 const STAFF_PER_PAGE = 8;
 const MAX_PAGES = 5;
@@ -83,15 +84,7 @@ class NewStaff extends React.Component {
             <br />
           )}
         </div>
-        {this.props.perm && (
-          <a
-            href="http://portal.cases.org/wp-admin/post-new.php?post_type=staff"
-            className="add-new-staff-member"
-          >
-            <i className="fa fa-user" aria-hidden="true" />
-            Add New Staff Member
-          </a>
-        )}
+        {this.props.perm && <NewStaffPermissions />}
       </div>
     );
   }
