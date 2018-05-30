@@ -626,7 +626,7 @@ function comms_pull( $data ) {
 				'type' => get_the_terms($post->ID, 'commstax')[0]->slug,
 				'image' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium'),
 				'tinyImage' => wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID )),
-				'related' => get_field('related_programs', $post->ID)
+				'related' => get_field('related_programs', $post->ID),
 			];
 			$data[] = $api_content;
 		}
@@ -640,6 +640,35 @@ add_action( 'rest_api_init', function () {
   ) );
 } );
 
+function users_pull( $data ) {
+$users = new WP_User_Query(  array(
+	'order'          => 'ASC',
+	'orderby'        => 'user_name',
+	'count_total'    => 'true'
+) );
+
+  if ( empty( $users ) ) {
+    return 'daaaah';
+  }
+		$data = [];
+
+		foreach ($users->get_results() as $user) {
+			$api_content = [
+				'id' => $user->data->ID,
+				'email' => $user->data->user_email,
+				'avatarCode' => get_wp_user_avatar($user->data->ID, 'medium')
+			];
+			$data[] = $api_content;
+		}
+		return $data;
+}
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'portal/v2', '/users/', array(
+    'methods' => 'GET',
+    'callback' => 'users_pull',
+  ) );
+} );
 // END custom endpoints
 
 //Custom user types! It never ends!
