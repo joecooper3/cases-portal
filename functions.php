@@ -644,7 +644,8 @@ function users_pull( $data ) {
 $users = new WP_User_Query(  array(
 	'order'          => 'ASC',
 	'orderby'        => 'user_name',
-	'count_total'    => 'true'
+	'count_total'    => 'true',
+	'number'		 => '-1'
 ) );
 
   if ( empty( $users ) ) {
