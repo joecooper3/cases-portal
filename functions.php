@@ -516,6 +516,14 @@ function big_staff( $data ) {
 		'numberposts' => -1,
 		'post_type' => 'staff',
   ) );
+  $depts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'department',
+  ) );
+  $progs = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'program',
+  ) );
 
   if ( empty( $posts ) ) {
     return 'doooh';
@@ -524,12 +532,38 @@ function big_staff( $data ) {
 
 		foreach ($posts as $post) {
 			$api_content = [
+				'id' => $post->ID,
 				'name' => $post->post_title,
+				'type' => 'staff',
 				'email' => get_field('email', $post->ID),
 				'start_date' => get_field('start_date', $post->ID),
 				'fun_facts' => get_field('fun_facts', $post->ID),
 				'url' => get_permalink($post->ID),
 				'image' => get_the_post_thumbnail_url($post->ID)
+			];
+			$data[] = $api_content;
+		}
+		foreach ($depts as $dept) {
+			$api_content = [
+				'id' => $dept->ID,
+				'name' => $dept->post_title,
+				'type' => 'dept',
+				'url' => get_permalink($dept->ID),
+				'acronym' => get_field('acronym', $dept->ID),
+				'director' => get_field('director', $dept->ID)
+			];
+			$data[] = $api_content;
+		}
+		foreach ($progs as $prog) {
+			$api_content = [
+				'id' => $prog->ID,
+				'name' => $prog->post_title,
+				'type' => 'program',
+				'url' => get_permalink($prog->ID),
+				'acronym' => get_field('acronym', $prog->ID),
+				'director' => get_field('director', $prog->ID),
+				'parent_dept_id' => get_field('parent_department', $prog->ID)[0]->ID,
+				'parent_dept_name' => get_field('parent_department', $prog->ID)[0]->post_title
 			];
 			$data[] = $api_content;
 		}
