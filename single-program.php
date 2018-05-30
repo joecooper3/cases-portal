@@ -12,12 +12,16 @@ get_header(); ?>
 <?php if ( !is_user_logged_in()) {
 }
 else { ?>
-
-	<div id="primary" class="content-area">
+	<div id="primary" 
+	class="content-area" 
+	data-id="program"
+	page-name="<?php the_title();?>"
+	supervisor-id="<?php the_field('director'); ?>"
+	>
 			<div class="dept-container">
 				<div id="breadcrumbs">
 				</div>
-		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>" page-type="program">
+		<h1 id="dept-title">
 			<?php the_title();?></h1>
 		<div id="app-area"></div>
 	</div>

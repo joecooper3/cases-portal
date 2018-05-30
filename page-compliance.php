@@ -13,10 +13,13 @@ get_header(); ?>
 }
 else { ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" 
+	class="content-area"
+	data-id="compliance"
+	perm="<?php if(current_user_can('administrator') || current_user_can('edit_trainings')){echo "sure";} else {echo "nah";} ?>"
+	>
 			<div>
-		<h1 id="dept-title" data-id="<?php the_title();?>"
-			perm="<?php if(current_user_can('administrator') || current_user_can('edit_trainings')){echo "sure";} else {echo "nah";} ?>"><?php the_title();?></h1>
+		<h1 id="dept-title"><?php the_title();?></h1>
 		<div class="entry-content">
 				<?php
 		      if ( have_posts() ) : while ( have_posts() ) : the_post();

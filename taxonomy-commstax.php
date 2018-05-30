@@ -15,7 +15,10 @@ get_header(); ?>
     }
      ?>
 
-	<div id="primary" class="content-area">
+    <div id="primary"
+    class="content-area"
+    data-id="comms-archive"
+    >
         <div id="comms-archive" data-id="<?php echo $archiveType; ?>">
         <div id="breadcrumbs">
             <a href="http://portal.cases.org/communications/">Communications</a>

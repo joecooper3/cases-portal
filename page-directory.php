@@ -29,9 +29,12 @@
   </symbol>
   </svg>
     <span id="directory-totality">
-      <div id="primary" class="content-area">
+      <div id="primary" 
+      class="content-area" 
+      data-id="directory" 
+      >
  			<div class="no-bg">
- 		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
+ 		<h1 id="dept-title"><?php the_title();?></h1>
     <div class="entry-content">
       <div id="search-box">
   <form id="inside-search" novalidate="novalidate" onsubmit="return false;" class="searchbox sbx2-custom">

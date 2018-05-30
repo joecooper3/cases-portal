@@ -18,7 +18,10 @@
  <?php if ( !is_user_logged_in()) {
  }
  else { ?>
-  <div id="primary" class="content-area">
+  <div id="primary" 
+  class="content-area"
+  data-id="department-directory"
+  >
   <div id="department-directory">
     <h1>Department Directory</h1>
     <div class="dept-dir-container">

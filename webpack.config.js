@@ -16,7 +16,8 @@ const config = {
     compliance: `${SRC_DIR}/compliance.jsx`,
     resources: `${SRC_DIR}/resources.jsx`,
     'department-directory': `${SRC_DIR}/department-directory.jsx`,
-    'comms-archive': `${SRC_DIR}/comms-archive.jsx`
+    'comms-archive': `${SRC_DIR}/comms-archive.jsx`,
+    master: `${SRC_DIR}/master.jsx`
   },
   output: {
     path: DIST_DIR,

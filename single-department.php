@@ -11,14 +11,18 @@ get_header(); ?>
 <?php if ( !is_user_logged_in()) {
 }
 else { ?>
-	<div id="primary" class="content-area">
+	<div id="primary" 
+	class="content-area" 
+	data-id="dept"
+	page-name="<?php the_title();?>"
+	supervisor-id="<?php the_field('director'); ?>"
+	>
 			<div class="dept-container">
 				<div id="breadcrumbs">
 					<a href="http://portal.cases.org/staff-directory-by-department/">Staff Directory</a>
 					<i className="fa fa-angle-double-right" aria-hidden="true" /></i>
 				</div>
-		<h1 id="dept-title" data-id="<?php the_title();?>" supervisor-id="<?php the_field('director'); ?>"
-			page-type="dept">
+		<h1 id="dept-title">
 			<?php the_title();?></h1>
 		<div id="app-area"></div>
 	</div>

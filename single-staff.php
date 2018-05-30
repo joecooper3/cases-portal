@@ -13,9 +13,14 @@ get_header(); ?>
 }
 else { ?>
 
-	<div id="primary" class="content-area" category="staff">
-		<div id="staff-title" class="single-staff-container"
-			data-id="<?php the_title();?>" staff-email="<?php the_field('email'); ?>">
+	<div id="primary" 
+	class="content-area"
+	data-id="staff"
+	page-name="<?php the_title();?>"
+	supervisor-id="<?php the_field('director'); ?>"
+	staff-email="<?php the_field('email'); ?>"
+	>
+		<div id="staff-title" class="single-staff-container">
 			<div id="staff-breadcrumbs">
 
 			</div>
