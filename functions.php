@@ -438,10 +438,10 @@ function cases_portal_scripts() {
 	wp_enqueue_script( 'babel', 'https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser' . $suffix . '.js', array(), null );
 
 	if ( is_singular('department') ) {
-	wp_enqueue_script( 'department-js', get_template_directory_uri() . '/dist/department.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+	wp_enqueue_script( 'department-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_singular('program')) {
-	wp_enqueue_script( 'program-js', get_template_directory_uri() . '/dist/program.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+	wp_enqueue_script( 'program-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_singular('staff')) {
 	wp_enqueue_script( 'staff-js', get_template_directory_uri() . '/dist/staff.js', array('react', 'react-dom', 'babel'), '1.0.0', true);

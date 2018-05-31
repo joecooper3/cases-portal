@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { DeptFetch } from './components/DeptFetch.jsx';
+import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
 import { SearchBox } from './components/SearchBox.jsx';
+import { ProgramBreadcrumbs } from './components/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
 
@@ -23,8 +25,8 @@ const promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
 const dataBlock = document.getElementById('primary');
 const pageType = dataBlock.getAttribute('data-id');
 
-function staffSorter(a, b) {
-  // function for sorting by array by first name
+function staffSorterFirst(a, b) {
+  // function for sorting array by first name
   const nameA = a.first.toUpperCase();
   const nameB = b.first.toUpperCase();
   const lastA = a.last.toUpperCase();
@@ -33,6 +35,18 @@ function staffSorter(a, b) {
   if (nameA > nameB) return 1;
   if (lastA < lastB) return -1;
   if (lastA > lastB) return 1;
+  return 0;
+}
+function staffSorterLast(a, b) {
+  // function for sorting array by last name
+  const nameA = a.first.toUpperCase();
+  const nameB = b.first.toUpperCase();
+  const lastA = a.last.toUpperCase();
+  const lastB = b.last.toUpperCase();
+  if (lastA < lastB) return -1;
+  if (lastA > lastB) return 1;
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
   return 0;
 }
 function deptProgSorter(a, b) {
@@ -81,9 +95,16 @@ Promise.all(promiseArray)
         entry.supervisorName = result[0] !== undefined && supervisorNamePull(entry.supervisor);
         return entry;
       })
-      .sort(staffSorter);
+      .sort(staffSorterFirst);
     const deptData = directoryData.filter(inp => inp.type === 'dept').sort(deptProgSorter);
-    const programData = directoryData.filter(inp => inp.type === 'program').sort(deptProgSorter);
+    const programData = directoryData
+      .filter(inp => inp.type === 'program')
+      .sort(deptProgSorter)
+      .map(entry => {
+        const result = deptData.filter(deptItem => entry.parent_dept_id === deptItem.id)[0];
+        entry.parent_dept_url = result.url;
+        return entry;
+      });
     const deptDataSearch = deptData.map(entry => {
       entry.first = entry.name;
       entry.last = entry.acronym;
@@ -109,10 +130,32 @@ Promise.all(promiseArray)
       const supervisorArray = staffDataCombined.filter(item => item.email === pageSupervisor);
       if (pageType === 'dept') {
         const staffArray = staffDataCombined.filter(
-          item => item.department === deptProgName && item.email !== pageSupervisor
+          item =>
+            item.department === deptProgName && item.email !== pageSupervisor && item.program === ''
         );
-        final.staffArray = staffArray;
+        const progListArray = programData.filter(item => item.parent_dept_name === deptProgName);
+        final.staffArray = staffArray.sort(staffSorterLast);
+        final.progListArray = progListArray;
       }
+      if (pageType === 'program') {
+        const parentPageName = programData.filter(item => item.name === deptProgName)[0]
+          .parent_dept_name;
+        const parentPageUrl = programData.filter(item => item.name === deptProgName)[0]
+          .parent_dept_url;
+        const staffArray = staffDataCombined.filter(
+          item => item.program === deptProgName && item.email !== pageSupervisor
+        );
+        const progListArray = programData.filter(item => item.parent_dept_name === parentPageName);
+        final.staffArray = staffArray.sort(staffSorterLast);
+        final.progListArray = progListArray;
+        final.progBreadcrumbs = {
+          deptUrl: parentPageUrl,
+          deptName: parentPageName
+        };
+      }
+
+      final.pageSupervisor = pageSupervisor;
+      final.deptProgName = deptProgName;
       final.supervisorArray = supervisorArray;
     }
     console.log(final);
@@ -126,100 +169,20 @@ Promise.all(promiseArray)
         document.getElementById('app-area')
       );
     }
+    if (pageType === 'program') {
+      render(
+        <ProgramFetch supervisorParts={yeah.supervisorArray} parts={yeah.staffArray} />,
+        document.getElementById('app-area')
+      );
+      render(
+        <ProgramBreadcrumbs data={yeah.progBreadcrumbs} />,
+        document.getElementById('breadcrumbs')
+      );
+    }
+    if (pageType === 'dept' || pageType === 'program') {
+      render(
+        <ProgramsUnitsList name={yeah.deptProgName} data={yeah.progListArray} />,
+        document.getElementById('sec-holder-one')
+      );
+    }
   });
-
-// class DeptFetchApp extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       parts: [],
-//       supervisorParts: [],
-//       staffAPI: []
-//     };
-//   }
-//   componentWillMount() {
-//     masterData.then(yeah => {
-//       this.setState({ parts: yeah.main });
-//       this.setState({ supervisorParts: yeah.supervisor });
-//     });
-//   }
-//   _removeSemicolon(inp) {
-//     return inp.replace('&#038;', '&').replace('&#8217;', '’');
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <DeptFetch supervisorParts={this.state.supervisorParts} parts={this.state.parts} />
-//       </div>
-//     );
-//   }
-// }
-
-// class ProgramsUnitsListApp extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       progUnitParts: [],
-//       deptName: '',
-//       loaded: false
-//     };
-//   }
-//   componentWillMount() {
-//     apiRequestProgram.then(yeah => {
-//       let progUnitListArray = [];
-//       yeah.map(info => {
-//         if (dept === info.acf.parent_department[0].post_title) {
-//           progUnitListArray.push(info);
-//         }
-//       });
-//       function compareProgs(a, b) {
-//         const titleA = a.title.rendered.toUpperCase();
-//         const titleB = b.title.rendered.toUpperCase();
-//         if (titleA < titleB) return -1;
-//         if (titleA > titleB) return 1;
-//         return 0;
-//       }
-//       progUnitListArray = progUnitListArray.sort(compareProgs);
-//       this.setState({ progUnitParts: progUnitListArray });
-//       this.setState({ deptName: dept });
-//       this.setState({ loaded: true });
-//     });
-//   }
-//   render() {
-//     if (this.state.loaded) {
-//       return (
-//         <ProgramsUnitsList name={this.state.deptName} type="dept" data={this.state.progUnitParts} />
-//       );
-//     }
-
-//     return <br />;
-//   }
-// }
-
-// class SearchBoxApp extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       searchParts: [],
-//       loaded: false
-//     };
-//   }
-//   componentWillMount() {
-//     masterData.then(yeah => {
-//       this.setState({ searchParts: yeah.searchBox });
-//       this.setState({ loaded: true });
-//     });
-//   }
-
-//   render() {
-//     if (this.state.loaded === true) {
-//       return <SearchBox data={this.state.searchParts} />;
-//     }
-
-//     return <div role="search" className="sbx-custom__wrapper" />;
-//   }
-// }
-
-// render(<DeptFetchApp />, document.getElementById('app-area'));
-// render(<ProgramsUnitsListApp />, document.getElementById('sec-holder-one'));
