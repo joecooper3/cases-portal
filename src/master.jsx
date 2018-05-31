@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-// import { DeptFetch } from './components/DeptFetch.jsx';
-// import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
+import { DeptFetch } from './components/DeptFetch.jsx';
+import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
 import { SearchBox } from './components/SearchBox.jsx';
 
 require('../sass/style.scss');
@@ -61,11 +61,16 @@ Promise.all(promiseArray)
       const userUploadedAvatar = avatarData.filter(avItem => avItem.email === inp.email);
       const newHireAvatar = directoryData.filter(avItem => avItem.email === inp.email);
       if (userUploadedAvatar.length > 0) {
-        return userUploadedAvatar[0].avatarCode;
+        const raw = userUploadedAvatar[0].avatarCode;
+        const trimmed = raw.split('src=\"')[1].split('" alt')[0]; // eslint-disable-line 
+        return trimmed;
       } else if (newHireAvatar[0].image) {
         return newHireAvatar[0].image;
       }
       return 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+    }
+    function removeSpec(inp) {
+      return inp.replace('&#038;', '&').replace('&#8217;', '’');
     }
     const staffDataCombined = jasonData
       .map(entry => {
@@ -98,28 +103,29 @@ Promise.all(promiseArray)
     });
     const searchData = staffDataCombined.concat(deptDataSearch).concat(programDataSearch);
     const final = { searchData };
+    if (pageType === 'dept' || pageType === 'program') {
+      const pageSupervisor = dataBlock.getAttribute('supervisor-id');
+      const deptProgName = dataBlock.getAttribute('page-name');
+      const supervisorArray = staffDataCombined.filter(item => item.email === pageSupervisor);
+      if (pageType === 'dept') {
+        const staffArray = staffDataCombined.filter(
+          item => item.department === deptProgName && item.email !== pageSupervisor
+        );
+        final.staffArray = staffArray;
+      }
+      final.supervisorArray = supervisorArray;
+    }
+    console.log(final);
     return final;
-    // const supervisorFormatted = supervisor.replace(/\s/g, '');
-    // const supervisorFormattedArray = supervisorFormatted.split(',');
-    // jasonData.map(info => {
-    //   if (supervisorFormattedArray.includes(info.email)) {
-    //     supervisorArray.push(info);
-    //   } else if (info.department === dept && info.program === '') {
-    //     filteredArray.push(info);
-    //   }
-    // });
-    // const sortedArray = filteredArray.sort(compareSearch);
-    // const final = {
-    //   searchBox: sortedArraySearch.concat(deptProgArray),
-    //   supervisor: supervisorArray,
-    //   main: sortedArray,
-    //   progUnitList: progUnitListArray,
-    //   deptName: dept
-    // };
-    // return final;
   })
   .then(yeah => {
     render(<SearchBox data={yeah.searchData} />, document.getElementById('particular-search'));
+    if (pageType === 'dept') {
+      render(
+        <DeptFetch supervisorParts={yeah.supervisorArray} parts={yeah.staffArray} />,
+        document.getElementById('app-area')
+      );
+    }
   });
 
 // class DeptFetchApp extends React.Component {
