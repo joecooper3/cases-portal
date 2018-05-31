@@ -444,7 +444,7 @@ elseif (is_singular('program')) {
 	wp_enqueue_script( 'program-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_singular('staff')) {
-	wp_enqueue_script( 'staff-js', get_template_directory_uri() . '/dist/staff.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+	wp_enqueue_script( 'staff-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_page_template('page-directory.php')) {
 	wp_enqueue_script( 'directory-js', get_template_directory_uri() . '/dist/directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);

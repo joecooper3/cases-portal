@@ -1,23 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SupervisorPull extends React.Component {
-
-  _formatSpan(name,url) {
-    if (name) {
-    return (
-      <span>
-      Supervisor: <a href={url}>{name}</a>
-    </span>
-    );
-    }
-  }
-
   render() {
     return (
       <span>
-        {this._formatSpan(this.props.supervisorName, this.props.supervisorUrl)}
-  </span>);
+        Supervisor: <a href={this.props.supervisorUrl}>{this.props.supervisorName}</a>
+      </span>
+    );
   }
 }
 
-export {SupervisorPull};
+export { SupervisorPull };
+
+SupervisorPull.propTypes = {
+  supervisorName: PropTypes.string.isRequired,
+  supervisorUrl: PropTypes.string.isRequired
+};

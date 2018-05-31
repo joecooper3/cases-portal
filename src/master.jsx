@@ -4,7 +4,10 @@ import { render } from 'react-dom';
 import { DeptFetch } from './components/DeptFetch.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
+import { RelatedStaff } from './components/RelatedStaff.jsx';
 import { SearchBox } from './components/SearchBox.jsx';
+import { StaffBreadcrumbs } from './components/StaffBreadcrumbs.jsx';
+import { StaffFetch } from './components/StaffFetch.jsx';
 import { ProgramBreadcrumbs } from './components/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
@@ -153,10 +156,46 @@ Promise.all(promiseArray)
           deptName: parentPageName
         };
       }
-
       final.pageSupervisor = pageSupervisor;
       final.deptProgName = deptProgName;
       final.supervisorArray = supervisorArray;
+    }
+    if (pageType === 'staff') {
+      const currentStaffEmail = dataBlock.getAttribute('staff-email');
+      const currentStaffId = currentStaffEmail.split('@')[0];
+      const currentStaffObj = staffDataCombined.filter(item => item.email === currentStaffEmail)[0];
+      const deptUrl = deptData.filter(item => item.name === currentStaffObj.department)[0].url;
+      const deptName = currentStaffObj.department;
+      const programUrl =
+        currentStaffObj.program !== ''
+          ? programData.filter(item => item.name === currentStaffObj.program)[0].url
+          : null;
+      const programName = currentStaffObj.program !== '' ? currentStaffObj.program : null;
+      const type = currentStaffObj.program !== '' ? 'program' : 'dept';
+      const supervisingArray = staffDataCombined.filter(item => item.supervisor === currentStaffId);
+      const topLevelDeptProg = programName !== null ? programName : deptName;
+      final.staffBreadcrumbs = { deptUrl, deptName, programUrl, programName, type };
+      final.currentStaff = currentStaffObj;
+      final.relatedStaff = {
+        first: currentStaffObj.first,
+        last: currentStaffObj.last,
+        deptProg: topLevelDeptProg
+      };
+      if (supervisingArray.length > 0) {
+        final.relatedStaff.type = 'supervisor';
+        final.relatedStaff.dataArray = supervisingArray;
+      } else {
+        final.relatedStaff.type = type;
+        if (type === 'program') {
+          final.relatedStaff.dataArray = staffDataCombined.filter(
+            item => item.program === topLevelDeptProg && item.id !== currentStaffId
+          );
+        } else if (type === 'dept') {
+          final.relatedStaff.dataArray = staffDataCombined.filter(
+            item => item.department === topLevelDeptProg && item.id !== currentStaffId
+          );
+        }
+      }
     }
     console.log(final);
     return final;
@@ -183,6 +222,23 @@ Promise.all(promiseArray)
       render(
         <ProgramsUnitsList name={yeah.deptProgName} data={yeah.progListArray} />,
         document.getElementById('sec-holder-one')
+      );
+    }
+    if (pageType === 'staff') {
+      render(
+        <StaffBreadcrumbs data={yeah.staffBreadcrumbs} />,
+        document.getElementById('staff-breadcrumbs')
+      );
+      render(<StaffFetch data={yeah.currentStaff} />, document.getElementById('app-area'));
+      render(
+        <RelatedStaff
+          type={yeah.relatedStaff.type}
+          data={yeah.relatedStaff.dataArray}
+          first={yeah.relatedStaff.first}
+          last={yeah.relatedStaff.last}
+          deptProg={yeah.relatedStaff.deptProg}
+        />,
+        document.getElementById('related-staff')
       );
     }
   });
