@@ -535,7 +535,7 @@ function big_staff( $data ) {
 				'id' => $post->ID,
 				'name' => $post->post_title,
 				'type' => 'staff',
-				'email' => get_field('email', $post->ID),
+				'email' => strtolower(get_field('email', $post->ID)),
 				'start_date' => get_field('start_date', $post->ID),
 				'fun_facts' => get_field('fun_facts', $post->ID),
 				'url' => get_permalink($post->ID),

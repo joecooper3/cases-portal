@@ -27,6 +27,8 @@ const promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
 
 const dataBlock = document.getElementById('primary');
 const pageType = dataBlock.getAttribute('data-id');
+const defaultAvatar =
+  'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
 
 function staffSorterFirst(a, b) {
   // function for sorting array by first name
@@ -84,7 +86,7 @@ Promise.all(promiseArray)
       } else if (newHireAvatar[0].image) {
         return newHireAvatar[0].image;
       }
-      return 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+      return defaultAvatar;
     }
     function removeSpec(inp) {
       return inp.replace('&#038;', '&').replace('&#8217;', '’');
@@ -93,9 +95,9 @@ Promise.all(promiseArray)
       .map(entry => {
         const result = directoryData.filter(dirItem => dirItem.email === entry.email);
         entry.url = result[0] !== undefined ? result[0].url : null;
-        entry.imageUrl = result[0] !== undefined && avatarPuller(result[0]);
-        entry.supervisorUrl = result[0] !== undefined && supervisorUrlPull(entry.supervisor);
-        entry.supervisorName = result[0] !== undefined && supervisorNamePull(entry.supervisor);
+        entry.imageUrl = result[0] !== undefined ? avatarPuller(result[0]) : defaultAvatar;
+        entry.supervisorUrl = supervisorUrlPull(entry.supervisor);
+        entry.supervisorName = supervisorNamePull(entry.supervisor);
         return entry;
       })
       .sort(staffSorterFirst);
@@ -161,9 +163,10 @@ Promise.all(promiseArray)
       final.supervisorArray = supervisorArray;
     }
     if (pageType === 'staff') {
-      const currentStaffEmail = dataBlock.getAttribute('staff-email');
+      const currentStaffEmail = dataBlock.getAttribute('staff-email').toLowerCase();
       const currentStaffId = currentStaffEmail.split('@')[0];
       const currentStaffObj = staffDataCombined.filter(item => item.email === currentStaffEmail)[0];
+      console.log(currentStaffObj.program);
       const deptUrl = deptData.filter(item => item.name === currentStaffObj.department)[0].url;
       const deptName = currentStaffObj.department;
       const programUrl =
