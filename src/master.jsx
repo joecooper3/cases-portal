@@ -166,11 +166,14 @@ Promise.all(promiseArray)
       const currentStaffEmail = dataBlock.getAttribute('staff-email').toLowerCase();
       const currentStaffId = currentStaffEmail.split('@')[0];
       const currentStaffObj = staffDataCombined.filter(item => item.email === currentStaffEmail)[0];
-      console.log(currentStaffObj.program);
       const deptUrl = deptData.filter(item => item.name === currentStaffObj.department)[0].url;
       const deptName = currentStaffObj.department;
+      const deptOrProg =
+        programData.filter(item => item.name === currentStaffObj.program)[0] !== undefined
+          ? 'prog'
+          : 'dept';
       const programUrl =
-        currentStaffObj.program !== ''
+        deptOrProg === 'prog'
           ? programData.filter(item => item.name === currentStaffObj.program)[0].url
           : null;
       const programName = currentStaffObj.program !== '' ? currentStaffObj.program : null;
