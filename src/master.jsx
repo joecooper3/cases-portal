@@ -9,25 +9,42 @@ import { RelatedStaff } from './components/RelatedStaff.jsx';
 import { SearchBox } from './components/SearchBox.jsx';
 import { StaffBreadcrumbs } from './components/StaffBreadcrumbs.jsx';
 import { StaffFetch } from './components/StaffFetch.jsx';
+import { TrainingsBox } from './components/TrainingsBox.jsx';
 import { ProgramBreadcrumbs } from './components/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
 
 const APIHost = __API__; // eslint-disable-line no-undef
+const dataBlock = document.getElementById('primary');
+const pageType = dataBlock.getAttribute('data-id');
 
 const data = `${APIHost}/wp-content/themes/cases_portal/data/casescsv.json`;
 const directoryUrl = `${APIHost}/wp-json/portal/v2/bigstaff/`;
 const avatarUrl = `${APIHost}/wp-json/portal/v2/users`;
+const trainingUrl = `${APIHost}/wp-json/portal/v2/trainings/`;
+const sidenavUrl = `${APIHost}/wp-json/portal/v2/sidenavs/`;
 const commsUrl = `${APIHost}/wp-json/portal/v2/comms`;
 
 const apiRequestJason = fetch(data).then(response => response.json());
 const apiRequestDirectory = fetch(directoryUrl).then(response => response.json());
 const apiRequestAvatar = fetch(avatarUrl).then(response => response.json());
+const apiRequestTraining = fetch(trainingUrl).then(response => response.json());
+const apiRequestSidenav = fetch(sidenavUrl).then(response => response.json());
+const apiRequestComms = fetch(commsUrl).then(response => response.json());
 
-const promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
+let promiseArray = [];
+if (pageType === 'compliance') {
+  promiseArray = [
+    apiRequestJason,
+    apiRequestDirectory,
+    apiRequestAvatar,
+    apiRequestTraining,
+    apiRequestSidenav
+  ];
+} else {
+  promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
+}
 
-const dataBlock = document.getElementById('primary');
-const pageType = dataBlock.getAttribute('data-id');
 const defaultAvatar =
   'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
 
@@ -204,6 +221,15 @@ Promise.all(promiseArray)
         }
       }
     }
+    if (pageType === 'compliance') {
+      const trainingsData = values[3];
+      const sidenavData = values[4];
+      const complianceDates = trainingsData.filter(item => item.training_type === 'Compliance');
+      const privacyDates = trainingsData.filter(item => item.training_type === 'Privacy');
+      final.complianceDates = complianceDates;
+      final.privacyDates = privacyDates;
+      final.permissions = dataBlock.getAttribute('data-id') === 'sure';
+    }
     console.log(final);
     return final;
   })
@@ -252,6 +278,16 @@ Promise.all(promiseArray)
       render(
         <DirectorySearchResults data={yeah.searchData} />,
         document.getElementById('directory-totality')
+      );
+    }
+    if (pageType === 'compliance') {
+      render(
+        <TrainingsBox type="compliance" data={yeah.complianceDates} />,
+        document.getElementById('compliance-dates')
+      );
+      render(
+        <TrainingsBox type="privacy" data={yeah.privacyDates} />,
+        document.getElementById('privacy-dates')
       );
     }
   });
