@@ -1,6 +1,7 @@
-import React from "react";
-import { DirectoryStaffBox } from "./DirectoryStaffBox.jsx";
-import { DepartmentProgramMaster } from "./DepartmentProgramMaster.jsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { DirectoryStaffBox } from './DirectoryStaffBox.jsx';
 
 class DirectorySearchResults extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class DirectorySearchResults extends React.Component {
       fullResults: [],
       searchResults: [],
       contactsVisible: false,
-      query: ""
+      query: ''
     };
     this._filterSearch = this._filterSearch.bind(this);
     this._hide = this._hide.bind(this);
@@ -19,21 +20,22 @@ class DirectorySearchResults extends React.Component {
   }
 
   _filterSearch(event) {
+    const searchQuery = event.target.value.toLowerCase();
     function compareSearch(a, b) {
       // function for sorting by entered characters first, then first name
-      let nameA = a.first.toLowerCase();
-      let nameB = b.first.toLowerCase();
-      let nameALast = a.last.toLowerCase();
-      let nameBLast = b.last.toLowerCase();
-      let typeA = a.type;
-      let typeB = b.type;
-      let queryLength = searchQuery.length;
+      const nameA = a.first.toLowerCase();
+      const nameB = b.first.toLowerCase();
+      const nameALast = a.last.toLowerCase();
+      const nameBLast = b.last.toLowerCase();
+      const typeA = a.type;
+      const typeB = b.type;
+      const queryLength = searchQuery.length;
       /* These next four lets test to see if the search query matches the first
       characters in either the first or last names */
-      let firstMatchA = nameA.substr(0, queryLength) === searchQuery;
-      let lastMatchA = nameALast.substr(0, queryLength) === searchQuery;
-      let firstMatchB = nameB.substr(0, queryLength) === searchQuery;
-      let lastMatchB = nameBLast.substr(0, queryLength) === searchQuery;
+      const firstMatchA = nameA.substr(0, queryLength) === searchQuery;
+      const lastMatchA = nameALast.substr(0, queryLength) === searchQuery;
+      const firstMatchB = nameB.substr(0, queryLength) === searchQuery;
+      const lastMatchB = nameBLast.substr(0, queryLength) === searchQuery;
       /* The following logic checks to see if the query matches:
       1. If it's a name (rather than program or department)
       2. The first few characters of the first name
@@ -62,18 +64,17 @@ class DirectorySearchResults extends React.Component {
       return 0;
     }
     this.setState({ contactsVisible: true });
-    let searchQuery = event.target.value.toLowerCase();
     this.setState({ query: searchQuery });
-    let sortedFullResults = this.state.fullResults.sort(compareSearch);
-    let searchResults = sortedFullResults.filter(function(el) {
-      let searchValueFirst = el.first.toLowerCase();
-      let searchValueLast = el.last.toLowerCase();
-      let searchValue = searchValueFirst + " " + searchValueLast;
-      let theResults = searchValue.indexOf(searchQuery) !== -1;
+    const sortedFullResults = this.state.fullResults.sort(compareSearch);
+    const searchResults = sortedFullResults.filter(el => {
+      const searchValueFirst = el.first.toLowerCase();
+      const searchValueLast = el.last.toLowerCase();
+      const searchValue = `${searchValueFirst} ${searchValueLast}`;
+      const theResults = searchValue.indexOf(searchQuery) !== -1;
       return theResults;
     });
-    this.setState({ searchResults: searchResults });
-    if (searchQuery === "") {
+    this.setState({ searchResults });
+    if (searchQuery === '') {
       this.setState({ contactsVisible: false });
     }
   }
@@ -87,11 +88,7 @@ class DirectorySearchResults extends React.Component {
           <h1 id="dept-title">Staff Directory</h1>
           <div className="entry-content-directory">
             <div id="search-box">
-              <form
-                id="inside-search"
-                noValidate="novalidate"
-                className="searchbox sbx2-custom"
-              >
+              <form id="inside-search" noValidate="novalidate" className="searchbox sbx2-custom">
                 <div role="search" className="sbx2-custom__wrapper">
                   <input
                     type="search"
@@ -130,10 +127,10 @@ class DirectorySearchResults extends React.Component {
           <h2>Search Results</h2>
           <div id="directory-search-results">
             {this.state.contactsVisible ? (
-              this.state.searchResults.slice(0, 8).map(function(part, i) {
+              this.state.searchResults.slice(0, 8).map(function(part) {
                 return (
                   <DirectoryStaffBox
-                    key={i}
+                    key={part.id}
                     first={part.first}
                     last={part.last}
                     url={part.url}
@@ -151,9 +148,9 @@ class DirectorySearchResults extends React.Component {
               }, this)
             ) : (
               <p className="directory-blurb">
-                Type the name of a CASES staff member or program in the search
-                box above to find their contact information. To see a complete
-                listing of CASES departments and program/units,{" "}
+                Type the name of a CASES staff member or program in the search box above to find
+                their contact information. To see a complete listing of CASES departments and
+                program/units,{' '}
                 <a href="http://portal.cases.org/staff-directory-by-department/">
                   visit the Department Directory
                 </a>.
@@ -167,3 +164,7 @@ class DirectorySearchResults extends React.Component {
 }
 
 export { DirectorySearchResults };
+
+DirectorySearchResults.propTypes = {
+  data: PropTypes.array.isRequired
+};

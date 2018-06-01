@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { DeptFetch } from './components/DeptFetch.jsx';
+import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
 import { RelatedStaff } from './components/RelatedStaff.jsx';
@@ -245,6 +246,12 @@ Promise.all(promiseArray)
           deptProg={yeah.relatedStaff.deptProg}
         />,
         document.getElementById('related-staff')
+      );
+    }
+    if (pageType === 'directory') {
+      render(
+        <DirectorySearchResults data={yeah.searchData} />,
+        document.getElementById('directory-totality')
       );
     }
   });
