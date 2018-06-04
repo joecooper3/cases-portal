@@ -453,7 +453,7 @@ elseif (is_page_template('page-compliance.php')) {
 	wp_enqueue_script( 'compliance-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_page_template('page-resources.php')) {
-	wp_enqueue_script( 'resources-js', get_template_directory_uri() . '/dist/resources.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+	wp_enqueue_script( 'resources-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_page_template('page-department-directory.php')) {
 	wp_enqueue_script( 'department-directory-js', get_template_directory_uri() . '/dist/department-directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);

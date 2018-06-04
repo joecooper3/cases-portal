@@ -23,8 +23,7 @@ else {
 	perm="<?php if(current_user_can('administrator') || current_user_can($fullRole)){echo "sure";} else {echo "nah";} ?>"
 	>
 			<div>
-		<h1 id="dept-title">
-		<?php the_title();?></h1>
+		<h1 id="dept-title"><?php the_title();?></h1>
 		<div class="entry-content">
 			<?php
 			$catKing = get_the_title();

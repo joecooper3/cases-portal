@@ -1,12 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import { CommsCatalog } from './components/CommsCatalog.jsx';
 import { DeptFetch } from './components/DeptFetch.jsx';
 import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
 import { RelatedStaff } from './components/RelatedStaff.jsx';
 import { SearchBox } from './components/SearchBox.jsx';
+import { SideNavBox } from './components/SideNavBox.jsx';
 import { StaffBreadcrumbs } from './components/StaffBreadcrumbs.jsx';
 import { StaffFetch } from './components/StaffFetch.jsx';
 import { TrainingsBox } from './components/TrainingsBox.jsx';
@@ -14,9 +16,17 @@ import { ProgramBreadcrumbs } from './components/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
 
+function removeSpec(inp) {
+  return inp
+    .replace('&#038;', '&')
+    .replace('&amp;', '&')
+    .replace('&#8217;', '’');
+}
 const APIHost = __API__; // eslint-disable-line no-undef
 const dataBlock = document.getElementById('primary');
 const pageType = dataBlock.getAttribute('data-id');
+const titleBlock = document.getElementById('dept-title');
+const pageTitle = removeSpec(titleBlock.innerHTML);
 
 const data = `${APIHost}/wp-content/themes/cases_portal/data/casescsv.json`;
 const directoryUrl = `${APIHost}/wp-json/portal/v2/bigstaff/`;
@@ -38,9 +48,19 @@ if (pageType === 'compliance') {
     apiRequestJason,
     apiRequestDirectory,
     apiRequestAvatar,
-    apiRequestTraining,
-    apiRequestSidenav
+    apiRequestSidenav,
+    apiRequestTraining
   ];
+} else if (pageType === 'resources' && pageTitle === 'Communications') {
+  promiseArray = [
+    apiRequestJason,
+    apiRequestDirectory,
+    apiRequestAvatar,
+    apiRequestSidenav,
+    apiRequestComms
+  ];
+} else if (pageType === 'resources') {
+  promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar, apiRequestSidenav];
 } else {
   promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
 }
@@ -78,6 +98,11 @@ function deptProgSorter(a, b) {
   if (nameA < nameB) return -1;
   if (nameA > nameB) return 1;
 }
+function sidenavOrder(a, b) {
+  if (a.position < b.position) return -1;
+  if (a.position > b.position) return 1;
+  return 0;
+}
 
 Promise.all(promiseArray)
   .then(values => {
@@ -105,9 +130,6 @@ Promise.all(promiseArray)
         return newHireAvatar[0].image;
       }
       return defaultAvatar;
-    }
-    function removeSpec(inp) {
-      return inp.replace('&#038;', '&').replace('&#8217;', '’');
     }
     const staffDataCombined = jasonData
       .map(entry => {
@@ -221,14 +243,23 @@ Promise.all(promiseArray)
         }
       }
     }
+    if (pageType === 'compliance' || pageType === 'resources') {
+      const sidenavData = values[3];
+      if (pageTitle === 'Communications') {
+        const commsData = values[4];
+        final.commsData = commsData;
+      }
+      final.sidenavData = sidenavData
+        .filter(item => item.category === pageTitle)
+        .sort(sidenavOrder);
+      final.permissions = dataBlock.getAttribute('perm') === 'sure';
+    }
     if (pageType === 'compliance') {
-      const trainingsData = values[3];
-      const sidenavData = values[4];
+      const trainingsData = values[4];
       const complianceDates = trainingsData.filter(item => item.training_type === 'Compliance');
       const privacyDates = trainingsData.filter(item => item.training_type === 'Privacy');
       final.complianceDates = complianceDates;
       final.privacyDates = privacyDates;
-      final.permissions = dataBlock.getAttribute('data-id') === 'sure';
     }
     console.log(final);
     return final;
@@ -279,6 +310,22 @@ Promise.all(promiseArray)
         <DirectorySearchResults data={yeah.searchData} />,
         document.getElementById('directory-totality')
       );
+    }
+    if (pageType === 'compliance' || 'resources') {
+      render(
+        yeah.sidenavData.map(part => (
+          <SideNavBox
+            key={part.id}
+            id={part.id}
+            name={part.name}
+            icon={part.icon}
+            content={part.content}
+            permissions={yeah.permissions}
+          />
+        )),
+        document.getElementById('sidenav-container')
+      );
+      render(<CommsCatalog data={yeah.commsData} />, document.getElementById('comms-catalog'));
     }
     if (pageType === 'compliance') {
       render(
