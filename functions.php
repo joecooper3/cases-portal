@@ -660,11 +660,18 @@ $users = new WP_User_Query(  array(
 		$data = [];
 
 		foreach ($users->get_results() as $user) {
+			if (strpos(get_wp_user_avatar($user->data->ID, 'medium'),'wp-user-avatar/images')) {
+			$api_content = [
+				'id' => $user->data->ID,
+				'email' => $user->data->user_email,
+			];
+		} else {
 			$api_content = [
 				'id' => $user->data->ID,
 				'email' => $user->data->user_email,
 				'avatarCode' => get_wp_user_avatar($user->data->ID, 'medium')
 			];
+		}
 			$data[] = $api_content;
 		}
 		return $data;

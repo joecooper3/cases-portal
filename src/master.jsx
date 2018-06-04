@@ -32,7 +32,10 @@ const dataBlock = document.getElementById('primary');
 const pageType = dataBlock.getAttribute('data-id');
 const titleBlock = document.getElementById('dept-title');
 
-const pageTitle = pageType === 'frontpage' ? 'frontpage' : removeSpec(titleBlock.innerHTML);
+const pageTitle =
+  pageType === 'frontpage' || pageType === 'staff'
+    ? 'frontpage or staff'
+    : removeSpec(titleBlock.innerHTML);
 
 const data = `${APIHost}/wp-content/themes/cases_portal/data/casescsv.json`;
 const directoryUrl = `${APIHost}/wp-json/portal/v2/bigstaff/`;
@@ -142,7 +145,7 @@ Promise.all(promiseArray)
     function avatarPuller(inp) {
       const userUploadedAvatar = avatarData.filter(avItem => avItem.email === inp.email);
       const newHireAvatar = directoryData.filter(avItem => avItem.email === inp.email);
-      if (userUploadedAvatar.length > 0) {
+      if (userUploadedAvatar[0] !== undefined && userUploadedAvatar[0].avatarCode !== undefined) {
         const raw = userUploadedAvatar[0].avatarCode;
         const trimmed = raw.split('src=\"')[1].split('" alt')[0]; // eslint-disable-line 
         return trimmed;
