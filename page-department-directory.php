@@ -23,7 +23,7 @@
   data-id="department-directory"
   >
   <div id="department-directory">
-    <h1>Department Directory</h1>
+    <h1 id="dept-title">Department Directory</h1>
     <div class="dept-dir-container">
       <a href="#!" class="dept-header">
         <div class="dept-dir-circle">

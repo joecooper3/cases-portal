@@ -1,17 +1,9 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class DepartmentDirectory extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      staffUrl: "#!"
-    };
-  }
-  _removeSemicolon(inp) {
-    return inp.replace("&#038;", "&").replace("&#8217;", "’");
-  }
   render() {
-    let completeClassName = `fa ${this.props.icon}`;
+    const completeClassName = `fa ${this.props.icon}`;
     if (this.props.kids.length > 0) {
       return (
         <div className="dept-dir-container">
@@ -22,31 +14,33 @@ class DepartmentDirectory extends React.Component {
             <h2>{this.props.name}</h2>
           </a>
           <ul>
-            {this.props.kids.map((kid, i) => {
-              return (
-                <li key={i}>
-                  <a href={kid.link}>
-                    {this._removeSemicolon(kid.title.rendered)}
-                  </a>
-                </li>
-              );
-            })}
+            {this.props.kids.map((kid, i) => (
+              <li key={i}>
+                <a href={kid.url}>{kid.name}</a>
+              </li>
+            ))}
           </ul>
         </div>
       );
-    } else {
-      return (
-        <div className="dept-dir-container">
-          <a href={this.props.url} className="dept-header">
-            <div className="dept-dir-circle">
-              <i className={completeClassName} aria-hidden="true" />
-            </div>
-            <h2>{this.props.name}</h2>
-          </a>
-        </div>
-      );
     }
+    return (
+      <div className="dept-dir-container">
+        <a href={this.props.url} className="dept-header">
+          <div className="dept-dir-circle">
+            <i className={completeClassName} aria-hidden="true" />
+          </div>
+          <h2>{this.props.name}</h2>
+        </a>
+      </div>
+    );
   }
 }
 
 export { DepartmentDirectory };
+
+DepartmentDirectory.propTypes = {
+  name: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  kids: PropTypes.array.isRequired
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { CommsCatalog } from './components/CommsCatalog.jsx';
+import { DepartmentDirectory } from './components/DepartmentDirectory.jsx';
 import { DeptFetch } from './components/DeptFetch.jsx';
 import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
@@ -261,6 +262,13 @@ Promise.all(promiseArray)
       final.complianceDates = complianceDates;
       final.privacyDates = privacyDates;
     }
+    if (pageType === 'department-directory') {
+      final.deptProg = deptDataSearch.map(dept => {
+        const createdKids = programDataSearch.filter(prog => prog.parent_dept_id === dept.id);
+        dept.kids = createdKids;
+        return dept;
+      });
+    }
     console.log(final);
     return final;
   })
@@ -337,6 +345,23 @@ Promise.all(promiseArray)
       render(
         <TrainingsBox type="privacy" data={yeah.privacyDates} />,
         document.getElementById('privacy-dates')
+      );
+    }
+    if (pageType === 'department-directory') {
+      render(
+        <div id="department-directory">
+          <h1>Staff Directory by Department</h1>
+          {yeah.deptProg.map(dep => (
+            <DepartmentDirectory
+              key={dep.id}
+              name={dep.name}
+              url={dep.url}
+              kids={dep.kids}
+              icon={dep.icon}
+            />
+          ))}
+        </div>,
+        document.getElementById('department-directory')
       );
     }
   });

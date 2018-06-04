@@ -456,7 +456,7 @@ elseif (is_page_template('page-resources.php')) {
 	wp_enqueue_script( 'resources-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_page_template('page-department-directory.php')) {
-	wp_enqueue_script( 'department-directory-js', get_template_directory_uri() . '/dist/department-directory.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
+	wp_enqueue_script( 'department-directory-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 elseif (is_tax('commstax')) {
 	wp_enqueue_script( 'comms-archive-js', get_template_directory_uri() . '/dist/comms-archive.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
@@ -550,6 +550,7 @@ function big_staff( $data ) {
 				'type' => 'dept',
 				'url' => get_permalink($dept->ID),
 				'acronym' => get_field('acronym', $dept->ID),
+				'icon' => get_field('department_icon', $dept->ID),
 				'director' => get_field('director', $dept->ID)
 			];
 			$data[] = $api_content;
