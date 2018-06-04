@@ -311,7 +311,7 @@ Promise.all(promiseArray)
         document.getElementById('directory-totality')
       );
     }
-    if (pageType === 'compliance' || 'resources') {
+    if (pageType === 'compliance' || pageType === 'resources') {
       render(
         yeah.sidenavData.map(part => (
           <SideNavBox
@@ -325,7 +325,9 @@ Promise.all(promiseArray)
         )),
         document.getElementById('sidenav-container')
       );
-      render(<CommsCatalog data={yeah.commsData} />, document.getElementById('comms-catalog'));
+      if (pageTitle === 'Communications') {
+        render(<CommsCatalog data={yeah.commsData} />, document.getElementById('comms-catalog'));
+      }
     }
     if (pageType === 'compliance') {
       render(
