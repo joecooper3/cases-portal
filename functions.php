@@ -437,36 +437,7 @@ function cases_portal_scripts() {
 
 	wp_enqueue_script( 'babel', 'https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser' . $suffix . '.js', array(), null );
 
-	if ( is_singular('department') ) {
-	wp_enqueue_script( 'department-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_singular('program')) {
-	wp_enqueue_script( 'program-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_singular('staff')) {
-	wp_enqueue_script( 'staff-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_page_template('page-directory.php')) {
-	wp_enqueue_script( 'directory-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_page_template('page-compliance.php')) {
-	wp_enqueue_script( 'compliance-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_page_template('page-resources.php')) {
-	wp_enqueue_script( 'resources-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_page_template('page-department-directory.php')) {
-	wp_enqueue_script( 'department-directory-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_tax('commstax')) {
-	wp_enqueue_script( 'comms-archive-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-elseif (is_front_page()) {
-	wp_enqueue_script( 'index-js', get_template_directory_uri() . '/dist/index.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
-else {
-	wp_enqueue_script( 'default-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
-}
+	wp_enqueue_script( 'master-js', get_template_directory_uri() . '/dist/master.js', array('react', 'react-dom', 'babel'), '1.0.0', true);
 }
 add_action( 'wp_enqueue_scripts', 'cases_portal_scripts' );
 

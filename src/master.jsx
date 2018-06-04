@@ -1,11 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import { AdminBox } from './components/AdminBox.jsx';
+import { CasesOrgNews } from './components/CasesOrgNews.jsx';
 import { CommsArchive } from './components/CommsArchive.jsx';
 import { CommsCatalog } from './components/CommsCatalog.jsx';
 import { DepartmentDirectory } from './components/DepartmentDirectory.jsx';
 import { DeptFetch } from './components/DeptFetch.jsx';
 import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
+import { NewStaff } from './components/NewStaff.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
 import { RelatedStaff } from './components/RelatedStaff.jsx';
@@ -28,7 +31,8 @@ const APIHost = __API__; // eslint-disable-line no-undef
 const dataBlock = document.getElementById('primary');
 const pageType = dataBlock.getAttribute('data-id');
 const titleBlock = document.getElementById('dept-title');
-const pageTitle = removeSpec(titleBlock.innerHTML);
+
+const pageTitle = pageType === 'frontpage' ? 'frontpage' : removeSpec(titleBlock.innerHTML);
 
 const data = `${APIHost}/wp-content/themes/cases_portal/data/casescsv.json`;
 const directoryUrl = `${APIHost}/wp-json/portal/v2/bigstaff/`;
@@ -92,6 +96,18 @@ function staffSorterLast(a, b) {
   const lastB = b.last.toUpperCase();
   if (lastA < lastB) return -1;
   if (lastA > lastB) return 1;
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+}
+function newStaffCompare(a, b) {
+  // function for sorting by array by first name
+  const dateA = a.startDate;
+  const dateB = b.startDate;
+  const nameA = a.last.toUpperCase();
+  const nameB = b.last.toUpperCase();
+  if (dateA < dateB) return 1;
+  if (dateA > dateB) return -1;
   if (nameA < nameB) return -1;
   if (nameA > nameB) return 1;
   return 0;
@@ -173,6 +189,17 @@ Promise.all(promiseArray)
     });
     const searchData = staffDataCombined.concat(deptDataSearch).concat(programDataSearch);
     const final = { searchData };
+    if (pageType === 'frontpage') {
+      const newStaffArray = staffDataCombined.map(entry => {
+        const result = directoryData.filter(dirItem => dirItem.email === entry.email);
+        entry.startDate = result[0] !== undefined ? result[0].start_date : null;
+        entry.funFacts = result[0] !== undefined ? result[0].fun_facts : null;
+        return entry;
+      });
+      final.newStaff = newStaffArray
+        .filter(entry => entry.startDate !== null)
+        .sort(newStaffCompare);
+    }
     if (pageType === 'dept' || pageType === 'program') {
       const pageSupervisor = dataBlock.getAttribute('supervisor-id');
       const deptProgName = dataBlock.getAttribute('page-name');
@@ -277,11 +304,23 @@ Promise.all(promiseArray)
       const commsData = values[3].filter(item => item.type === commsCategory);
       final.commsData = commsData;
     }
-    console.log(final);
     return final;
   })
   .then(yeah => {
     render(<SearchBox data={yeah.searchData} />, document.getElementById('particular-search'));
+    if (pageType === 'frontpage') {
+      const permissions = document.getElementById('primary').getAttribute('perm');
+      const newStaffPermissions =
+        document.getElementById('primary').getAttribute('newstaff') === 'sure';
+      if (permissions === 'sure') {
+        render(<AdminBox />, document.getElementById('mission-statement'));
+      }
+      render(<CasesOrgNews />, document.getElementById('cases-website-stories'));
+      render(
+        <NewStaff parts={yeah.newStaff} perm={newStaffPermissions} />,
+        document.getElementById('new-staff-container')
+      );
+    }
     if (pageType === 'dept') {
       render(
         <DeptFetch supervisorParts={yeah.supervisorArray} parts={yeah.staffArray} />,
