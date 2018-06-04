@@ -25,7 +25,7 @@ get_header(); ?>
             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         </div>
 				<?php
-                    echo '<h1>'.$finalArchiveName.'</h1>';
+                    echo '<h1 id="dept-title">'.$finalArchiveName.'</h1>';
 				?>
         <div id="comms-archive-container">
             <i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>

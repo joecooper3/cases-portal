@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import { CommsArchive } from './components/CommsArchive.jsx';
 import { CommsCatalog } from './components/CommsCatalog.jsx';
 import { DepartmentDirectory } from './components/DepartmentDirectory.jsx';
 import { DeptFetch } from './components/DeptFetch.jsx';
@@ -62,6 +63,8 @@ if (pageType === 'compliance') {
   ];
 } else if (pageType === 'resources') {
   promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar, apiRequestSidenav];
+} else if (pageType === 'comms-archive') {
+  promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar, apiRequestComms];
 } else {
   promiseArray = [apiRequestJason, apiRequestDirectory, apiRequestAvatar];
 }
@@ -269,6 +272,11 @@ Promise.all(promiseArray)
         return dept;
       });
     }
+    if (pageType === 'comms-archive') {
+      const commsCategory = document.getElementById('comms-archive').getAttribute('data-id');
+      const commsData = values[3].filter(item => item.type === commsCategory);
+      final.commsData = commsData;
+    }
     console.log(final);
     return final;
   })
@@ -362,6 +370,12 @@ Promise.all(promiseArray)
           ))}
         </div>,
         document.getElementById('department-directory')
+      );
+    }
+    if (pageType === 'comms-archive') {
+      render(
+        <CommsArchive data={yeah.commsData} />,
+        document.getElementById('comms-archive-container')
       );
     }
   });
