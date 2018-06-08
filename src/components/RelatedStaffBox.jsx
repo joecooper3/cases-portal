@@ -1,14 +1,9 @@
-import React from "react";
-import { PortraitPull } from "./PortraitPull.jsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { PortraitPull } from './PortraitPull.jsx';
 
 class RelatedStaffBox extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      staffUrl: "#!"
-    };
-  }
-
   render() {
     return (
       <div className="staff-container">
@@ -33,3 +28,18 @@ class RelatedStaffBox extends React.Component {
 }
 
 export { RelatedStaffBox };
+
+RelatedStaffBox.propTypes = {
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  title: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string
+};
+
+RelatedStaffBox.defaultProps = {
+  url: '#!',
+  title: '',
+  imageUrl: 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg'
+};

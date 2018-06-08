@@ -1,76 +1,78 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchResult extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      staffUrl: '#!'
-    };
-    this._removeSemicolon = this._removeSemicolon.bind(this);
-  }
-
-  _highlightText (first, last, query) {
-    let newFirst = this._removeSemicolon(first);
-    let fullName = newFirst + " " + last;
-    let fullNameLow = fullName.toLowerCase();
-    let splitIndex = fullNameLow.search(query);
-    let firstHalf = fullName.substring(0, splitIndex);
-    let secondHalf = fullName.substring(splitIndex + query.length, fullName.length);
-    let middle = fullName.substring(splitIndex, splitIndex + query.length);
-    let putItTogether = <div id={this.props.id} className="search-name">{firstHalf}<span className="highlighted">{middle}</span>{secondHalf}</div>;
+  _highlightText(first, last, query) {
+    const fullName = `${first} ${last}`;
+    const fullNameLow = fullName.toLowerCase();
+    const splitIndex = fullNameLow.search(query);
+    const firstHalf = fullName.substring(0, splitIndex);
+    const secondHalf = fullName.substring(splitIndex + query.length, fullName.length);
+    const middle = fullName.substring(splitIndex, splitIndex + query.length);
+    const putItTogether = (
+      <div id={this.props.id} className="search-name">
+        {firstHalf}
+        <span className="highlighted">{middle}</span>
+        {secondHalf}
+      </div>
+    );
     return putItTogether;
   }
 
-  _removeSemicolon(inp) {
-    return inp.replace("&#038;", "&").replace("&#8217;", "’");
-  }
-
   render() {
-    let typeCheck = this.props.type;
-    let programCheck = this.props.program;
-    if (typeCheck === "dept") {
+    const typeCheck = this.props.type;
+    const programCheck = this.props.program;
+    if (typeCheck === 'dept') {
       return (
         <a href={this.props.url} className="dept-prog">
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
-          <div className="search-position">
-            Department Page
-          </div>
+          <div className="search-position">Department Page</div>
         </a>
-      )
+      );
     }
-    if (typeCheck === "program") {
+    if (typeCheck === 'program') {
       return (
         <a href={this.props.url} className="dept-prog">
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
-          <div className="search-position">
-            Program Page
-          </div>
+          <div className="search-position">Program Page</div>
         </a>
-      )
-    }
-    else if (programCheck !== "") {
+      );
+    } else if (programCheck !== '') {
       return (
         <a href={this.props.url}>
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
-          <div className="search-position">
-            {this.props.program}
-          </div>
+          <div className="search-position">{this.props.program}</div>
         </a>
       );
     }
-    else {
-      return (
-        <a href={this.props.url}>
-          {this._highlightText(this.props.first, this.props.last, this.props.query)}
-          <div className="search-position">
-            {this.props.department}
-          </div>
-        </a>
-      );
-    }
+
+    return (
+      <a href={this.props.url}>
+        {this._highlightText(this.props.first, this.props.last, this.props.query)}
+        <div className="search-position">{this.props.department}</div>
+      </a>
+    );
   }
 }
 
-export {
-  SearchResult
+export { SearchResult };
+
+SearchResult.propTypes = {
+  id: PropTypes.string.isRequired,
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string,
+  query: PropTypes.string,
+  program: PropTypes.string,
+  url: PropTypes.string,
+  type: PropTypes.string,
+  department: PropTypes.string
+};
+
+SearchResult.defaultProps = {
+  last: '',
+  query: '',
+  program: '',
+  url: '#!',
+  type: '',
+  department: ''
 };
