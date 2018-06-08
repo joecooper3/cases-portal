@@ -23,12 +23,30 @@
        <div id="secondary">
         <div class="resources-links">
           <h2>Basic Training</h2>
+          <?php
+				wp_nav_menu( array(
+					'theme_location' => 'basic_training',
+					'menu_id'        => 'secondary-menu',
+				) );
+			?>
         </div>
         <div class="resources-links">
          <h2>Advanced Training</h2>
+         <?php
+				wp_nav_menu( array(
+					'theme_location' => 'advanced_training',
+					'menu_id'        => 'secondary-menu',
+				) );
+			?>
         </div>
         <div class="resources-links">
           <h2>Developer Documentation</h2>
+          <?php
+				wp_nav_menu( array(
+					'theme_location' => 'developer_guide',
+					'menu_id'        => 'secondary-menu',
+				) );
+			?>
         </div>
        </div>
 <?php
