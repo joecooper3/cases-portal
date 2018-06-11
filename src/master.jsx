@@ -341,8 +341,14 @@ Promise.all(promiseArray)
       );
     }
     if (pageType === 'dept' || pageType === 'program') {
+      const progUnitHeader =
+        pageType === 'dept' ? yeah.deptProgName : yeah.progListArray[0].parent_dept_name;
       render(
-        <ProgramsUnitsList name={yeah.deptProgName} data={yeah.progListArray} />,
+        <ProgramsUnitsList
+          name={yeah.deptProgName}
+          data={yeah.progListArray}
+          title={progUnitHeader}
+        />,
         document.getElementById('sec-holder-one')
       );
     }

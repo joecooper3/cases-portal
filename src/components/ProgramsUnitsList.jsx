@@ -9,7 +9,7 @@ class ProgramsUnitsList extends React.Component {
     return (
       <div id="programs-units">
         <h2>
-          {this.props.name}
+          {this.props.title}
           <br />Programs & Units
         </h2>
         <ul>
@@ -37,5 +37,6 @@ export { ProgramsUnitsList };
 
 ProgramsUnitsList.propTypes = {
   name: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 };
