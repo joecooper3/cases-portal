@@ -21,7 +21,7 @@
     <?php if ( have_posts() ) while ( have_posts() )  the_post(); ?>
 
     <?php the_content(); ?>
-    <div id="docs-nav" class="post-navigation"></div>
+    <div id="docs-nav"></div>
   </div>
    	</div><!-- #primary -->
        <div id="secondary">

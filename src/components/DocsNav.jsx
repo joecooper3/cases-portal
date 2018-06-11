@@ -43,23 +43,26 @@ class DocsNav extends Component {
   }
 
   render() {
-    return (
-      <Fragment>
-        {this.state.prevTitle && (
-          <div className="nav-previous">
-            <div className="title">Previous Page</div>
-            <a href={this.state.prevUrl}>← {this.state.prevTitle}</a>
-          </div>
-        )}
-        {!this.state.prevTitle && this.state.nextTitle && <div style={{ width: `50%` }} />}
-        {this.state.nextTitle && (
-          <div className="nav-next">
-            <div className="title">Next Page</div>
-            <a href={this.state.nextUrl}>{this.state.nextTitle} →</a>
-          </div>
-        )}
-      </Fragment>
-    );
+    if (this.state.prevTitle || this.state.nextTitle) {
+      return (
+        <div className="post-navigation">
+          {this.state.prevTitle && (
+            <div className="nav-previous">
+              <div className="title">Previous Page</div>
+              <a href={this.state.prevUrl}>← {this.state.prevTitle}</a>
+            </div>
+          )}
+          {!this.state.prevTitle && this.state.nextTitle && <div style={{ width: `50%` }} />}
+          {this.state.nextTitle && (
+            <div className="nav-next">
+              <div className="title">Next Page</div>
+              <a href={this.state.nextUrl}>{this.state.nextTitle} →</a>
+            </div>
+          )}
+        </div>
+      );
+    }
+    return <span />;
   }
 }
 
