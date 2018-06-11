@@ -4,12 +4,19 @@
         margin: 0;
         padding: 0;
         li {
-            padding: 0 0 0 15px;
-            margin: 14px 0;
+            padding: 10px 15px;
+            margin: 0;
             font-family: akzRoman;
+            border-bottom: 0.5px solid #f4f4f4;
             a {
                 text-decoration: none;
             }
+            a:hover {
+                color: $color3;
+            }
         }
     }
+    ul > li:first-child {
+        border-top: 0.5px solid #f4f4f4;
+      }
 }
