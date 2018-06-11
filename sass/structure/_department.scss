@@ -139,7 +139,7 @@
 
 #programs-units,
 .resources-links {
-  font-family: akzRoman;
+  font-family: akzLight;
   ul {
     margin: 0;
     padding: 0;
@@ -171,6 +171,7 @@
     font-family: akzMed;
     color: $color1;
     border-left: 5px solid $color1;
+    font-size: 17px;
     cursor: default;
   }
   .active-program:hover {
