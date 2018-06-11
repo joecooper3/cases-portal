@@ -58,7 +58,7 @@ class SearchResult extends React.Component {
 export { SearchResult };
 
 SearchResult.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   first: PropTypes.string.isRequired,
   last: PropTypes.string,
   query: PropTypes.string,

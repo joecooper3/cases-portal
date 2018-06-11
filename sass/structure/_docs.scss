@@ -15,6 +15,11 @@
                 color: $color3;
             }
         }
+        li.active {
+            font-family: akzSemibold;
+            color: $color1;
+            border-left: 5.0px solid $color1;
+        }
     }
     ul > li:first-child {
         border-top: 0.5px solid #f4f4f4;

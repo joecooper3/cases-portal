@@ -8,6 +8,7 @@ import { CommsCatalog } from './components/CommsCatalog.jsx';
 import { DepartmentDirectory } from './components/DepartmentDirectory.jsx';
 import { DeptFetch } from './components/DeptFetch.jsx';
 import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
+import { DocsNav } from './components/DocsNav.jsx';
 import { NewStaff } from './components/NewStaff.jsx';
 import { ProgramFetch } from './components/ProgramFetch.jsx';
 import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
@@ -307,6 +308,10 @@ Promise.all(promiseArray)
       const commsData = values[3].filter(item => item.type === commsCategory);
       final.commsData = commsData;
     }
+    if (pageType === 'docs') {
+      final.docsCat = dataBlock.getAttribute('cat');
+      final.docsId = parseInt(dataBlock.getAttribute('post-id'));
+    }
     return final;
   })
   .then(yeah => {
@@ -424,6 +429,12 @@ Promise.all(promiseArray)
       render(
         <CommsArchive data={yeah.commsData} />,
         document.getElementById('comms-archive-container')
+      );
+    }
+    if (pageType === 'docs') {
+      render(
+        <DocsNav id={yeah.docsId} category={yeah.docsCat} pageTitle={pageTitle} />,
+        document.getElementById('docs-nav')
       );
     }
   });

@@ -12,12 +12,16 @@
  <?php if ( !is_user_logged_in()) {
  }
  else { ?>
-  <div id="primary" class="content-area">
+ <?php 
+ $postID = get_the_ID();
+ $docCat = get_the_terms($postID, 'docs'); ?>
+  <div id="primary" class="content-area" data-id="docs" cat="<?php echo $docCat[0]->slug; ?>" post-id="<?php echo $postID; ?>">
   <div id="documentation">
-    <h1><?php the_title(); ?></h1>
+    <h1 id="dept-title"><?php the_title(); ?></h1>
     <?php if ( have_posts() ) while ( have_posts() )  the_post(); ?>
 
     <?php the_content(); ?>
+    <div id="docs-nav" class="post-navigation"></div>
   </div>
    	</div><!-- #primary -->
        <div id="secondary">

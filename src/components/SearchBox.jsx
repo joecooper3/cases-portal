@@ -97,7 +97,8 @@ class SearchBox extends React.Component {
             ? this.state.searchResults.slice(0, 8).map(function(part, i) {
                 return (
                   <SearchResult
-                    key={i}
+                    key={part.id}
+                    id={part.id}
                     first={part.first}
                     last={part.last}
                     url={part.url}

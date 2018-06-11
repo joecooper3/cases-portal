@@ -16,7 +16,7 @@ Maybe one day I'll include a ton of dummy data based on the Cheers/Frasier unive
 
 ## Author
 
-Joe Cooper, Associate Director of Communications & Design at CASES
+Joe Cooper, Associate Director of Communications & Design at CASES  
 [joecooper.nyc](http://joecooper.nyc)
 
 ## License
