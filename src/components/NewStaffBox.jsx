@@ -22,11 +22,11 @@ class NewStaffBox extends React.Component {
       'November',
       'December'
     ];
-    const removeOh = function(day) {
+    const removeOh = function(inp2) {
       if (day.substring(0, 1) === '0') {
         return day.substring(1, 2);
       }
-      return day;
+      return inp2;
     };
     const monthDisplay = monthNames[Number(month) - 1];
     const dayDisplay = removeOh(day);
@@ -55,7 +55,8 @@ class NewStaffBox extends React.Component {
           <br />
           Start Date: {this.constructor._formatDate(this.props.startDate)}
         </h3>
-        <div className="fun-facts" dangerouslySetInnerHTML={markup()} />
+        <div className="fun-facts" dangerouslySetInnerHTML={markup()} /> { // eslint-disable-line
+        }
       </div>
     );
   }
@@ -75,7 +76,7 @@ NewStaffBox.propTypes = {
 };
 
 NewStaffBox.defaultProps = {
-  imageUrl: 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg',
+  imageUrl: 'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg',
   url: '#!',
   email: ''
 };

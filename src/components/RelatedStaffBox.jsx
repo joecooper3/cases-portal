@@ -41,5 +41,5 @@ RelatedStaffBox.propTypes = {
 RelatedStaffBox.defaultProps = {
   url: '#!',
   title: '',
-  imageUrl: 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg'
+  imageUrl: 'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg'
 };

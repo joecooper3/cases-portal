@@ -78,7 +78,7 @@ if (pageType === 'compliance') {
 }
 
 const defaultAvatar =
-  'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
+  'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg';
 
 function staffSorterFirst(a, b) {
   // function for sorting array by first name

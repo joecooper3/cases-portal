@@ -160,7 +160,7 @@ StaffBox.defaultProps = {
   location: '',
   category: 'none',
   url: '#!',
-  imageUrl: 'http://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg',
+  imageUrl: 'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg',
   supervisorName: '',
   supervisorUrl: '',
   phone: '',
