@@ -50,6 +50,7 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 			'basic_training' => esc_html__( 'Basic Training', 'cases_portal'),
 			'advanced_training' => esc_html__( 'Advanced Training', 'cases_portal'),
 			'developer_guide' => esc_html__( 'Developer Guide', 'cases_portal'),
+			'account-settings' => esc_html__( 'Account Settings', 'cases_portal'),
 		) );
 		add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
 		function my_wp_nav_menu_objects( $items, $args ) {

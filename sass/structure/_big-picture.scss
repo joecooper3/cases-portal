@@ -55,7 +55,7 @@ header {
     p {
       font-size: 20px;
     }
-    ul {
+    ul, ol {
       max-width: $maxWidthPrimary;
       width: 100%;
       margin: 10px 0;
@@ -66,6 +66,16 @@ header {
       strong {
         font-family: gillSemiBold;
         font-weight: 400;
+      }
+    }
+    ol {
+      li {
+        padding-left: 10px;
+      }
+    }
+    ul.extra-space, ol.extra-space {
+      li {
+        margin: 10px 0;
       }
     }
   }

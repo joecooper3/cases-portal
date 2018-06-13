@@ -60,6 +60,15 @@ get_header(); ?>
 				) );
 			?>
 		</div>
+		<div id="quick-links">
+			<h2>Account Settings</h2>
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'account-settings',
+					'menu_id'        => 'secondary-menu',
+				) );
+			?>
+		</div>
 		<div id="cases-website-stories">
 			<h2>CASES Website Stories</h2>
 			<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>

@@ -40,7 +40,7 @@ const config = {
     new ExtractTextPlugin('style.css'),
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
-      __API__: "'http://portal.cases.org'"
+      __API__: "'https://portal.cases.org'"
     })
   ]
 };
