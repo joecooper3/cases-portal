@@ -26,7 +26,8 @@ function removeSpec(inp) {
   return inp
     .replace('&#038;', '&')
     .replace('&amp;', '&')
-    .replace('&#8217;', '’');
+    .replace('&#8217;', "'")
+    .replace('’', "'");
 }
 const APIHost = __API__; // eslint-disable-line no-undef
 const dataBlock = document.getElementById('primary');
@@ -218,9 +219,9 @@ Promise.all(promiseArray)
         final.progListArray = progListArray;
       }
       if (pageType === 'program') {
-        const parentPageName = programData.filter(item => item.name === deptProgName)[0]
+        const parentPageName = programData.filter(item => item.name === removeSpec(deptProgName))[0]
           .parent_dept_name;
-        const parentPageUrl = programData.filter(item => item.name === deptProgName)[0]
+        const parentPageUrl = programData.filter(item => item.name === removeSpec(deptProgName))[0]
           .parent_dept_url;
         const staffArray = staffDataCombined.filter(
           item => item.program === deptProgName && item.email !== pageSupervisor
