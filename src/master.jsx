@@ -208,7 +208,10 @@ Promise.all(promiseArray)
     if (pageType === 'dept' || pageType === 'program') {
       const pageSupervisor = dataBlock.getAttribute('supervisor-id');
       const deptProgName = dataBlock.getAttribute('page-name');
-      const supervisorArray = staffDataCombined.filter(item => item.email === pageSupervisor);
+      const pageSupervisorArr = pageSupervisor.replace(/\s/g, '').split(',');
+      const supervisorArray = staffDataCombined.filter(item =>
+        pageSupervisorArr.includes(item.email)
+      );
       if (pageType === 'dept') {
         const staffArray = staffDataCombined.filter(
           item =>
@@ -224,7 +227,7 @@ Promise.all(promiseArray)
         const parentPageUrl = programData.filter(item => item.name === removeSpec(deptProgName))[0]
           .parent_dept_url;
         const staffArray = staffDataCombined.filter(
-          item => item.program === deptProgName && item.email !== pageSupervisor
+          item => item.program === deptProgName && !pageSupervisorArr.includes(item.email)
         );
         const progListArray = programData.filter(item => item.parent_dept_name === parentPageName);
         final.staffArray = staffArray.sort(staffSorterLast);
@@ -439,3 +442,7 @@ Promise.all(promiseArray)
       );
     }
   });
+// Disables the editing of a person's email address on the change password page
+if (pageType === 'default' && pageTitle === 'Change Your Password') {
+  document.getElementById('email').disabled = true;
+}
