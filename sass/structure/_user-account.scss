@@ -1,0 +1,121 @@
+#primary {
+#wppb-edit-user {
+    width: 800px;
+    ul {
+        margin: 0 auto;
+        li {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            label {
+                text-align: right;
+                padding-right: 20px;
+                font-family: akzSemibold;
+                align-items: center;
+                justify-content: center;
+                font-size: 15px;
+                .wppb-required {
+                    display: none;
+                }
+            }
+            input {
+                font-family: akzLight;
+                max-width: 250px;
+            }
+            #passw1, #passw2 {
+                padding: 0 10px;
+                font-size: 25px;
+                transition: all 0.2s;
+            }
+            #passw1:focus, #passw2:focus {
+                outline: none;
+                box-shadow: none;
+                border-color: $color1;
+            }
+        }
+        .wppb-default-username, .wppb-default-e-mail {
+            input {
+                border: 0;
+                background: transparent;
+            }
+        }
+    }
+    .form-submit {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        font-size: 18px;
+        #edit_profile {
+            font-family: akzMed;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: $mywhite;
+            border-radius: 0px;
+            border-color: $color1;
+            color: $color1;
+            transition: all 0.25s;
+        }
+        #edit_profile:hover {
+            border-color: $color3;
+            color: $color3;
+        }
+    }
+}
+#wpua-edit-1 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    h3 {
+        font-family: akzMed;
+        display: none;
+    }
+    #wpua-add-button-existing, #wpua-remove-button-existing {
+        text-align: center;
+        button {
+            @include dumb-button(14px);
+        }
+        button:hover {
+            @include dumb-button-hover;
+        }
+    }
+    #wpua-preview-existing {
+        img {
+            clip-path: circle(38% at center);
+            max-height: none;
+        }
+        .description {
+            display: none;
+        }
+    }
+    #wpua-images-existing {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        p {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+        #wpua-thumbnail-existing {
+            display: none;
+        }
+        #wpua-undo-button-existing {
+            display: none;
+        }
+    }
+
+    .submit {
+        text-align: center;
+        margin-top: 25px;
+        input {
+            @include dumb-button(20px);
+        }
+    }
+    .submit:hover {
+        input {
+            @include dumb-button-hover;
+        }
+    }
+}
+}

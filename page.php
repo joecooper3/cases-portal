@@ -15,7 +15,7 @@
  get_header(); ?>
 
 
- 	<div id="primary" class="content-area">
+ 	<div id="primary" class="content-area" data-id="default">
  			<div>
  		<h1 id="dept-title" data-id="<?php the_title();?>"><?php the_title();?></h1>
     <div class="entry-content">

@@ -38,3 +38,20 @@
     -1px -1px $mywhite;
   text-decoration: none;
 }
+
+//My dumb little buttons
+@mixin dumb-button($base) {
+  font-size: ($base);
+  font-family: akzMed;
+  background-color: $mywhite;
+  padding: ($base * 0.66) ($base * 1.2);
+  border: 1.0px solid $color1;
+  border-radius: 0px;
+  color: $color1;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+@mixin dumb-button-hover {
+  border-color: $color3;
+  color: $color3;
+}

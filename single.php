@@ -13,7 +13,7 @@ get_header(); ?>
 }
 else { ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area" data-id="default-post">
 			<div>
 		<div class="most-the-post">
 			<?php while ( have_posts() ) : the_post();
