@@ -237,6 +237,36 @@ function custom_post_type() {
 		'capability_type'       => 'post',
 		'show_in_rest'          => true,
 	);
+	$safety_labels = array(
+		'name'                  => _x( 'Safety Pages', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Safety Page', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Safety Pages', 'text_domain' ),
+		'name_admin_bar'        => __( 'Safety Pages', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Safety Page', 'text_domain' ),
+		'new_item'              => __( 'New Safety Page', 'text_domain' ),
+		'edit_item'             => __( 'Edit Safety Page', 'text_domain' ),
+		'update_item'           => __( 'Update Safety Page', 'text_domain' ),
+	);
+	$args_safety = array(
+		'label'                 => __( 'Saftey Pages', 'text_domain' ),
+		'description'           => __( '', 'text_domain' ),
+		'labels'                => $safety_labels,
+		'supports'              => array( 'title', 'editor', 'revisions'),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-warning',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'post',
+		'show_in_rest'          => true,
+	);
 	register_post_type( 'staff', $args );
 	register_post_type( 'department', $args_dept );
 	register_post_type( 'program', $args_program );
@@ -244,6 +274,7 @@ function custom_post_type() {
 	register_post_type( 'sidenav', $args_sidenav );
 	register_post_type( 'comms', $comms_sidenav );
 	register_post_type( 'documents', $args_docs );
+	register_post_type( 'safety', $args_safety );
 }
 
 // Register Custom Taxonomies
@@ -276,11 +307,27 @@ function custom_taxonomies() {
 			'assign_terms' => 'edit_posts'
 		)
 		);
+	$safety_tax_args = array(
+		'labels' => array(
+			'name' => 'Safety Pages Categories',
+			'singular_name' => 'Safety Pages Category'
+		),
+		'show_in_rest' => true,
+		'hierarchical' => true,
+		'capabilities' => array(
+			'manage_terms' => 'manage_categories',
+			'edit_terms' => 'manage_categories',
+			'delete_terms' => 'manage_categories',
+			'assign_terms' => 'edit_posts'
+		)
+		);
 
 	register_taxonomy( 'commstax', 'comms', $comms_tax_args );
 	register_taxonomy( 'docs', 'documents', $docs_tax_args );
+	register_taxonomy( 'safety', 'safety', $safety_tax_args );
 }
 add_action( 'init', 'custom_post_type', 0 );
 add_action( 'init', 'custom_taxonomies', 0 );
 register_taxonomy_for_object_type( 'comms_taxonomy', 'comms' );
 register_taxonomy_for_object_type( 'docs_taxonomy', 'documents' );
+register_taxonomy_for_object_type( 'safety_taxonomy', 'safety' );

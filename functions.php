@@ -51,6 +51,8 @@ if ( ! function_exists( 'cases_portal_setup' ) ) :
 			'advanced_training' => esc_html__( 'Advanced Training', 'cases_portal'),
 			'developer_guide' => esc_html__( 'Developer Guide', 'cases_portal'),
 			'account-settings' => esc_html__( 'Account Settings', 'cases_portal'),
+			'emergency_preparedness' => esc_html__( 'Emergency Preparedness', 'cases_portal'),
+			'safety_at_cases' => esc_html__( 'Safety at CASES', 'cases_portal'),
 		) );
 		add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
 		function my_wp_nav_menu_objects( $items, $args ) {
