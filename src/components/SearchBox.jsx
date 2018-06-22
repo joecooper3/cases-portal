@@ -2,17 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SearchResult } from './SearchResult.jsx';
 
+const MAX_RESULTS = 8;
+
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fullResults: [],
       searchResults: [],
+      selectedLink: {},
       contactsVisible: false,
+      highlightedItem: -1,
       query: ''
     };
     this._filterSearch = this._filterSearch.bind(this);
     this._hide = this._hide.bind(this);
+    this._keyboard = this._keyboard.bind(this);
   }
   componentWillMount() {
     this.setState({ fullResults: this.props.data });
@@ -73,12 +78,32 @@ class SearchBox extends React.Component {
       return theResults;
     });
     this.setState({ searchResults });
+    this.setState({ highlightedItem: -1 });
+    this.setState({ selectedLink: searchResults[0] });
     if (searchQuery === '') {
       this.setState({ contactsVisible: false });
     }
   }
   _hide() {
     this.setState({ contactsVisible: false });
+  }
+  _keyboard(e) {
+    if (this.state.contactsVisible) {
+      if (e.key === 'Enter' && this.state.contactsVisible) {
+        window.location.href = this.state.selectedLink.url;
+      }
+      if (
+        e.key === 'ArrowDown' &&
+        this.state.highlightedItem < Math.min(this.state.searchResults.length, MAX_RESULTS) - 1
+      ) {
+        this.setState({ highlightedItem: this.state.highlightedItem + 1 });
+        this.setState({ selectedLink: this.state.searchResults[this.state.highlightedItem + 1] });
+      }
+      if (e.key === 'ArrowUp' && this.state.highlightedItem > 0) {
+        this.setState({ highlightedItem: this.state.highlightedItem - 1 });
+        this.setState({ selectedLink: this.state.searchResults[this.state.highlightedItem - 1] });
+      }
+    }
   }
   render() {
     return (
@@ -91,10 +116,13 @@ class SearchBox extends React.Component {
           required="required"
           className="sbx-custom__input"
           onChange={this._filterSearch}
+          onFocus={this._filterSearch}
+          onKeyDown={this._keyboard}
+          onBlur={this._hide}
         />
         <ul className="contacts-list">
           {this.state.contactsVisible
-            ? this.state.searchResults.slice(0, 8).map(function(part, i) {
+            ? this.state.searchResults.slice(0, MAX_RESULTS).map(function(part, i) {
                 return (
                   <SearchResult
                     key={part.id}
@@ -106,6 +134,7 @@ class SearchBox extends React.Component {
                     program={part.program}
                     query={this.state.query}
                     type={part.type}
+                    highlighted={this.state.highlightedItem === i}
                   />
                 );
               }, this)

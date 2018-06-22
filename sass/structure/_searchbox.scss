@@ -180,11 +180,7 @@
     }
   }
   .dept-prog {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 244, 228, 1) 0%,
-      rgba(255, 244, 228, 1) 100%
-    );
+    background-color: #fff4e4;
     .search-position {
       color: $color1;
     }
@@ -196,4 +192,7 @@
     padding: 0 25px 0 5px;
     white-space: pre-line;
   }
+}
+.highlighted-line {
+  background-color: #FFFFAA !important;
 }

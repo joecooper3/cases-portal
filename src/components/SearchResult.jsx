@@ -19,27 +19,39 @@ class SearchResult extends React.Component {
     return putItTogether;
   }
 
+  _determineClassName() {
+    if (this.props.highlighted && this.props.type !== '') {
+      return 'dept-prog highlighted-line';
+    } else if (this.props.highlighted) {
+      return 'highlighted-line';
+    } else if (this.props.type !== '') {
+      return 'dept-prog';
+    }
+    return '';
+  }
+
   render() {
-    const typeCheck = this.props.type;
-    const programCheck = this.props.program;
-    if (typeCheck === 'dept') {
+    const { type } = this.props;
+    const { program } = this.props;
+    const highlightedLine = this._determineClassName();
+    if (type === 'dept') {
       return (
-        <a href={this.props.url} className="dept-prog">
+        <a href={this.props.url} className={highlightedLine}>
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
           <div className="search-position">Department Page</div>
         </a>
       );
     }
-    if (typeCheck === 'program') {
+    if (type === 'program') {
       return (
-        <a href={this.props.url} className="dept-prog">
+        <a href={this.props.url} className={highlightedLine}>
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
           <div className="search-position">Program Page</div>
         </a>
       );
-    } else if (programCheck !== '') {
+    } else if (program !== '') {
       return (
-        <a href={this.props.url}>
+        <a href={this.props.url} className={highlightedLine}>
           {this._highlightText(this.props.first, this.props.last, this.props.query)}
           <div className="search-position">{this.props.program}</div>
         </a>
@@ -47,7 +59,7 @@ class SearchResult extends React.Component {
     }
 
     return (
-      <a href={this.props.url}>
+      <a href={this.props.url} className={highlightedLine}>
         {this._highlightText(this.props.first, this.props.last, this.props.query)}
         <div className="search-position">{this.props.department}</div>
       </a>
@@ -65,7 +77,8 @@ SearchResult.propTypes = {
   program: PropTypes.string,
   url: PropTypes.string,
   type: PropTypes.string,
-  department: PropTypes.string
+  department: PropTypes.string,
+  highlighted: PropTypes.bool.isRequired
 };
 
 SearchResult.defaultProps = {

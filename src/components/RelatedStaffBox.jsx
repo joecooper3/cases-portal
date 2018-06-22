@@ -34,12 +34,13 @@ RelatedStaffBox.propTypes = {
   last: PropTypes.string.isRequired,
   url: PropTypes.string,
   title: PropTypes.string,
-  email: PropTypes.string.isRequired,
+  email: PropTypes.string,
   imageUrl: PropTypes.string
 };
 
 RelatedStaffBox.defaultProps = {
   url: '#!',
   title: '',
-  imageUrl: 'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg'
+  imageUrl: 'https://portal.cases.org/wp-content/themes/cases_portal/images/silhouette.svg',
+  email: ''
 };

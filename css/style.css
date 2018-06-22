@@ -1165,9 +1165,6 @@ header .header-container #search-box {
 .contacts-list .search-name .highlighted {
   color: #0381fb;
 }
-.contacts-list .dept-prog {
-  background: linear-gradient(to bottom, #fff4e4 0%, #fff4e4 100%);
-}
 .contacts-list .dept-prog .search-position {
   color: #002b55;
 }
@@ -1806,9 +1803,6 @@ header .header-container #search-box {
 }
 .contacts-list .search-name .highlighted {
   color: #0381fb;
-}
-.contacts-list .dept-prog {
-  background: linear-gradient(to bottom, #fff4e4 0%, #fff4e4 100%);
 }
 .contacts-list .dept-prog .search-position {
   color: #002b55;
