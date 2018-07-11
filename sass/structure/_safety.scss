@@ -1,0 +1,80 @@
+#primary {
+    .two-col-table, .four-col-table {
+    display: grid;
+    grid-gap: 1px;
+    text-align: center;
+    align-items: stretch;
+    background-color: #eaeaea;
+    width: 100%;
+    margin: 20px 0 0 0;
+    .title {
+        grid-column: span 2;
+        font-family: akzBold;
+        padding: 15px 0;
+        font-size: 20px;
+    }
+    .col-header {
+        background-color: #eaeaea;
+        color: #555;
+        padding: 0;
+        font-family: akzBold;
+        text-transform: uppercase;
+        p {
+            margin: 5px 0;
+        }
+    }
+    p {
+        font-size: 15px;
+    }
+    div {
+        background-color: $mywhite;
+        display: flex;
+        align-items: center;
+        flex-flow: row wrap;
+        strong {
+            font-family: gillBold;
+            display: block;
+            width: 100%;
+        }
+    }
+    }
+    .two-col-table {
+        grid-template-columns: 1fr 1fr;
+        .title {
+            grid-column: span 2;
+        }
+    }
+    .four-col-table {
+        grid-template-columns: repeat(4, 1fr);
+        .title {
+            grid-column: span 4;
+        }
+    }
+    .safety-footnote {
+        font-size: 15px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1.0px solid #eaeaea;
+        ul, p {
+            font-size: 15px;
+        }
+    }
+}
+
+#safety-at-cases {
+    .subcat {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-family: akzBold;
+        text-align: center;
+        padding-top: 20px;
+        border-top: 0px;
+        a {
+            cursor: default;
+            color: #333;
+        }
+        a:hover {
+            color: #333;
+        }
+    }
+}
