@@ -4,6 +4,8 @@ import { SearchResult } from './SearchResult.jsx';
 
 const MAX_RESULTS = 8;
 
+const wholePage = document.getElementById('page');
+
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,9 @@ class SearchBox extends React.Component {
   }
   componentWillMount() {
     this.setState({ fullResults: this.props.data });
+  }
+  componentDidMount() {
+    wholePage.addEventListener('click', this._hide);
   }
 
   _filterSearch(event) {
@@ -84,8 +89,10 @@ class SearchBox extends React.Component {
       this.setState({ contactsVisible: false });
     }
   }
-  _hide() {
-    this.setState({ contactsVisible: false });
+  _hide(e) {
+    if (e.target.classList[0] !== 'sbx-custom__input') {
+      this.setState({ contactsVisible: false });
+    }
   }
   _keyboard(e) {
     if (this.state.contactsVisible) {
@@ -118,7 +125,6 @@ class SearchBox extends React.Component {
           onChange={this._filterSearch}
           onFocus={this._filterSearch}
           onKeyDown={this._keyboard}
-          onBlur={this._hide}
         />
         <ul className="contacts-list">
           {this.state.contactsVisible
