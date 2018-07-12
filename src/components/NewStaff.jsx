@@ -3,55 +3,47 @@ import PropTypes from 'prop-types';
 
 import NewStaffSlide from './NewStaffSlide.jsx';
 import { NewStaffPermissions } from './NewStaffPermissions.jsx';
+import NewStaffDots from './NewStaffDots.jsx';
 
 const STAFF_PER_PAGE = 8;
 const MAX_PAGES = 5;
 
-const newStaffContainer = document.getElementById('new-staff-container');
-
 class NewStaff extends React.Component {
+  static _setHeight(page) {
+    document.getElementById('new-staff-portraits').style.height = page;
+  }
   constructor() {
     super();
     this.state = {
       moreStaffVisible: true,
       prevStaffVisible: false,
       currentPage: 1,
-      slideHeights: ['2500px', '2500px', '2500px', '2500px', '2500px'],
-      height: '2500px'
+      slideHeights: ['2500px', '2500px', '2500px', '2500px', '2500px']
     };
     this._prevStaff = this._prevStaff.bind(this);
     this._moreStaff = this._moreStaff.bind(this);
     this._statusCheck = this._statusCheck.bind(this);
-    this._setHeight = this._setHeight.bind(this);
+    this._setHeight = this.constructor._setHeight.bind(this);
   }
   componentDidMount() {
+    const newStaffContainer = document.getElementById('new-staff-portraits');
     const slideArr = newStaffContainer.querySelectorAll('.new-hires-slide');
     const slideHeightArr = [];
     slideArr.forEach(item => slideHeightArr.push(getComputedStyle(item).height));
-    const slideHeightAdj = slideHeightArr.map(item => {
-      const raw = parseInt(item.split('px')[0]);
-      const modded = (raw + 86).toString();
-      return `${modded}px`;
-    });
-    console.log(slideHeightAdj);
-    console.log(slideHeightArr);
-    this.setState({ slideHeights: slideHeightAdj }); // eslint-disable-line
-    [newStaffContainer.style.height] = slideHeightAdj;
+    this.setState({ slideHeights: slideHeightArr }); // eslint-disable-line
+    [newStaffContainer.style.height] = slideHeightArr;
   }
   _moreStaff() {
     const newPageNumber = this.state.currentPage + 1;
     this.setState({ currentPage: newPageNumber });
     this._statusCheck(newPageNumber);
-    newStaffContainer.style.height = this.state.slideHeights[newPageNumber - 1];
+    this._setHeight(this.state.slideHeights[newPageNumber - 1]);
   }
   _prevStaff() {
     const newPageNumber = this.state.currentPage - 1;
     this.setState({ currentPage: newPageNumber });
     this._statusCheck(newPageNumber);
-    newStaffContainer.style.height = this.state.slideHeights[newPageNumber - 1];
-  }
-  _setHeight() {
-    newStaffContainer.style.height = this.state.height;
+    this._setHeight(this.state.slideHeights[newPageNumber - 1]);
   }
   _statusCheck(pageNumber) {
     if (pageNumber < 2 && this.state.prevStaffVisible) {
@@ -82,32 +74,44 @@ class NewStaff extends React.Component {
     const { moreStaffVisible } = this.state;
     return (
       <React.Fragment>
-        {preparedData.map((inp, i) => {
-          if (i + 1 === this.state.currentPage) {
-            return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide active" />;
-          } else if (i < this.state.currentPage) {
-            return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide on-left" />;
-          }
-          return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide" />;
-        })}
+        <div id="new-staff-portraits">
+          {preparedData.map((inp, i) => {
+            if (i + 1 === this.state.currentPage) {
+              return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide active" />;
+            } else if (i < this.state.currentPage) {
+              return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide on-left" />;
+            }
+            return <NewStaffSlide key={i} data={inp} cssClasses="new-hires-slide" />;
+          })}
+        </div>
         <div id="new-staff-buttons">
           {prevStaffVisible ? (
-            <div onClick={this._prevStaff} onKeyDown={this._prevStaff} role="button" tabIndex="0">
+            <div
+              onClick={this._prevStaff}
+              onKeyDown={this._prevStaff}
+              className="prev-and-next"
+              role="button"
+              tabIndex="0"
+            >
               <i className="fa fa-long-arrow-left" aria-hidden="true" /> Previous New Staff
             </div>
           ) : (
-            <br />
+            <div />
           )}
+          <NewStaffDots currentPage={this.state.currentPage} maxPages={MAX_PAGES} />
           {moreStaffVisible ? (
-            <div onClick={this._moreStaff} onKeyDown={this._moreStaff} role="button" tabIndex="0">
+            <div
+              onClick={this._moreStaff}
+              onKeyDown={this._moreStaff}
+              className="prev-and-next"
+              role="button"
+              tabIndex="0"
+            >
               More New Staff <i className="fa fa-long-arrow-right" aria-hidden="true" />
             </div>
           ) : (
-            <br />
+            <div />
           )}
-        </div>
-        <div>
-          Page {this.state.currentPage} of {MAX_PAGES}
         </div>
         {this.props.perm && <NewStaffPermissions />}
       </React.Fragment>

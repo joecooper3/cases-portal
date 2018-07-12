@@ -57,7 +57,6 @@
     .headline {
       font-size: 17px;
       font-family: akzSemibold;
-      margin-bottom: 0;
       color: $color1;
       display: inline;
       margin-right: 10px;
@@ -76,127 +75,143 @@
 }
 
 #new-staff-container {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
   display: flex;
-  transition: height 0.25s;
-  .new-hires-slide {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+  width: 100%;
+  flex-flow: column nowrap;
+  #new-staff-portraits {
     width: 100%;
-    position: absolute;
-    left: 100%;
-    transition: left 0.5s;
-    a {
-      text-decoration: none;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-    }
-    h1 {
-      flex: 1 0 100%;
-      margin-bottom: 20px;
-    }
-    .staff-container {
-      margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    transition: height 0.25s;
+    .new-hires-slide {
       display: flex;
       flex-flow: row wrap;
-      flex: 1 1 300px;
-      justify-content: center;
-      align-content: flex-start;
-      max-width: 300px;
-      .portrait {
-        background-size: cover;
-        background-position: 50% 80%;
-        border-radius: 100%;
-        height: 200px;
-        width: 200px;
-        text-align: center;
-      }
-      h2 {
-        margin-bottom: 0;
-        text-align: center;
-      }
-      .meta-new-hires {
-        font-family: akzLight;
-        margin: 0 0 20px 0;
-        font-size: 15px;
-        text-align: center;
-        width: 100%;
-        color: $softgrey;
-        height: auto;
-      }
-      .fun-facts {
-        width: 100%;
-        ul {
-          margin: 0;
-          padding: 0;
-        }
-      }
-    }
-  }
-  .new-hires-slide.on-left {
-    left: -100%;
-  }
-  .new-hires-slide.active {
-    left: 0;
-  }
-    #new-staff-buttons {
-      margin: 20px 0;
-      display: flex;
+      justify-content: space-around;
       width: 100%;
-      justify-content: space-between;
       position: absolute;
-      bottom: 0;
-      div {
-        font-family: akzSemibold;
-        color: $color1;
-        border: 1px solid $color1;
-        padding: 10px 20px;
-        background-color: $mywhite;
-        cursor: pointer;
-        transition: 0.2s color, 0.2s border-color;
-        &:hover {
-          color: $color3;
-          border-color: $color3;
+      left: 100%;
+      transition: left 0.5s;
+      a {
+        text-decoration: none;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+      }
+      h1 {
+        flex: 1 0 100%;
+        margin-bottom: 20px;
+      }
+      .staff-container {
+        margin: 20px 0;
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1 1 300px;
+        justify-content: center;
+        align-content: flex-start;
+        max-width: 300px;
+        .portrait {
+          background-size: cover;
+          background-position: 50% 80%;
+          border-radius: 100%;
+          height: 200px;
+          width: 200px;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0;
+          text-align: center;
+        }
+        .meta-new-hires {
+          font-family: akzLight;
+          margin: 0 0 20px 0;
+          font-size: 15px;
+          text-align: center;
+          width: 100%;
+          color: $softgrey;
+          height: auto;
+        }
+        .fun-facts {
+          width: 100%;
+          ul {
+            margin: 0;
+            padding: 0;
+          }
         }
       }
-      .fa-long-arrow-left {
-        margin-right: 5px;
-      }
-      .fa-long-arrow-right {
-        margin-left: 5px;
+    }
+    .new-hires-slide.on-left {
+      left: -100%;
+    }
+    .new-hires-slide.active {
+      left: 0;
+    }
+  }
+  #new-staff-buttons {
+    margin: 20px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .prev-and-next {
+      font-family: akzSemibold;
+      color: $color1;
+      border: 1px solid $color1;
+      padding: 10px 20px;
+      background-color: $mywhite;
+      cursor: pointer;
+      transition: 0.2s color, 0.2s border-color;
+      &:hover {
+        color: $color3;
+        border-color: $color3;
       }
     }
-    .new-staff-admin-container {
+    div {
+      flex: 33%;
       display: flex;
       justify-content: center;
-      border-top: 1.0px solid #dadada;
-      padding: 20px 0;
-      margin: 20px 0 0 0;
-      a {
-        padding: 10px 20px;
-        margin: 0 10px;
-        border: 1.0px solid $color1;
-        font-family: akzMed;
-        margin-top: 20px;
-        transition: color 0.25s, border-color 0.25s;
-        display: flex;
-        flex-flow: row;
-        i {
-          margin-right: 12px;
-        }
+      align-items: center;
+    }
+    .fa-long-arrow-left {
+      margin-right: 5px;
+    }
+    .fa-long-arrow-right {
+      margin-left: 5px;
+    }
+    #new-staff-dots-nav {
+      font-size: 18px;
+      color: $color1;
+      i {
+        margin: 0 5px;
       }
     }
-    .new-staff-admin-container {
-      a:hover {
-        border-color: $color3;
-        color: $color3;
+  }
+  .new-staff-admin-container {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #dadada;
+    padding: 20px 0;
+    margin: 20px 0 0 0;
+    a {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: 1px solid $color1;
+      font-family: akzMed;
+      margin-top: 20px;
+      transition: color 0.25s, border-color 0.25s;
+      display: flex;
+      flex-flow: row;
+      i {
+        margin-right: 12px;
       }
     }
-
+  }
+  .new-staff-admin-container {
+    a:hover {
+      border-color: $color3;
+      color: $color3;
+    }
+  }
 }
 
 #secondary {
