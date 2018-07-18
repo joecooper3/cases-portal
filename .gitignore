@@ -1,5 +1,6 @@
 /node_modules
 /images/staff-photos
+/data
 /dist
 /dist2
 .DS_Store
