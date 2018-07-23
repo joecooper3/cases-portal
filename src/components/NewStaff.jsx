@@ -9,6 +9,12 @@ const STAFF_PER_PAGE = 8;
 const MAX_PAGES = 5;
 
 class NewStaff extends React.Component {
+  static _grabAllHeights(arr, el) {
+    const slideHeightArr = [];
+    arr.forEach(item => slideHeightArr.push(getComputedStyle(item).height));
+    this.setState({ slideHeights: slideHeightArr }); // eslint-disable-line
+    [el.style.height] = slideHeightArr;
+  }
   static _setHeight(page) {
     document.getElementById('new-staff-portraits').style.height = page;
   }
@@ -20,18 +26,22 @@ class NewStaff extends React.Component {
       currentPage: 1,
       slideHeights: ['2500px', '2500px', '2500px', '2500px', '2500px']
     };
+    this._grabAllHeights = this.constructor._grabAllHeights.bind(this);
+    this._setHeight = this.constructor._setHeight.bind(this);
+    this._handlePageChange = this._handlePageChange.bind(this);
     this._prevStaff = this._prevStaff.bind(this);
     this._moreStaff = this._moreStaff.bind(this);
     this._statusCheck = this._statusCheck.bind(this);
-    this._setHeight = this.constructor._setHeight.bind(this);
   }
   componentDidMount() {
     const newStaffContainer = document.getElementById('new-staff-portraits');
     const slideArr = newStaffContainer.querySelectorAll('.new-hires-slide');
-    const slideHeightArr = [];
-    slideArr.forEach(item => slideHeightArr.push(getComputedStyle(item).height));
-    this.setState({ slideHeights: slideHeightArr }); // eslint-disable-line
-    [newStaffContainer.style.height] = slideHeightArr;
+    this._grabAllHeights(slideArr, newStaffContainer);
+  }
+  _handlePageChange(inp) {
+    this.setState({ currentPage: inp });
+    this._statusCheck(inp);
+    this._setHeight(this.state.slideHeights[inp - 1]);
   }
   _moreStaff() {
     const newPageNumber = this.state.currentPage + 1;
@@ -98,7 +108,11 @@ class NewStaff extends React.Component {
           ) : (
             <div />
           )}
-          <NewStaffDots currentPage={this.state.currentPage} maxPages={MAX_PAGES} />
+          <NewStaffDots
+            currentPage={this.state.currentPage}
+            maxPages={MAX_PAGES}
+            onPageChange={this._handlePageChange}
+          />
           {moreStaffVisible ? (
             <div
               onClick={this._moreStaff}
