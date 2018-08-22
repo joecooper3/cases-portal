@@ -38,9 +38,9 @@ get_header(); ?>
 	</div><!-- #news -->
 		<div id="new-hires">
 			<h1>New Hires</h1>
-				<div id="new-staff-container">
-					<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
-				</div>
+			<div id="master-new-staff-container">
+			<i class="fa fa-circle-o-notch spinning" aria-hidden="true"></i>
+		</div>
 		</div>
 	</div><!-- #primary -->
 

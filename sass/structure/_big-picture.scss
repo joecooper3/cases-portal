@@ -1,5 +1,4 @@
 $maxWidthPrimary: 635px;
-
 header {
   background-color: $mywhite;
   .header-container {
@@ -44,7 +43,8 @@ header {
 #primary {
   flex: 1 1 625px;
   max-width: 1000px;
-  & > div, .temp-span > div {
+  &>div,
+  .temp-span>div {
     background-color: $mywhite;
     padding: 25px 50px;
     margin: 30px 20px;
@@ -56,7 +56,8 @@ header {
     p {
       font-size: 20px;
     }
-    ul, ol {
+    ul,
+    ol {
       max-width: $maxWidthPrimary;
       width: 100%;
       margin: 10px 0;
@@ -74,7 +75,8 @@ header {
         padding-left: 10px;
       }
     }
-    ul.extra-space, ol.extra-space {
+    ul.extra-space,
+    ol.extra-space {
       li {
         margin: 10px 0;
       }
@@ -147,7 +149,7 @@ header {
 .sec-blank-holder {
   flex: 1 1 300px;
   max-width: 375px;
-  & > div,
+  &>div,
   .resources-links {
     background-color: $mywhite;
     padding: 20px;
@@ -180,6 +182,7 @@ p {
   position: relative;
   z-index: 3;
 }
+
 .moving-line:after {
   content: "";
   position: absolute;
@@ -193,6 +196,7 @@ p {
   transition: width 0.3s ease;
   -webkit-transition: width 0.3s ease;
 }
+
 .moving-line:hover:after {
   left: 0;
   right: auto;
