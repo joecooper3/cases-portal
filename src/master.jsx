@@ -330,7 +330,7 @@ Promise.all(promiseArray)
       render(<CasesOrgNews />, document.getElementById('cases-website-stories'));
       render(
         <NewStaff parts={yeah.newStaff} perm={newStaffPermissions} />,
-        document.getElementById('new-staff-container')
+        document.getElementById('master-new-staff-container')
       );
     }
     if (pageType === 'dept') {

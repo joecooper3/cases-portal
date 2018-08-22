@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import debounce from 'lodash.debounce';
+
 import NewStaffSlide from './NewStaffSlide.jsx';
 import { NewStaffPermissions } from './NewStaffPermissions.jsx';
 import NewStaffDots from './NewStaffDots.jsx';
@@ -32,8 +34,13 @@ class NewStaff extends React.Component {
     this._prevStaff = this._prevStaff.bind(this);
     this._moreStaff = this._moreStaff.bind(this);
     this._statusCheck = this._statusCheck.bind(this);
+    this._adjustHeights = this._adjustHeights.bind(this);
   }
   componentDidMount() {
+    this._adjustHeights();
+    window.addEventListener('resize', debounce(this._adjustHeights, 300));
+  }
+  _adjustHeights() {
     const newStaffContainer = document.getElementById('new-staff-portraits');
     const slideArr = newStaffContainer.querySelectorAll('.new-hires-slide');
     this._grabAllHeights(slideArr, newStaffContainer);
@@ -83,7 +90,7 @@ class NewStaff extends React.Component {
     const { prevStaffVisible } = this.state;
     const { moreStaffVisible } = this.state;
     return (
-      <React.Fragment>
+      <div id="new-staff-container">
         <div id="new-staff-portraits">
           {preparedData.map((inp, i) => {
             if (i + 1 === this.state.currentPage) {
@@ -128,7 +135,7 @@ class NewStaff extends React.Component {
           )}
         </div>
         {this.props.perm && <NewStaffPermissions />}
-      </React.Fragment>
+      </div>
     );
   }
 }
