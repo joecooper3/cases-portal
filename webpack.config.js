@@ -1,11 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src');
 const SCSS_DIR = path.resolve(__dirname, 'sass');
 
 const config = {
+  node: {
+    fs: 'empty',
+    process: 'mock',
+    Buffer: true
+  },
   entry: {
     master: `${SRC_DIR}/master.jsx`
   },

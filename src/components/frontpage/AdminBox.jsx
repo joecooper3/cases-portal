@@ -12,12 +12,14 @@ class AdminBox extends Component {
           <ul>
             <a href="http://portal.cases.org/wp-admin/post-new.php">
               <li>
-                <i className="fa fa-pencil-square-o" />Write New Post/Alert
+                <i className="fa fa-pencil-square-o" />
+                Write New Post/Alert
               </li>
             </a>
             <a href="http://portal.cases.org/documents/overview/">
               <li>
-                <i className="fa fa-book" aria-hidden="true" />Portal Documentation
+                <i className="fa fa-book" aria-hidden="true" />
+                Portal Documentation
               </li>
             </a>
           </ul>

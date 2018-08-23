@@ -1,26 +1,30 @@
 import React from 'react';
 import { render } from 'react-dom';
+// import * as csv from 'csvtojson';
 
-import { AdminBox } from './components/AdminBox.jsx';
-import { CasesOrgNews } from './components/CasesOrgNews.jsx';
-import { CommsArchive } from './components/CommsArchive.jsx';
-import { CommsCatalog } from './components/CommsCatalog.jsx';
-import { DepartmentDirectory } from './components/DepartmentDirectory.jsx';
-import { DeptFetch } from './components/DeptFetch.jsx';
-import { DirectorySearchResults } from './components/DirectorySearchResults.jsx';
-import { DocsNav } from './components/DocsNav.jsx';
-import { NewStaff } from './components/NewStaff.jsx';
-import { ProgramFetch } from './components/ProgramFetch.jsx';
-import { ProgramsUnitsList } from './components/ProgramsUnitsList.jsx';
-import { RelatedStaff } from './components/RelatedStaff.jsx';
-import { SearchBox } from './components/SearchBox.jsx';
-import { SideNavBox } from './components/SideNavBox.jsx';
-import { StaffBreadcrumbs } from './components/StaffBreadcrumbs.jsx';
-import { StaffFetch } from './components/StaffFetch.jsx';
-import { TrainingsBox } from './components/TrainingsBox.jsx';
-import { ProgramBreadcrumbs } from './components/ProgramBreadcrumbs.jsx';
+import { AdminBox } from './components/frontpage/AdminBox.jsx';
+import { CasesOrgNews } from './components/frontpage/CasesOrgNews.jsx';
+import { CommsArchive } from './components/resources/CommsArchive.jsx';
+import { CommsCatalog } from './components/resources/CommsCatalog.jsx';
+import { DepartmentDirectory } from './components/directory/DepartmentDirectory.jsx';
+import { DeptFetch } from './components/directory/DeptFetch.jsx';
+import { DirectorySearchResults } from './components/search/DirectorySearchResults.jsx';
+import { DocsNav } from './components/resources/DocsNav.jsx';
+import { NewStaff } from './components/frontpage/NewStaff.jsx';
+import { ProgramFetch } from './components/directory/ProgramFetch.jsx';
+import { ProgramsUnitsList } from './components/directory/ProgramsUnitsList.jsx';
+import { RelatedStaff } from './components/directory/RelatedStaff.jsx';
+import { SearchBox } from './components/search/SearchBox.jsx';
+import { SideNavBox } from './components/resources/SideNavBox.jsx';
+import { StaffBreadcrumbs } from './components/directory/StaffBreadcrumbs.jsx';
+import { StaffFetch } from './components/directory/StaffFetch.jsx';
+import { TrainingsBox } from './components/resources/TrainingsBox.jsx';
+import { ProgramBreadcrumbs } from './components/directory/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
+const csv = require('csvtojson');
+
+console.log('u no we leave no witnesses');
 
 function removeSpec(inp) {
   return inp
@@ -40,13 +44,26 @@ const pageTitle =
     : removeSpec(titleBlock.innerHTML);
 
 const data = `${APIHost}/wp-content/themes/cases_portal/data/casescsv.json`;
+const dataNew = `${APIHost}/wp-content/themes/cases_portal/data/aug.json`;
 const directoryUrl = `${APIHost}/wp-json/portal/v2/bigstaff/`;
 const avatarUrl = `${APIHost}/wp-json/portal/v2/users`;
 const trainingUrl = `${APIHost}/wp-json/portal/v2/trainings/`;
 const sidenavUrl = `${APIHost}/wp-json/portal/v2/sidenavs/`;
 const commsUrl = `${APIHost}/wp-json/portal/v2/comms`;
 
+// const csvUrl = `${APIHost}/wp-content/themes/cases_portal/data/aug.csv`;
+// // console.log(csv);
+// csv()
+//   .fromFile(csvUrl)
+//   // .fromString('a,b,c\n1,2,3')
+//   .then(yessir => {
+//     console.log(yessir);
+//   });
+
 const apiRequestJason = fetch(data).then(response => response.json());
+const apiRequestJasonNew = fetch(dataNew)
+  .then(response => response.json())
+  .then(outp => console.log(outp));
 const apiRequestDirectory = fetch(directoryUrl).then(response => response.json());
 const apiRequestAvatar = fetch(avatarUrl).then(response => response.json());
 const apiRequestTraining = fetch(trainingUrl).then(response => response.json());

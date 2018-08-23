@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DirectoryStaffBox } from './DirectoryStaffBox.jsx';
+import { DirectoryStaffBox } from '../directory/DirectoryStaffBox.jsx';
 
 class DirectorySearchResults extends React.Component {
   constructor(props) {
@@ -153,7 +153,8 @@ class DirectorySearchResults extends React.Component {
                 program/units,{' '}
                 <a href="http://portal.cases.org/staff-directory-by-department/">
                   visit the Department Directory
-                </a>.
+                </a>
+                .
               </p>
             )}
           </div>

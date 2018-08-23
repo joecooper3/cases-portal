@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PortraitPull } from './PortraitPull.jsx';
-import { PhonePull } from './PhonePull.jsx';
 import { MobilePull } from './MobilePull.jsx';
+import { PhonePull } from './PhonePull.jsx';
+import { PortraitPull } from './PortraitPull.jsx';
 
 class DirectoryStaffBox extends React.Component {
   render() {
