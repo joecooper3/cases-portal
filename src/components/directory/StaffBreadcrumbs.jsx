@@ -27,7 +27,7 @@ class StaffBreadcrumbs extends React.Component {
   }
 }
 
-export { StaffBreadcrumbs };
+export default StaffBreadcrumbs;
 
 StaffBreadcrumbs.propTypes = {
   data: PropTypes.object.isRequired

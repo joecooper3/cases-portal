@@ -66,4 +66,4 @@ SideNavBox.defaultProps = {
   permissions: false
 };
 
-export { SideNavBox };
+export default SideNavBox;

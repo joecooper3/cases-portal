@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 
 import NewStaffSlide from './NewStaffSlide.jsx';
-import { NewStaffPermissions } from './NewStaffPermissions.jsx';
+import NewStaffPermissions from './NewStaffPermissions.jsx';
 import NewStaffDots from './NewStaffDots.jsx';
 
 const STAFF_PER_PAGE = 8;
@@ -140,7 +140,7 @@ class NewStaff extends React.Component {
   }
 }
 
-export { NewStaff };
+export default NewStaff;
 
 NewStaff.propTypes = {
   parts: PropTypes.array.isRequired,

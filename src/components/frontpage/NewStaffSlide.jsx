@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NewStaffBox } from './NewStaffBox.jsx';
+import NewStaffBox from './NewStaffBox.jsx';
 
 const NewStaffSlide = ({ cssClasses, data }) => (
   <div className={cssClasses}>

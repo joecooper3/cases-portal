@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { CatalogItem } from './CatalogItem.jsx';
+import CatalogItem from './CatalogItem.jsx';
 
 class CommsArchive extends Component {
   render() {
@@ -32,4 +32,4 @@ CommsArchive.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export { CommsArchive };
+export default CommsArchive;

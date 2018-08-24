@@ -11,7 +11,7 @@ class SupervisorPull extends React.Component {
   }
 }
 
-export { SupervisorPull };
+export default SupervisorPull;
 
 SupervisorPull.propTypes = {
   supervisorName: PropTypes.string.isRequired,

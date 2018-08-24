@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { CatalogItem } from './CatalogItem.jsx';
+import CatalogItem from './CatalogItem.jsx';
 
 class CommsHidden extends Component {
   render() {
@@ -37,4 +37,4 @@ CommsHidden.defaultProps = {
   url: '#!'
 };
 
-export { CommsHidden };
+export default CommsHidden;

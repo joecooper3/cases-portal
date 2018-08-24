@@ -9,7 +9,7 @@ class PortraitPull extends React.Component {
   }
 }
 
-export { PortraitPull };
+export default PortraitPull;
 
 PortraitPull.propTypes = {
   imageUrl: PropTypes.string

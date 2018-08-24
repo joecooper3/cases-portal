@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Training } from './Training.jsx';
+import Training from './Training.jsx';
 
-export default class TrainingsBox extends Component {
+class TrainingsBox extends Component {
   static dateCompare(a, b) {
     // function for sorting training dates
     const dateA = a.date;
@@ -44,7 +44,7 @@ export default class TrainingsBox extends Component {
   }
 }
 
-export { TrainingsBox };
+export default TrainingsBox;
 
 TrainingsBox.propTypes = {
   data: PropTypes.array.isRequired,

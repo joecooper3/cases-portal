@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaffBox } from './StaffBox.jsx';
+import StaffBox from './StaffBox.jsx';
 
 class StaffFetch extends React.Component {
   render() {
@@ -28,7 +28,7 @@ class StaffFetch extends React.Component {
   }
 }
 
-export { StaffFetch };
+export default StaffFetch;
 
 StaffFetch.propTypes = {
   data: PropTypes.object.isRequired

@@ -16,4 +16,4 @@ class NewStaffPermissions extends Component {
   }
 }
 
-export { NewStaffPermissions };
+export default NewStaffPermissions;

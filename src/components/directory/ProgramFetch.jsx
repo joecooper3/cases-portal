@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StaffBox } from './StaffBox.jsx';
+import StaffBox from './StaffBox.jsx';
 
 class ProgramFetch extends React.Component {
   render() {
@@ -46,7 +46,7 @@ class ProgramFetch extends React.Component {
   }
 }
 
-export { ProgramFetch };
+export default ProgramFetch;
 
 ProgramFetch.propTypes = {
   parts: PropTypes.array.isRequired,

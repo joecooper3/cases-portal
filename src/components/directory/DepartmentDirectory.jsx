@@ -36,7 +36,7 @@ class DepartmentDirectory extends React.Component {
   }
 }
 
-export { DepartmentDirectory };
+export default DepartmentDirectory;
 
 DepartmentDirectory.propTypes = {
   name: PropTypes.string.isRequired,

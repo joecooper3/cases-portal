@@ -66,7 +66,7 @@ class DocsNav extends Component {
   }
 }
 
-export { DocsNav };
+export default DocsNav;
 
 DocsNav.propTypes = {
   id: PropTypes.number.isRequired,

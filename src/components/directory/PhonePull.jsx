@@ -32,7 +32,7 @@ class PhonePull extends React.Component {
   }
 }
 
-export { PhonePull };
+export default PhonePull;
 
 PhonePull.propTypes = {
   phone: PropTypes.string

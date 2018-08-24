@@ -75,11 +75,11 @@ class CasesOrgNews extends React.Component {
       <div>
         <h2>CASES Website Stories</h2>
         <ul className="news-stories">
-          <a href={this.state.firstNews.link} target="_blank">
+          <a href={this.state.firstNews.link} target="_blank" rel="noopener noreferrer">
             <img src={this.state.firstImage} alt="" />
           </a>
           <li className="first-bullet">
-            <a href={this.state.firstNews.link} target="_blank">
+            <a href={this.state.firstNews.link} target="_blank" rel="noopener noreferrer">
               {this.state.firstNews.title.rendered}
             </a>
             <div className="date">{firstDate}</div>
@@ -87,7 +87,7 @@ class CasesOrgNews extends React.Component {
           </li>
           {this.state.newsBits.map((bit, i) => (
             <li key={i}>
-              <a href={bit.link} target="_blank">
+              <a href={bit.link} target="_blank" rel="noopener noreferrer">
                 {bit.title.rendered}
                 <div className="date">{this.constructor._dateConvert(new Date(bit.date))}</div>
               </a>
@@ -99,4 +99,4 @@ class CasesOrgNews extends React.Component {
   }
 }
 
-export { CasesOrgNews };
+export default CasesOrgNews;

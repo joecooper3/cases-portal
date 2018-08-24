@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SearchResult } from './SearchResult.jsx';
+
+import SearchResult from './SearchResult.jsx';
 
 const MAX_RESULTS = 8;
 
@@ -168,4 +169,4 @@ class SearchBox extends React.Component {
 SearchBox.propTypes = {
   data: PropTypes.array.isRequired
 };
-export { SearchBox };
+export default SearchBox;

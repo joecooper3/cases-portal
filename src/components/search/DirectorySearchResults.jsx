@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DirectoryStaffBox } from '../directory/DirectoryStaffBox.jsx';
+import DirectoryStaffBox from '../directory/DirectoryStaffBox.jsx';
 
 class DirectorySearchResults extends React.Component {
   constructor(props) {
@@ -164,7 +164,7 @@ class DirectorySearchResults extends React.Component {
   }
 }
 
-export { DirectorySearchResults };
+export default DirectorySearchResults;
 
 DirectorySearchResults.propTypes = {
   data: PropTypes.array.isRequired

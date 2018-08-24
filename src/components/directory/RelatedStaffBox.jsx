@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PortraitPull } from './PortraitPull.jsx';
+import PortraitPull from './PortraitPull.jsx';
 
 class RelatedStaffBox extends React.Component {
   render() {
@@ -27,7 +27,7 @@ class RelatedStaffBox extends React.Component {
   }
 }
 
-export { RelatedStaffBox };
+export default RelatedStaffBox;
 
 RelatedStaffBox.propTypes = {
   first: PropTypes.string.isRequired,

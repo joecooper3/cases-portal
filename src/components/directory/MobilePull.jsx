@@ -21,7 +21,7 @@ class MobilePull extends React.Component {
   }
 }
 
-export { MobilePull };
+export default MobilePull;
 
 MobilePull.propTypes = {
   phone: PropTypes.string

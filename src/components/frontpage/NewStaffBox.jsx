@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PortraitPull } from '../directory/PortraitPull.jsx';
+import PortraitPull from '../directory/PortraitPull.jsx';
 
 class NewStaffBox extends React.Component {
   static _formatDate(inp) {
@@ -62,7 +62,7 @@ class NewStaffBox extends React.Component {
   }
 }
 
-export { NewStaffBox };
+export default NewStaffBox;
 
 NewStaffBox.propTypes = {
   first: PropTypes.string.isRequired,

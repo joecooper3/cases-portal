@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MobilePull } from './MobilePull.jsx';
-import { PhonePull } from './PhonePull.jsx';
-import { PortraitPull } from './PortraitPull.jsx';
+import MobilePull from './MobilePull.jsx';
+import PhonePull from './PhonePull.jsx';
+import PortraitPull from './PortraitPull.jsx';
 
 class DirectoryStaffBox extends React.Component {
   render() {
@@ -83,7 +83,7 @@ class DirectoryStaffBox extends React.Component {
   }
 }
 
-export { DirectoryStaffBox };
+export default DirectoryStaffBox;
 
 DirectoryStaffBox.propTypes = {
   program: PropTypes.string,

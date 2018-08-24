@@ -67,7 +67,7 @@ class SearchResult extends React.Component {
   }
 }
 
-export { SearchResult };
+export default SearchResult;
 
 SearchResult.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

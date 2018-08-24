@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RelatedStaffBox } from './RelatedStaffBox.jsx';
+
+import RelatedStaffBox from './RelatedStaffBox.jsx';
 
 class RelatedStaff extends React.Component {
   static _shuffleArray(arr) {
@@ -49,25 +50,23 @@ class RelatedStaff extends React.Component {
           <h2 className="rel-staff-h2">
             Other <strong>{this.props.deptProg}</strong> staff:
           </h2>
-          {randomizedArray
-            .slice(0, 3)
-            .map((part, key) => (
-              <RelatedStaffBox
-                key={key}
-                first={part.first}
-                last={part.last}
-                imageUrl={part.imageUrl}
-                title={part.title}
-                url={part.url}
-              />
-            ))}
+          {randomizedArray.slice(0, 3).map((part, key) => (
+            <RelatedStaffBox
+              key={key}
+              first={part.first}
+              last={part.last}
+              imageUrl={part.imageUrl}
+              title={part.title}
+              url={part.url}
+            />
+          ))}
         </div>
       </div>
     );
   }
 }
 
-export { RelatedStaff };
+export default RelatedStaff;
 
 RelatedStaff.propTypes = {
   type: PropTypes.string.isRequired,

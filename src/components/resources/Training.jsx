@@ -53,16 +53,16 @@ class Training extends React.Component {
         <div className="date">{this.constructor._formatDate(this.props.date)}</div>
         <div className="location">{this.props.location}</div>
         <div className="time">
-          {this.constructor._formatTime(this.props.startTime)}&ndash;{this.constructor._formatTime(
-            this.props.endTime
-          )}
+          {this.constructor._formatTime(this.props.startTime)}
+          &ndash;
+          {this.constructor._formatTime(this.props.endTime)}
         </div>
       </li>
     );
   }
 }
 
-export { Training };
+export default Training;
 
 Training.propTypes = {
   date: PropTypes.string.isRequired,

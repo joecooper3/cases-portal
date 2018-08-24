@@ -9,7 +9,7 @@ function CatalogItem(props) {
         <img src={props.imageUrl} alt={props.title} />
       </a>
       <div className="details">
-        <a href={props.pdfUrl} target="_blank">
+        <a href={props.pdfUrl} target="_blank" rel="noopener noreferrer">
           Download PDF <i className="fa fa-file-pdf-o" aria-hidden="true" />
         </a>
       </div>
@@ -24,4 +24,4 @@ CatalogItem.propTypes = {
   pdfUrl: PropTypes.string.isRequired
 };
 
-export { CatalogItem };
+export default CatalogItem;

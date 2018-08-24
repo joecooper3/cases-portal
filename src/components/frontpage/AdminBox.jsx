@@ -29,4 +29,4 @@ class AdminBox extends Component {
   }
 }
 
-export { AdminBox };
+export default AdminBox;

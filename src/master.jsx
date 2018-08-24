@@ -1,26 +1,28 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { AdminBox } from './components/frontpage/AdminBox.jsx';
-import { CasesOrgNews } from './components/frontpage/CasesOrgNews.jsx';
-import { CommsArchive } from './components/resources/CommsArchive.jsx';
-import { CommsCatalog } from './components/resources/CommsCatalog.jsx';
-import { DepartmentDirectory } from './components/directory/DepartmentDirectory.jsx';
-import { DeptFetch } from './components/directory/DeptFetch.jsx';
-import { DirectorySearchResults } from './components/search/DirectorySearchResults.jsx';
-import { DocsNav } from './components/resources/DocsNav.jsx';
-import { NewStaff } from './components/frontpage/NewStaff.jsx';
-import { ProgramFetch } from './components/directory/ProgramFetch.jsx';
-import { ProgramsUnitsList } from './components/directory/ProgramsUnitsList.jsx';
-import { RelatedStaff } from './components/directory/RelatedStaff.jsx';
-import { SearchBox } from './components/search/SearchBox.jsx';
-import { SideNavBox } from './components/resources/SideNavBox.jsx';
-import { StaffBreadcrumbs } from './components/directory/StaffBreadcrumbs.jsx';
-import { StaffFetch } from './components/directory/StaffFetch.jsx';
-import { TrainingsBox } from './components/resources/TrainingsBox.jsx';
-import { ProgramBreadcrumbs } from './components/directory/ProgramBreadcrumbs.jsx';
+import AdminBox from './components/frontpage/AdminBox.jsx';
+import CasesOrgNews from './components/frontpage/CasesOrgNews.jsx';
+import CommsArchive from './components/resources/CommsArchive.jsx';
+import CommsCatalog from './components/resources/CommsCatalog.jsx';
+import DepartmentDirectory from './components/directory/DepartmentDirectory.jsx';
+import DeptFetch from './components/directory/DeptFetch.jsx';
+import DirectorySearchResults from './components/search/DirectorySearchResults.jsx';
+import DocsNav from './components/resources/DocsNav.jsx';
+import NewStaff from './components/frontpage/NewStaff.jsx';
+import ProgramFetch from './components/directory/ProgramFetch.jsx';
+import ProgramsUnitsList from './components/directory/ProgramsUnitsList.jsx';
+import RelatedStaff from './components/directory/RelatedStaff.jsx';
+import SearchBox from './components/search/SearchBox.jsx';
+import SideNavBox from './components/resources/SideNavBox.jsx';
+import StaffBreadcrumbs from './components/directory/StaffBreadcrumbs.jsx';
+import StaffFetch from './components/directory/StaffFetch.jsx';
+import TrainingsBox from './components/resources/TrainingsBox.jsx';
+import ProgramBreadcrumbs from './components/directory/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
+
+console.log('down by the river');
 
 function removeSpec(inp) {
   return inp

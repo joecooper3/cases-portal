@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CommsCatalogSection } from './CommsCatalogSection.jsx';
+import CommsCatalogSection from './CommsCatalogSection.jsx';
 
 class CommsCatalog extends React.Component {
   render() {
@@ -46,4 +46,4 @@ CommsCatalog.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export { CommsCatalog };
+export default CommsCatalog;

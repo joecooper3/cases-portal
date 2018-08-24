@@ -14,7 +14,7 @@ class ProgramBreadcrumbs extends React.Component {
   }
 }
 
-export { ProgramBreadcrumbs };
+export default ProgramBreadcrumbs;
 
 ProgramBreadcrumbs.propTypes = {
   data: PropTypes.object.isRequired

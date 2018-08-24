@@ -10,7 +10,8 @@ class ProgramsUnitsList extends React.Component {
       <div id="programs-units">
         <h2>
           {this.props.title}
-          <br />Programs & Units
+          <br />
+          Programs & Units
         </h2>
         <ul>
           {this.props.data.map(part => {
@@ -33,7 +34,7 @@ class ProgramsUnitsList extends React.Component {
   }
 }
 
-export { ProgramsUnitsList };
+export default ProgramsUnitsList;
 
 ProgramsUnitsList.propTypes = {
   name: PropTypes.string.isRequired,

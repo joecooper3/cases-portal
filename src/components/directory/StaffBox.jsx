@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PortraitPull } from './PortraitPull.jsx';
-import { PhonePull } from './PhonePull.jsx';
-import { MobilePull } from './MobilePull.jsx';
-import { SupervisorPull } from './SupervisorPull.jsx';
+import PortraitPull from './PortraitPull.jsx';
+import PhonePull from './PhonePull.jsx';
+import MobilePull from './MobilePull.jsx';
+import SupervisorPull from './SupervisorPull.jsx';
 
 class StaffBox extends React.Component {
   _addressDisplay() {
@@ -139,7 +139,7 @@ class StaffBox extends React.Component {
   }
 }
 
-export { StaffBox };
+export default StaffBox;
 
 StaffBox.propTypes = {
   location: PropTypes.string,

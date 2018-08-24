@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-import { CommsHidden } from './CommsHidden.jsx';
-import { CatalogItem } from './CatalogItem.jsx';
+import CommsHidden from './CommsHidden.jsx';
+import CatalogItem from './CatalogItem.jsx';
 
 const COLLAPSED_ITEM_NUM = 3;
 const EXPANDED_ITEM_NUM = 9;
@@ -37,17 +37,15 @@ class CommsCatalogSection extends Component {
         <a href={this.props.seeAllUrl} className="catalog-header">
           <h2>{this.props.title}</h2>
         </a>
-        {this.props.data
-          .slice(0, COLLAPSED_ITEM_NUM)
-          .map((doc, i) => (
-            <CatalogItem
-              key={i}
-              title={doc.name}
-              url={doc.url}
-              pdfUrl={doc.pdfUrl}
-              imageUrl={doc.image[0]}
-            />
-          ))}
+        {this.props.data.slice(0, COLLAPSED_ITEM_NUM).map((doc, i) => (
+          <CatalogItem
+            key={i}
+            title={doc.name}
+            url={doc.url}
+            pdfUrl={doc.pdfUrl}
+            imageUrl={doc.image[0]}
+          />
+        ))}
         <CSSTransitionGroup
           transitionName="slide"
           transitionAppear={false}
@@ -81,4 +79,4 @@ CommsCatalogSection.propTypes = {
   seeAllUrl: PropTypes.string.isRequired
 };
 
-export { CommsCatalogSection };
+export default CommsCatalogSection;
