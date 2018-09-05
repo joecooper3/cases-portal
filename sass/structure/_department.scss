@@ -1,6 +1,7 @@
 #primary {
   .dept-container {
     padding: 25px;
+
     h1 {
       flex: 1 0 100%;
       margin: 0 25px 20px;
@@ -33,6 +34,7 @@
       .portrait-container {
         flex: 1 0 300px;
       }
+
       .portrait {
         height: 250px;
         width: 250px;
@@ -42,6 +44,7 @@
       .meta {
         flex: 1 1 250px;
         margin: 25px;
+
         .name {
           text-align: left;
           font-size: 30px;
@@ -52,6 +55,7 @@
         h3 {
           text-align: left;
           font-size: 20px;
+          font-family: akzLight;
         }
       }
     }
@@ -79,8 +83,7 @@
       transform: scale(1.075);
     }
 
-    .info {
-    }
+    .info {}
 
     .meta {
       display: flex;
@@ -90,18 +93,21 @@
       font-size: 15px;
       color: #333;
       height: 100%;
+
       .name {
         font-size: 20px;
         margin-bottom: 0;
         text-align: center;
       }
+
       h3 {
         margin: 0 0 15px 0;
         font-size: 16px;
         text-align: center;
+        font-family: akzLight;
       }
-      .address {
-      }
+
+      .address {}
 
       i {
         margin-right: 10px;
@@ -110,14 +116,16 @@
       .email {
         margin: 15px 0 0;
       }
-      .phone {
-      }
+
+      .phone {}
+
       .mobile {
         i {
           font-size: 20px;
           margin-right: 18px;
         }
       }
+
       a {
         text-decoration: none;
       }
@@ -125,10 +133,12 @@
       .supervisor {
         margin: 15px 0 0;
         font-size: 12px;
+
         a {
           text-decoration: none;
           font-family: akzMed;
         }
+
         a:hover {
           text-decoration: underline;
         }
@@ -140,6 +150,7 @@
 #programs-units,
 .resources-links {
   font-family: akzLight;
+
   ul {
     margin: 0;
     padding: 0;
@@ -147,9 +158,11 @@
     display: flex;
     flex-flow: column nowrap;
   }
-  ul > a:first-child {
+
+  ul>a:first-child {
     border-top: 0.5px solid #f4f4f4;
   }
+
   a {
     text-decoration: none;
     padding: 10px 0 10px 25px;
@@ -157,10 +170,12 @@
     transition: 0.2s;
     color: #999;
   }
+
   a:hover {
     background-color: #f4f4f4;
     color: $color3;
   }
+
   li {
     text-align: left;
   }
@@ -174,6 +189,7 @@
     font-size: 17px;
     cursor: default;
   }
+
   .active-program:hover {
     color: #666;
     background-color: $mywhite;
