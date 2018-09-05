@@ -22,8 +22,6 @@ import ProgramBreadcrumbs from './components/directory/ProgramBreadcrumbs.jsx';
 
 require('../sass/style.scss');
 
-console.log('down by the river');
-
 function removeSpec(inp) {
   return inp
     .replace('&#038;', '&')
@@ -133,7 +131,7 @@ function sidenavOrder(a, b) {
 
 Promise.all(promiseArray)
   .then(values => {
-    const jasonData = values[0].info;
+    const jasonData = values[0];
     const directoryData = values[1];
     const avatarData = values[2];
     function supervisorUrlPull(soup) {
@@ -229,7 +227,8 @@ Promise.all(promiseArray)
         const parentPageUrl = programData.filter(item => item.name === removeSpec(deptProgName))[0]
           .parent_dept_url;
         const staffArray = staffDataCombined.filter(
-          item => item.program === deptProgName && !pageSupervisorArr.includes(item.email)
+          item =>
+            item.program === removeSpec(deptProgName) && !pageSupervisorArr.includes(item.email)
         );
         const progListArray = programData.filter(item => item.parent_dept_name === parentPageName);
         final.staffArray = staffArray.sort(staffSorterLast);
@@ -356,7 +355,7 @@ Promise.all(promiseArray)
         pageType === 'dept' ? yeah.deptProgName : yeah.progListArray[0].parent_dept_name;
       render(
         <ProgramsUnitsList
-          name={yeah.deptProgName}
+          name={removeSpec(yeah.deptProgName)}
           data={yeah.progListArray}
           title={progUnitHeader}
         />,
