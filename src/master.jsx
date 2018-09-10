@@ -131,8 +131,24 @@ function sidenavOrder(a, b) {
 
 Promise.all(promiseArray)
   .then(values => {
-    const jasonData = values[0];
-    const directoryData = values[1];
+    const jasonData = values[0].map(item => {
+      if (typeof item.email === 'string') {
+        item.email = item.email.toLowerCase();
+      }
+      if (typeof item.id === 'string') {
+        item.id = item.id.toLowerCase();
+      }
+      if (typeof item.supervisor === 'string') {
+        item.supervisor = item.supervisor.toLowerCase();
+      }
+      return item;
+    });
+    const directoryData = values[1].map(item => {
+      if (typeof item.email === 'string') {
+        item.email = item.email.toLowerCase();
+      }
+      return item;
+    });
     const avatarData = values[2];
     function supervisorUrlPull(soup) {
       const soupEmail = `${soup}@cases.org`;
@@ -142,7 +158,7 @@ Promise.all(promiseArray)
     function supervisorNamePull(soup) {
       const soupEmail = `${soup}@cases.org`;
       const soupEntry = jasonData.filter(inp => inp.email === soupEmail)[0];
-      return soupEntry !== undefined && `${soupEntry.first} ${soupEntry.last}`;
+      return soupEntry !== undefined ? `${soupEntry.first} ${soupEntry.last}` : 'none';
     }
     function avatarPuller(inp) {
       const userUploadedAvatar = avatarData.filter(avItem => avItem.email === inp.email);
