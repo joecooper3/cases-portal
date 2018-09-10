@@ -21,6 +21,9 @@ class StaffFetch extends React.Component {
           supervisorName={part.supervisorName}
           mobile={part.mobile}
           location={part.location}
+          street={part.street}
+          floor={part.floor}
+          csz={part.csz}
           category="staff"
         />
       </div>
