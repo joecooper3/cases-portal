@@ -5,10 +5,12 @@
       border-left: 10px solid $color3;
       padding: 15px 30px 15px 30px;
       margin: 20px 0;
+
       .alert-container {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
+
         .alert {
           text-transform: uppercase;
           font-size: 15px;
@@ -18,15 +20,18 @@
           display: inline;
           width: auto;
         }
+
         .entry-meta {
           display: inline;
           color: $softgrey;
           font-size: 14px;
+
           a {
             text-decoration: none;
           }
         }
       }
+
       h2 {
         margin: 0 0 10px 0;
         font-size: 20px;
@@ -39,6 +44,7 @@
       }
     }
   }
+
   .soft-warning {
     background-color: #f1f9ff;
     display: flex;
@@ -47,10 +53,12 @@
     border-radius: 25px;
     align-items: center;
     margin: 35px 0;
+
     i {
       font-size: 45px;
       margin: 0 45px;
     }
+
     p {
       width: auto;
       margin: 20px 0;
@@ -71,51 +79,62 @@
     margin: 30px 20px;
     background-color: $mywhite;
     transition: 0.25s color, 0.25s border-color;
+
     i {
       font-size: 30px;
       margin: 0 20px 0 0;
     }
+
     p {
       font-size: 13px;
       margin: 0;
+
       i {
         margin-left: 10px;
         font-size: 13px;
       }
     }
   }
+
   .staff-directory-referral:hover {
     color: $color3;
     border-color: $color3;
   }
+
   #admin-area {
     border: 1px solid $color1;
     border-radius: 0px;
+
     ul {
       a {
         padding-left: 15px;
       }
     }
+
     i {
       margin: 0 10px 0 0;
     }
   }
+
   .resources-links {
     .icon-secondary-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin: 0 5px 20px 0;
+
       i {
         color: $color1;
         font-size: 25px;
         margin: 0 15px;
       }
+
       h2 {
         margin-bottom: 0;
         width: 100%;
       }
     }
+
     .dates-list {
       li {
         padding: 10px 0 10px 25px;
@@ -123,13 +142,15 @@
         transition: 0.2s;
         color: #999;
       }
+
       .date {
         color: $color1;
         font-size: 17px;
         font-family: akzSemiBold;
       }
     }
-    .dates-list > li:last-child {
+
+    .dates-list>li:last-child {
       border-bottom: 0;
     }
   }
@@ -141,6 +162,7 @@
   justify-content: space-around;
   align-items: flex-start;
   margin: 50px 0;
+
   .task-button {
     margin: 0 20px 25px 20px;
   }
@@ -156,6 +178,7 @@
   flex-flow: column nowrap;
   width: 275px;
   align-items: center;
+
   .circle-icon {
     background-color: $color1;
     width: 250px;
@@ -166,24 +189,29 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s;
+
     img {
-      width: 175px;
+      width: 160px;
     }
   }
+
   .button {
     border: 1px solid $color1;
     padding: 20px 35px;
     transition: border-color 0.2s, color 0.2s;
+
     .fa-long-arrow-right {
       margin-left: 20px;
     }
   }
+
   .button-is {
     border: 1px solid $color1;
     padding: 10px 20px;
     font-size: 20px;
     width: 100%;
     transition: border-color 0.2s, color 0.2s;
+
     .fa-long-arrow-right {
       margin-left: 20px;
     }
@@ -194,10 +222,12 @@
   .circle-icon {
     background-color: $color2;
   }
+
   .button {
     color: $color3;
     border-color: $color3;
   }
+
   .button-is {
     color: $color3;
     border-color: $color3;
@@ -207,6 +237,7 @@
 .edit-button,
 .edit-sidenav {
   font-size: 13px;
+
   a {
     color: $color1;
     border: 1px solid $color1;
@@ -214,14 +245,17 @@
     text-decoration: none;
     background-color: $mywhite;
     transition: 0.2s;
+
     strong {
       font-weight: 400;
       font-family: akzSemiBold;
     }
+
     i {
       margin-left: 5px;
     }
   }
+
   a:hover {
     color: $color3;
     border-color: $color3;
@@ -247,6 +281,7 @@
     display: flex;
     flex-flow: row wrap;
     font-family: gillSemibold;
+
     a {
       text-decoration: none;
       padding: 10px 0 10px 25px;
@@ -255,6 +290,7 @@
       background-color: $mywhite;
       transition: 0.2s;
       width: 100%;
+
       .date {
         color: #999;
         font-family: akzRoman;
@@ -262,12 +298,14 @@
         margin-top: 5px;
       }
     }
+
     a:hover {
       color: $color3;
       background-color: #f4f4f4;
     }
   }
-  ul > a:first-child {
+
+  ul>a:first-child {
     border-top: 0.5px solid #f4f4f4;
   }
 }
@@ -276,12 +314,15 @@
   margin: 26px 0;
   display: grid;
   grid-template-columns: 250px 150px 125px;
+
   .cell {
     padding: 10px 0 10px 20px;
+
     strong {
       font-family: gillSemiBold;
     }
   }
+
   .cell-a {
     background-color: #f6f6f6;
   }

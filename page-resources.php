@@ -74,74 +74,48 @@ endif; ?>
 							<?php
 					      if ( have_posts() ) : while ( have_posts() ) : the_post();
 					  			the_content(); ?>
-									<?php if ($catKing == 'Information Services') : ?>
-										<div class="task-button-container">
-											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/ishelpdesk_bb" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/laptop.svg">
-												</div>
+							<?php 	
+								$task_buttons = get_field('task_buttons'); 
+								$tb1_image = $task_buttons['button_1_image'];
+								$tb1_text = $task_buttons['button_1_text'];
+								$tb1_url = $task_buttons['button_1_url'];
+								$tb2_image = $task_buttons['button_2_image'];
+								$tb2_text = $task_buttons['button_2_text'];
+								$tb2_url = $task_buttons['button_2_url'];
+								$below_content = $task_buttons['content_below_buttons'];
+								if (($tb1_text && $tb1_url) || ($tb2_text && $tb2_url)) : ?>
+									<div class="task-button-container">
+								<?php endif; ?>
+								<?php if ($tb1_text && $tb1_url) : ?>
+									
+											<a class="task-button" href="<?php echo $tb1_url; ?> " target="_blank">
+												<?php if ($tb1_image) : ?>
+													<div class="circle-icon">
+														<?php echo wp_get_attachment_image( $tb1_image['id']); ?>
+													</div>
+												<?php endif; ?>
 												<div class="button-is">
-													Post a ticket for <br/>the IS Helpdesk <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+													<?php echo $tb1_text; ?> <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 												</div>
 											</a>
-											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?utm_medium=email&utm_source=footer#!forum/database.helpdesk.bb" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/database.svg" style="width:125px">
-												</div>
+									<?php endif; ?>
+									<?php if ($tb2_text && $tb2_url) : ?>
+											<a class="task-button" href="<?php echo $tb2_url; ?>" target="_blank">
+												<?php if ($tb2_image) : ?>
+													<div class="circle-icon">
+														<?php echo wp_get_attachment_image( $tb2_image['id']); ?>
+													</div>
+												<?php endif; ?>
 												<div class="button-is">
-													Post a ticket for Salesforce help <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+													<?php echo $tb2_text; ?> <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 												</div>
 											</a>
+									<?php endif; ?>
+									<?php if (($tb1_text && $tb1_url) || ($tb2_text && $tb2_url)) : ?>
 										</div>
-									<?php elseif ($catKing == 'Human Resources') : ?>
-										<div class="task-button-container">
-											<a class="task-button" href="https://secure3.entertimeonline.com/ta/6131594.login" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/clock.svg">
-												</div>
-												<div class="button-is">
-													Submit Your <br/>Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-												</div>
-											</a>
-											<a class="task-button" href="https://workforcenow.adp.com/public/index.htm" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/id.svg">
-												</div>
-												<div class="button-is">
-													Update Your <br/>Records <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-												</div>
-											</a>
-										</div>
-									<?php elseif ($catKing == 'Fiscal') : ?>
-										<div class="task-button-container">
-											<a class="task-button" href="https://secure3.entertimeonline.com/ta/6131594.login" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/clock.svg">
-												</div>
-												<div class="button-is">
-													Submit Your <br/>Timesheet <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-												</div>
-											</a>
-											<a class="task-button" href="http://portal.cases.org/program/fiscal/">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/person.svg" style="width:125px">
-												</div>
-												<div class="button-is">
-													Meet the <br/>Fiscal Staff <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-												</div>
-											</a>
-										</div>
-									<?php elseif ($catKing == 'Facilities') : ?>
-										<div class="task-button-container">
-											<a class="task-button" href="https://groups.google.com/a/cases.org/forum/?hl=en#!forum/facilities.requests_bb" target="_blank">
-												<div class="circle-icon">
-													<img src="http://portal.cases.org/wp-content/themes/cases_portal/images/wrench.svg">
-												</div>
-												<div class="button-is">
-													Post a Task<br/> for Facilities <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-												</div>
-											</a>
-										</div>
+									<?php endif; ?>
+									<?php if ($task_buttons['content_below_buttons']) : ?>
+									<?php echo $below_content; ?>
 									<?php endif; ?>
 									<?php if(current_user_can('administrator') || current_user_can($fullRole)) : ?>
 									<div class="edit-button"><?php
