@@ -25,21 +25,21 @@
   </div>
    	</div><!-- #primary -->
        <div id="secondary">
+          <div class="docs-links">
+           <h2>Safety at CASES</h2>
+           <?php
+          wp_nav_menu( array(
+            'theme_location' => 'safety_at_cases',
+            'menu_id'        => 'safety-at-cases',
+          ) );
+        ?>
+          </div>
         <div class="docs-links">
           <h2>Emergency Preparedness</h2>
           <?php
 				wp_nav_menu( array(
 					'theme_location' => 'emergency_preparedness',
 					'menu_id'        => 'emergency-preparedness',
-				) );
-			?>
-        </div>
-        <div class="docs-links">
-         <h2>Safety at CASES</h2>
-         <?php
-				wp_nav_menu( array(
-					'theme_location' => 'safety_at_cases',
-					'menu_id'        => 'safety-at-cases',
 				) );
 			?>
         </div>

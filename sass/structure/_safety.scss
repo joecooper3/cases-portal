@@ -8,6 +8,7 @@
         display: flex;
         justify-content: space-between;
         transition: border-color 0.25s;
+
         a {
             text-decoration: none;
             width: 100%;
@@ -16,11 +17,13 @@
             align-items: center;
             transition: color 0.25s, background-color 0.25s;
         }
+
         .safety-guide-text {
             font-family: akzMed;
             padding: 20px;
             font-size: 20px;
         }
+
         .safety-guide-icon {
             max-width: 100px;
             background-color: $color1;
@@ -28,15 +31,19 @@
             font-size: 30px;
         }
     }
+
     .safety-guide-container:hover {
         border-color: $color3;
+
         .safety-guide-text {
             color: $color3;
         }
+
         .safety-guide-icon {
             background-color: $color3;
         }
     }
+
     .two-col-table,
     .four-col-table {
         display: grid;
@@ -46,33 +53,39 @@
         background-color: #eaeaea;
         width: 100%;
         margin: 20px 0 0 0;
+
         .title {
             grid-column: span 2;
             font-family: akzBold;
             padding: 15px 0;
             font-size: 20px;
         }
+
         .col-header {
             background-color: #eaeaea;
             color: #555;
             padding: 0;
             font-family: akzBold;
             text-transform: uppercase;
+
             p {
                 margin: 5px 0;
             }
         }
+
         p,
         ol,
         ul {
             font-size: 15px;
         }
+
         div {
             background-color: $mywhite;
             display: flex;
             align-items: center;
             flex-flow: row wrap;
             padding: 10px;
+
             strong {
                 font-family: gillBold;
                 display: block;
@@ -80,26 +93,50 @@
             }
         }
     }
+
     .two-col-table {
         grid-template-columns: 1fr 1fr;
+
         .title {
             grid-column: span 2;
         }
     }
+
     .four-col-table {
         grid-template-columns: repeat(4, 1fr);
+
         .title {
             grid-column: span 4;
         }
     }
+
     .safety-footnote {
         font-size: 15px;
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1.0px solid #eaeaea;
+
         ul,
         p {
             font-size: 15px;
+        }
+    }
+
+    #documentation {
+        h6 {
+            text-align: center;
+            margin: 70px 0 40px 0;
+
+            a {
+                @include dumb-button(25px);
+                text-decoration: none;
+            }
+        }
+
+        h6:hover {
+            a {
+                @include dumb-button-hover;
+            }
         }
     }
 }
@@ -112,10 +149,12 @@
         text-align: center;
         padding-top: 20px;
         border-top: 0px;
+
         a {
             cursor: default;
             color: #333;
         }
+
         a:hover {
             color: #333;
         }
